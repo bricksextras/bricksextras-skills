@@ -1,0 +1,977 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xreadmoreless",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Read More / Less",
+    "description": "Schema for BricksExtras Read More / Less element. A nestable element",
+    "metadata": {
+        "name": "xreadmoreless",
+        "category": "extras",
+        "tag": "div",
+        "nestable": true
+    },
+    "settings": {
+        "builderVisibility": {
+            "label": "Preview",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "collapsedHeight": {
+            "label": "Height (Collapsed)",
+            "css": [
+                {
+                    "selector": ".x-read-more_content",
+                    "property": "max-height"
+                },
+                ""
+            ],
+            "placeholder": "200px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "speed": {
+            "label": "Animation speed in ms",
+            "placeholder": "300",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "heightMargin": {
+            "label": "Height margin (px)",
+            "placeholder": "20",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "readMoreContent": {
+            "label": "Content",
+            "default": "wysiwyg",
+            "placeholder": "Text editor",
+            "options": {
+                "wysiwyg": "Text editor",
+                "nestable": "Add elements"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "wysiwyg",
+                    "nestable"
+                ]
+            },
+            "controlType": "select"
+        },
+        "readMoreWysiwyg": {
+            "label": "Text editor",
+            "required": [
+                "readMoreContent",
+                "!=",
+                "nestable"
+            ],
+            "default": "<p>Edit me, chia DIY typewriter schlitz single-origin coffee subway tile. Next level before they sold out vice truffaut, edison bulb mixtape drinking vinegar hexagon chia tattooed sustainable single-origin coffee biodiesel chambray fashion axe. Etsy trust fund authentic hammock 3 wolf moon sartorial bespoke umami tattooed. Cardigan pabst keffiyeh try-hard cold-pressed four loko food truck sustainable tote bag occupy before they sold out mixtape. Ramps tote bag freegan DIY palo santo YOLO pabst you probably haven't heard of them shabby chic. Aesthetic trust fund ugh, tousled readymade health goth tacos slow-carb tonx. Vinyl gluten-free readymade poke +1 normcore.</p>",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "editor"
+        },
+        "moreText": {
+            "label": "Text (More)",
+            "default": "Read more",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "lessText": {
+            "label": "Text (Less)",
+            "default": "Read Less",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabels": {
+            "label": "Aria-label",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "moreAria": {
+            "label": "More",
+            "default": "Read more",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "lessAria": {
+            "label": "Less",
+            "default": "Read Less",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "buttonDuration": {
+            "label": "Duration (ms)",
+            "css": [
+                {
+                    "property": "animation-duration",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "placeholder": "300",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "buttonTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "buttonStyle_start": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "buttonBackgroundColor": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "buttonBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "buttonBoxShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "buttonPosition": {
+            "label": "Position",
+            "css": [
+                {
+                    "property": "position",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "options": {
+                "static": "static",
+                "absolute": "absolute"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "static",
+                    "absolute"
+                ]
+            },
+            "controlType": "select"
+        },
+        "buttonBottom": {
+            "label": "Bottom",
+            "required": [
+                "buttonPosition",
+                "=",
+                "absolute"
+            ],
+            "css": [
+                {
+                    "property": "bottom",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "buttonStyle_end": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "buttonPadding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "placeholder": {
+                "top": "10px",
+                "right": "10px",
+                "bottom": "10px",
+                "left": "10px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "buttonMargin": {
+            "label": "Margin",
+            "required": [
+                "buttonPosition",
+                "!=",
+                "absolute"
+            ],
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "buttonAlign": {
+            "label": "Align",
+            "css": [
+                {
+                    "property": "align-self",
+                    "selector": ".x-read-more_link"
+                },
+                {
+                    "required": "stretch",
+                    "property": "width",
+                    "value": "100%",
+                    "selector": ".x-read-more_link"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "align-items"
+        },
+        "buttonWidth": {
+            "label": "Button width",
+            "css": [
+                {
+                    "selector": ".x-read-more_link",
+                    "property": "width"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "maybeIcon": {
+            "label": "Icon",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "icon": {
+            "label": "Icon",
+            "css": [
+                {
+                    "selector": ".x-read-more_link-icon svg"
+                }
+            ],
+            "default": {
+                "library": "ionicons",
+                "icon": "ion-ios-arrow-down"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "iconSize": {
+            "label": "Icon size",
+            "css": [
+                {
+                    "property": "font-size",
+                    "selector": ".x-read-more_link-icon"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "iconRotate": {
+            "label": "Rotation (Expanded)",
+            "css": [
+                {
+                    "property": "--x-read-more-rotate",
+                    "selector": ".x-read-more_link-icon"
+                }
+            ],
+            "placeholder": "180",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "iconMargin": {
+            "label": "Icon margin",
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".x-read-more_link-icon"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "maybeGradient": {
+            "label": "Enable",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "fadeSeparator": {
+            "label": "Fade",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "gradientPercentageStart": {
+            "label": "Start (%)",
+            "required": [
+                "maybeGradient",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "--x-mask-start",
+                    "selector": ".x-read-more_content"
+                }
+            ],
+            "placeholder": "40",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "gradientPercentageEnd": {
+            "label": "End (%)",
+            "required": [
+                "maybeGradient",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "--x-mask-end",
+                    "selector": ".x-read-more_content"
+                }
+            ],
+            "placeholder": "90",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        }
+    },
+    "controlGroups": {
+        "content": {
+            "title": "Content",
+            "tab": "content"
+        },
+        "button": {
+            "title": "Button",
+            "tab": "content"
+        },
+        "icon": {
+            "title": "Icon",
+            "tab": "content"
+        },
+        "fadeGradient": {
+            "title": "Gradient",
+            "tab": "content"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-read-more_fade",
+            "x-read-more_content",
+            "x-read-more_icon"
+        ],
+        "rootElement": "div",
+        "nestable": true,
+        "childrenContainer": "Renders child elements within the structure"
+    },
+    "documentation": {
+        "description": "* Read More/Less element class.",
+        "keywords": [
+            "read",
+            "more",
+            "less"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": true
+        },
+        "bestPractices": [
+            "This is a nestable element - add child elements to build your content structure"
+        ]
+    }
+}

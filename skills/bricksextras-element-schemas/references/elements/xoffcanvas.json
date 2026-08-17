@@ -1,0 +1,710 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xoffcanvas",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "OffCanvas (Template)",
+    "description": "Schema for BricksExtras OffCanvas (Template) element",
+    "metadata": {
+        "name": "xoffcanvas",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "text": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "builderHidden": {
+            "label": "Hide in builder",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "builderHidden_sep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "offcanvas_template": {
+            "label": "Template",
+            "placeholder": "Select template",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "select"
+        },
+        "clickTrigger": {
+            "label": "Selector (Trigger)",
+            "default": ".brxe-xburgertrigger",
+            "placeholder": ".your-class-here",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "componentScope": {
+            "label": "Component scope",
+            "placeholder": "False",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "offcanvas_color": {
+            "label": "Background color",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-offcanvas_inner"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "style_sep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "direction": {
+            "label": "Position",
+            "default": "x-offcanvas_left",
+            "placeholder": "Select",
+            "options": {
+                "x-offcanvas_left": "Left",
+                "x-offcanvas_right": "Right",
+                "x-offcanvas_top": "Top",
+                "x-offcanvas_bottom": "Bottom"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "x-offcanvas_left",
+                    "x-offcanvas_right",
+                    "x-offcanvas_top",
+                    "x-offcanvas_bottom"
+                ]
+            },
+            "controlType": "select"
+        },
+        "transitionDuration": {
+            "label": "Duration",
+            "css": [
+                {
+                    "selector": "",
+                    "property": "--x-offcanvas-duration"
+                }
+            ],
+            "placeholder": "300ms",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "transitionType": {
+            "label": "Transition",
+            "placeholder": "Slide",
+            "options": {
+                "slide": "Slide",
+                "fade": "Fade"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "slide",
+                    "fade"
+                ]
+            },
+            "controlType": "select"
+        },
+        "offcanvas_width": {
+            "label": "Width",
+            "required": [
+                "direction",
+                "=",
+                [
+                    "x-offcanvas_left",
+                    "x-offcanvas_right"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-offcanvas_inner",
+                    "property": "width"
+                }
+            ],
+            "placeholder": "300px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "offcanvas_height": {
+            "label": "Height",
+            "required": [
+                "direction",
+                "=",
+                [
+                    "x-offcanvas_top",
+                    "x-offcanvas_bottom"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-offcanvas_inner",
+                    "property": "height"
+                }
+            ],
+            "placeholder": "100%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "maybe_hash_close": {
+            "label": "Clicking hashlink will close",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "hashlink_exclude_selector": {
+            "label": "Exclude hashlinks matching selector",
+            "required": [
+                "maybe_hash_close",
+                "!=",
+                "false"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "esc_to_close": {
+            "label": "Esc to close",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "move_focus": {
+            "label": "Move focus to offcanvas",
+            "placeholder": "Offcanvas",
+            "options": {
+                "content": "Offcanvas",
+                "selector": "Selector inside offcanvas",
+                "disable": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "content",
+                    "selector",
+                    "disable"
+                ]
+            },
+            "controlType": "select"
+        },
+        "trapFocus": {
+            "label": "Trap focus",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "returnFocus": {
+            "label": "Return focus to trigger on close",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "focus_selector": {
+            "label": "Selector (Focus)",
+            "required": [
+                "move_focus",
+                "=",
+                "selector"
+            ],
+            "placeholder": "a",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "preventScroll": {
+            "label": "Prevent scroll when open",
+            "placeholder": "Disable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "sync_burger_triggers": {
+            "label": "Sync burger triggers",
+            "placeholder": "Disable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "force_second_close": {
+            "label": "Close other offcanvas",
+            "placeholder": "Disable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "second_offcanvas_selector": {
+            "label": "Selector",
+            "required": [
+                "force_second_close",
+                "=",
+                "true"
+            ],
+            "placeholder": ".other-offcanvas",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "disable_backdrop": {
+            "label": "Disable backdrop",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "backdrop_to_close": {
+            "label": "Click backdrop to close",
+            "required": [
+                "disable_backdrop",
+                "!=",
+                true
+            ],
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "backdrop_color": {
+            "label": "Color (Backdrop)",
+            "required": [
+                "disable_backdrop",
+                "!=",
+                true
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-offcanvas_backdrop"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "backdrop_zindex": {
+            "label": "Z-index",
+            "required": [
+                "disable_backdrop",
+                "!=",
+                true
+            ],
+            "css": [
+                {
+                    "property": "z-index",
+                    "selector": ".x-offcanvas_backdrop"
+                }
+            ],
+            "placeholder": "10",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "aria_label": {
+            "label": "aria-label",
+            "placeholder": "Offcanvas",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "auto_aria_control": {
+            "label": "Add aria-controls to trigger",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "reduce_motion": {
+            "label": "If &#039;Reduce motion&#039; enabled",
+            "placeholder": "Slide",
+            "options": {
+                "fade": "Fade",
+                "slide": "Slide",
+                "notransition": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "fade",
+                    "slide",
+                    "notransition"
+                ]
+            },
+            "controlType": "select"
+        },
+        "tag": {
+            "label": "HTML tag",
+            "placeholder": "div",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "role": {
+            "label": "Role",
+            "placeholder": "dialog",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "justifyContent": {
+            "label": "Justify content",
+            "css": [
+                {
+                    "property": "justify-content",
+                    "selector": ".x-offcanvas_inner"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "justify-content"
+        },
+        "alignItems": {
+            "label": "Align items",
+            "css": [
+                {
+                    "property": "align-items",
+                    "selector": ".x-offcanvas_inner"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "align-items"
+        },
+        "content_padding": {
+            "label": "Content padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-offcanvas_inner"
+                }
+            ],
+            "placeholder": {
+                "top": "30px",
+                "right": "30px",
+                "bottom": "30px",
+                "left": "30px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        }
+    },
+    "controlGroups": {
+        "layout": {
+            "title": "Layout / Spacing",
+            "tab": "content"
+        },
+        "config": {
+            "title": "Configure",
+            "tab": "content"
+        },
+        "backdrop": {
+            "title": "Backdrop",
+            "tab": "content"
+        },
+        "accessibility": {
+            "title": "Accessibility",
+            "tab": "content"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-offcanvas_left",
+            "second_offcanvas_selector",
+            "offcanvas_template",
+            "x-offcanvas_inner",
+            "x-offcanvas_backdrop"
+        ],
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Offcanvas element class.",
+        "keywords": [
+            "menu",
+            "offcanvas"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

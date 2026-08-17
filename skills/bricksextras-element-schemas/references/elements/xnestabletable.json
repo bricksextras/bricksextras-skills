@@ -1,0 +1,1269 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xnestabletable",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Nestable Table",
+    "description": "Schema for BricksExtras Nestable Table element. A nestable element",
+    "metadata": {
+        "name": "xnestabletable",
+        "category": "extras",
+        "tag": "div",
+        "nestable": true
+    },
+    "settings": {
+        "table_layout": {
+            "label": "Layout",
+            "css": [
+                {
+                    "property": "table-layout"
+                }
+            ],
+            "options": {
+                "auto": "Auto",
+                "fixed": "Fixed"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "auto",
+                    "fixed"
+                ]
+            },
+            "controlType": "select"
+        },
+        "header_bg": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": "th"
+                },
+                {
+                    "property": "background-color",
+                    "selector": "&.x-nestable-table_stacked td:before"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "header_typography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": "th"
+                },
+                {
+                    "property": "font",
+                    "selector": "&.x-nestable-table_stacked td:before"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "header_padding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": "th"
+                }
+            ],
+            "placeholder": {
+                "top": "14px",
+                "right": "24px",
+                "bottom": "14px",
+                "left": "24px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "cell_borders": {
+            "label": "Border color",
+            "css": [
+                {
+                    "property": "--x-table-border-color",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "cell_borders_width": {
+            "label": "Border width",
+            "css": [
+                {
+                    "property": "--x-table-border-width",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "1px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "row_bg": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": "td"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "row_bg_even": {
+            "label": "Background (Even)",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": "tr:nth-child(even) td"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "row_color": {
+            "label": "Text color",
+            "css": [
+                {
+                    "property": "color",
+                    "selector": "td"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "row_color_even": {
+            "label": "Text color (Even)",
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".tr:nth-child(even) td"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "row_typography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": "td"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "row_padding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": "td"
+                }
+            ],
+            "placeholder": {
+                "top": "14px",
+                "right": "24px",
+                "bottom": "14px",
+                "left": "24px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "row_min_height": {
+            "label": "Height (Row)",
+            "css": [
+                {
+                    "property": "height",
+                    "selector": "td"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "sticky_sep": {
+            "label": "Sticky header",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "position": {
+            "label": "Position",
+            "css": [
+                {
+                    "property": "position",
+                    "selector": "thead:not(.x-nestable-table_stacked thead)"
+                }
+            ],
+            "options": {
+                "sticky": "Sticky",
+                "static": "Static"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "sticky",
+                    "static"
+                ]
+            },
+            "controlType": "select"
+        },
+        "top": {
+            "label": "Top",
+            "required": [
+                "position",
+                "=",
+                "sticky"
+            ],
+            "css": [
+                {
+                    "property": "top",
+                    "selector": "thead:not(.x-nestable-table_stacked thead)"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "maybeStack": {
+            "label": "Stack columns vertically at breakpoint",
+            "placeholder": "None",
+            "options": {
+                "1279": "Desktop (<= 1279px )",
+                "1200": "upper (<= 1200px )",
+                "991": "Tablet portrait (<= 991px )",
+                "767": "Mobile landscape (<= 767px )",
+                "478": "Mobile portrait (<= 478px )",
+                "false": "None"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    1279,
+                    1200,
+                    991,
+                    767,
+                    478,
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "stackRowGap": {
+            "label": "Row gap",
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": "&.x-nestable-table_stacked tbody"
+                }
+            ],
+            "placeholder": "1em",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "stackLabels": {
+            "label": "Cell content on new line",
+            "placeholder": "False",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "stackLabelsSep": {
+            "label": "Column labels",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "stackWidth": {
+            "label": "Width",
+            "required": [
+                "stackLabels",
+                "!=",
+                "true"
+            ],
+            "css": [
+                {
+                    "property": "width",
+                    "selector": "&:not([data-x-nestable-table*=stackLabels]).x-nestable-table_stacked td:before"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "stackMinWidth": {
+            "label": "Min. width",
+            "required": [
+                "stackLabels",
+                "!=",
+                "true"
+            ],
+            "css": [
+                {
+                    "property": "min-width",
+                    "selector": "&:not([data-x-nestable-table*=stackLabels]).x-nestable-table_stacked td:before"
+                }
+            ],
+            "placeholder": "150px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "alignTitle": {
+            "label": "Align",
+            "required": [
+                "stackLabels",
+                "!=",
+                "true"
+            ],
+            "css": [
+                {
+                    "property": "align-items",
+                    "selector": "&.x-nestable-table_stacked td:before"
+                }
+            ],
+            "placeholder": "Center",
+            "options": {
+                "flex-start": "flex-start",
+                "center": "Center",
+                "flex-end": "flex-end"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "flex-start",
+                    "center",
+                    "flex-end"
+                ]
+            },
+            "controlType": "select"
+        },
+        "labelPadding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": "&.x-nestable-table_stacked td:before"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "cellsSep": {
+            "label": "Cells",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "stackPadding": {
+            "label": "Cell inline padding",
+            "required": [
+                "stackLabels",
+                "!=",
+                "true"
+            ],
+            "css": [
+                {
+                    "property": "padding-inline-start",
+                    "selector": "&:not([data-x-nestable-table*=stackLabels]).x-nestable-table_stacked td"
+                }
+            ],
+            "placeholder": "150px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "stackCellTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": "&.x-nestable-table_stacked td"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "cellAlign": {
+            "label": "Align",
+            "css": [
+                {
+                    "property": "text-align",
+                    "selector": "&.x-nestable-table_stacked td"
+                },
+                {
+                    "property": "align-items",
+                    "selector": "&.x-nestable-table_stacked td",
+                    "value": "flex-start",
+                    "required": "left"
+                },
+                {
+                    "property": "align-items",
+                    "selector": "&.x-nestable-table_stacked td",
+                    "value": "center",
+                    "required": "center"
+                },
+                {
+                    "property": "align-items",
+                    "selector": "&.x-nestable-table_stacked td",
+                    "value": "flex-end",
+                    "required": "right"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text-align"
+        },
+        "stackCellPadding": {
+            "label": "Padding (Table cell)",
+            "required": [
+                "stackLabels",
+                "=",
+                "true"
+            ],
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": "&[data-x-nestable-table*=stackLabels].x-nestable-table_stacked td > span"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        }
+    },
+    "controlGroups": {
+        "header_group": {
+            "title": "Header (Styles)",
+            "tab": "content"
+        },
+        "rows_group": {
+            "title": "Table cell / Row (Styles)",
+            "tab": "content"
+        },
+        "sticky_header_group": {
+            "title": "Sticky header",
+            "tab": "content"
+        },
+        "mobile_group": {
+            "title": "Stack vertically",
+            "tab": "content"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "rootElement": "div",
+        "nestable": true,
+        "childrenContainer": "Renders child elements within the structure"
+    },
+    "documentation": {
+        "description": "* Nestable Table element class.",
+        "keywords": [
+            "table"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": true
+        },
+        "bestPractices": [
+            "This is a nestable element - add child elements to build your content structure"
+        ]
+    }
+}

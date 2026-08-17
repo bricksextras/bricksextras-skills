@@ -1,0 +1,106 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xshortcodewrapper",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Shortcode Wrapper",
+    "description": "Schema for BricksExtras Shortcode Wrapper element. A nestable element",
+    "metadata": {
+        "name": "xshortcodewrapper",
+        "category": "extras",
+        "tag": "div",
+        "nestable": true
+    },
+    "settings": {
+        "builderHidden": {
+            "label": "Hide content in builder",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "fullShortcode": {
+            "label": "Shortcode",
+            "description": "Enter opening and closing shortcode tags",
+            "placeholder": "[shortcode_open_tag][/shortcode_close_tag]",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "shortcodeContent": {
+            "label": "Content",
+            "default": "wysiwyg",
+            "placeholder": "Text editor",
+            "options": {
+                "template": "Template",
+                "wysiwyg": "Text editor",
+                "nestable": "Add elements"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "template",
+                    "wysiwyg",
+                    "nestable"
+                ]
+            },
+            "controlType": "select"
+        },
+        "templateId": {
+            "label": "Template",
+            "required": [
+                "shortcodeContent",
+                "!=",
+                [
+                    "nestable",
+                    "wysiwyg"
+                ]
+            ],
+            "placeholder": "Select template",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "select"
+        },
+        "shortcodeWysiwyg": {
+            "label": "Text editor",
+            "required": [
+                "shortcodeContent",
+                "=",
+                "wysiwyg"
+            ],
+            "default": "<h4>Conditional content</h4><p>Edit me. Aenean commodo ligula egget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "editor"
+        }
+    },
+    "controlGroups": {
+        "content": {
+            "title": "Content",
+            "tab": "content"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "rootElement": "div",
+        "nestable": true,
+        "childrenContainer": "Renders child elements within the structure"
+    },
+    "documentation": {
+        "description": "* Shortcode Wrapper element class.",
+        "keywords": [
+            "shortcode",
+            "wrapper"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": true
+        },
+        "bestPractices": [
+            "This is a nestable element - add child elements to build your content structure"
+        ]
+    }
+}

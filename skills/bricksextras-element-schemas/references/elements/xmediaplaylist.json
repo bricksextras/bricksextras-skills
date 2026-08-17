@@ -1,0 +1,1972 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xmediaplaylist",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Media Playlist",
+    "description": "Schema for BricksExtras Media Playlist element. A nestable element",
+    "metadata": {
+        "name": "xmediaplaylist",
+        "category": "extras",
+        "tag": "div",
+        "nestable": true
+    },
+    "settings": {
+        "provider": {
+            "label": "Media type",
+            "placeholder": "Video",
+            "options": {
+                "video": "Video",
+                "audio": "Audio"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "video",
+                    "audio"
+                ]
+            },
+            "controlType": "select"
+        },
+        "sourceType": {
+            "label": "Source",
+            "placeholder": "URL",
+            "options": {
+                "media": "Media library",
+                "url": "URL"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "media",
+                    "url"
+                ]
+            },
+            "controlType": "select"
+        },
+        "media": {
+            "label": "Media",
+            "required": [
+                [
+                    "provider",
+                    "!=",
+                    "audio"
+                ],
+                [
+                    "sourceType",
+                    "=",
+                    "media"
+                ]
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Video settings",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                }
+            },
+            "controlType": "video"
+        },
+        "audio": {
+            "label": "Audio",
+            "required": [
+                [
+                    "provider",
+                    "=",
+                    "audio"
+                ],
+                [
+                    "sourceType",
+                    "=",
+                    "media"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "audio"
+        },
+        "src": {
+            "label": "Media source URL",
+            "required": [
+                [
+                    "sourceType",
+                    "!=",
+                    "media"
+                ],
+                [
+                    "multipleSources",
+                    "!=",
+                    true
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "srcRepeater": {
+            "label": "Media sources",
+            "required": [
+                [
+                    "sourceType",
+                    "!=",
+                    "media"
+                ],
+                [
+                    "playlistMode",
+                    "!=",
+                    true
+                ],
+                [
+                    "multipleSources",
+                    "=",
+                    true
+                ],
+                [
+                    "provider",
+                    "!=",
+                    "audio"
+                ]
+            ],
+            "valueSchema": {
+                "type": "array",
+                "description": "Repeater items",
+                "items": {
+                    "type": "object"
+                }
+            },
+            "controlType": "repeater",
+            "fields": {
+                "source": {
+                    "label": "Media source URL",
+                    "placeholder": "https://example.com/video-1920x1080.mp4",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "type": {
+                    "label": "Media type",
+                    "placeholder": "video/mp4",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "width": {
+                    "label": "Width",
+                    "placeholder": "1920",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "height": {
+                    "label": "Height",
+                    "placeholder": "1080",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                }
+            }
+        },
+        "srcRepeaterAudio": {
+            "label": "Media sources",
+            "required": [
+                [
+                    "sourceType",
+                    "!=",
+                    "media"
+                ],
+                [
+                    "playlistMode",
+                    "!=",
+                    true
+                ],
+                [
+                    "multipleSources",
+                    "=",
+                    true
+                ],
+                [
+                    "provider",
+                    "=",
+                    "audio"
+                ]
+            ],
+            "valueSchema": {
+                "type": "array",
+                "description": "Repeater items",
+                "items": {
+                    "type": "object"
+                }
+            },
+            "controlType": "repeater",
+            "fields": {
+                "source": {
+                    "label": "Media source URL",
+                    "placeholder": "https://example.com/audio.mp3",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "type": {
+                    "label": "Media type",
+                    "placeholder": "audio/mpeg",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                }
+            }
+        },
+        "title": {
+            "label": "Title",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "artist": {
+            "label": "Artist",
+            "required": [
+                [
+                    "provider",
+                    "=",
+                    "audio"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "srcMediaType": {
+            "label": "Mime type (Optional )",
+            "required": [
+                [
+                    "sourceType",
+                    "!=",
+                    "media"
+                ],
+                [
+                    "multipleSources",
+                    "!=",
+                    true
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "streamType": {
+            "label": "Stream type",
+            "placeholder": "on-demand",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "image": {
+            "label": "Poster image",
+            "valueSchema": {
+                "type": "object",
+                "description": "Image settings",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                }
+            },
+            "controlType": "image"
+        },
+        "activeSep": {
+            "label": "Active",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "activeBackgroundColor": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": "&[data-x-item-active]"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "activeBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": "&[data-x-item-active]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "activeBoxShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": "&[data-x-item-active]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "activeTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": "&[data-x-item-active]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "activePlayingSep": {
+            "label": "Playing",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "activePlayingBackgroundColor": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": "&[data-x-item-active][data-x-item-playing]"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "activePlayingBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": "&[data-x-item-active][data-x-item-playing]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "activePlayingBoxShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": "&[data-x-item-active][data-x-item-playing]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "activePlayingTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": "&[data-x-item-active][data-x-item-playing]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "activePausedSep": {
+            "label": "Paused",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "activePausedBackgroundColor": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": "&[data-x-item-active][data-x-item-paused]"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "activePausedPlayingBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": "&[data-x-item-active][data-x-item-paused]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "activePausedPlayingBoxShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": "&[data-x-item-active][data-x-item-paused]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "activePausedPlayingTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": "&[data-x-item-active][data-x-item-paused]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "flexWrap": {
+            "label": "Flex wrap",
+            "css": [
+                {
+                    "property": "flex-wrap",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "No wrap",
+            "options": {
+                "nowrap": "No wrap",
+                "wrap": "Wrap",
+                "wrap-reverse": "Wrap reverse"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "nowrap",
+                    "wrap",
+                    "wrap-reverse"
+                ]
+            },
+            "controlType": "select"
+        },
+        "direction": {
+            "label": "Direction",
+            "css": [
+                {
+                    "property": "flex-direction",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "direction"
+        },
+        "justifyContent": {
+            "label": "Align main axis",
+            "css": [
+                {
+                    "property": "justify-content",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "justify-content"
+        },
+        "alignItems": {
+            "label": "Align cross axis",
+            "css": [
+                {
+                    "property": "align-items",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "align-items"
+        },
+        "columnGap": {
+            "label": "Column gap",
+            "css": [
+                {
+                    "property": "column-gap",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "rowGap": {
+            "label": "Row gap",
+            "css": [
+                {
+                    "property": "row-gap",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "hasLoop": {
+            "label": "Add chapters with query loop",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "query": {
+            "label": "Query",
+            "required": [
+                [
+                    "hasLoop",
+                    "!=",
+                    ""
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "query"
+        },
+        "chapters": {
+            "required": [
+                [
+                    "hasLoop",
+                    "!=",
+                    true
+                ]
+            ],
+            "placeholder": "Chapter",
+            "valueSchema": {
+                "type": "array",
+                "description": "Repeater items",
+                "items": {
+                    "type": "object"
+                }
+            },
+            "controlType": "repeater",
+            "fields": {
+                "text": {
+                    "label": "Title",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "startTime": {
+                    "label": "Start time",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "endTime": {
+                    "label": "End time",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                }
+            }
+        },
+        "chapterText": {
+            "label": "Text",
+            "required": [
+                [
+                    "hasLoop",
+                    "=",
+                    true
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "chapterStart": {
+            "label": "Start time",
+            "required": [
+                [
+                    "hasLoop",
+                    "=",
+                    true
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "chapterEnd": {
+            "label": "End time",
+            "required": [
+                [
+                    "hasLoop",
+                    "=",
+                    true
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "chaptersSep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "seperator"
+        },
+        "textTracksSep": {
+            "label": "Subtitles / Captions",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "textTracks": {
+            "label": "Text Tracks",
+            "valueSchema": {
+                "type": "array",
+                "description": "Repeater items",
+                "items": {
+                    "type": "object"
+                }
+            },
+            "controlType": "repeater",
+            "fields": {
+                "label": {
+                    "label": "Label",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "src": {
+                    "label": "Source (.vtt, .srt, .json)",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "kind": {
+                    "label": "kind",
+                    "options": {
+                        "subtitles": "subtitles",
+                        "chapters": "chapters",
+                        "captions": "captions"
+                    },
+                    "valueSchema": {
+                        "type": "string",
+                        "enum": [
+                            "subtitles",
+                            "chapters",
+                            "captions"
+                        ]
+                    },
+                    "controlType": "select"
+                },
+                "language": {
+                    "label": "Language (en, fr, de, es..)",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                }
+            }
+        },
+        "thumbnailSep": {
+            "label": "Thumbnails",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "thumbnailFile": {
+            "label": "Source (.vtt)",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "multipleSources": {
+            "label": "Allow multiple sources",
+            "required": [
+                "sourceType",
+                "!=",
+                "media"
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "securitySep": {
+            "label": "Bunny Stream Authentication",
+            "description": "Create expiring video URLs",
+            "required": [
+                [
+                    "provider",
+                    "!=",
+                    "audio"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "enableSecurity": {
+            "label": "Generate Authentication Tokens",
+            "required": [
+                [
+                    "provider",
+                    "!=",
+                    "audio"
+                ]
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "securityExpiry": {
+            "label": "Token Expiry Time (seconds)",
+            "required": [
+                [
+                    "provider",
+                    "!=",
+                    "audio"
+                ],
+                [
+                    "enableSecurity",
+                    "=",
+                    true
+                ]
+            ],
+            "placeholder": "3600 (1 hour)",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "downloadSep": {
+            "label": "Downloads",
+            "description": "Optionally add extra download options for the media (for use with the download control)",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "downloadAttributes": {
+            "placeholder": "Download",
+            "valueSchema": {
+                "type": "array",
+                "description": "Repeater items",
+                "items": {
+                    "type": "object"
+                }
+            },
+            "controlType": "repeater",
+            "fields": {
+                "downloads_id": {
+                    "label": "ID",
+                    "description": "Unique identifier for this download (use in download button settings)",
+                    "placeholder": "mp3-version",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "url": {
+                    "label": "URL",
+                    "placeholder": "https://...",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "title": {
+                    "label": "Name (optional)",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                }
+            }
+        }
+    },
+    "controlGroups": {
+        "poster": {
+            "title": "Poster image"
+        },
+        "activeStyles": {
+            "title": "Item styles"
+        },
+        "layout": {
+            "title": "Layout / Spacing",
+            "tab": "content"
+        },
+        "chapters": {
+            "title": "Chapters"
+        },
+        "textTracks": {
+            "title": "Text Tracks"
+        },
+        "behaviour": {
+            "title": "Config / Behavior"
+        },
+        "downloads": {
+            "title": "Downloads",
+            "required": [
+                [
+                    "provider",
+                    "=",
+                    "audio"
+                ]
+            ]
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-media-player-playlist_inner"
+        ],
+        "rootElement": "div",
+        "nestable": true,
+        "childrenContainer": "Renders child elements within the structure"
+    },
+    "documentation": {
+        "description": "* Media Playlist element class.",
+        "keywords": [
+            "video",
+            "audio"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": true
+        },
+        "bestPractices": [
+            "This is a nestable element - add child elements to build your content structure"
+        ]
+    }
+}

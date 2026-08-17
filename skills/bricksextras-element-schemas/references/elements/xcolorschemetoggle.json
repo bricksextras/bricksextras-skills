@@ -1,0 +1,4018 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xcolorschemetoggle",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Color Scheme Toggle",
+    "description": "Schema for BricksExtras Color Scheme Toggle element",
+    "metadata": {
+        "name": "xcolorschemetoggle",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "type": {
+            "label": "Type",
+            "placeholder": "Single button",
+            "options": {
+                "dropdown": "Dropdown",
+                "buttons": "Radio buttons",
+                "single-button": "Single button",
+                "switch": "Toggle switch"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "dropdown",
+                    "buttons",
+                    "single-button",
+                    "switch"
+                ]
+            },
+            "controlType": "select"
+        },
+        "dropdownDisplay": {
+            "label": "Dropdown",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "placeholder": "Icon + Text",
+            "options": {
+                "both": "Icon + Text",
+                "text-only": "Text only",
+                "icon-only": "Icon only"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "both",
+                    "text-only",
+                    "icon-only"
+                ]
+            },
+            "controlType": "select"
+        },
+        "systemLabel": {
+            "label": "Label (System)",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "dropdown",
+                        "buttons"
+                    ]
+                ],
+                [
+                    "includeSystem",
+                    "=",
+                    [
+                        "true",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "System",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "lightLabel": {
+            "label": "Label (Light)",
+            "required": [
+                "type",
+                "=",
+                [
+                    "dropdown",
+                    "single-button",
+                    "buttons",
+                    "switch",
+                    ""
+                ]
+            ],
+            "placeholder": "Light",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "darkLabel": {
+            "label": "Label (Dark)",
+            "required": [
+                "type",
+                "=",
+                [
+                    "dropdown",
+                    "single-button",
+                    "buttons",
+                    "switch",
+                    ""
+                ]
+            ],
+            "placeholder": "Dark",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "toggleAriaLabel": {
+            "label": "Toggle aria-label",
+            "required": [
+                "type",
+                "=",
+                "buttons"
+            ],
+            "placeholder": "Color scheme",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "switchAriaLabel": {
+            "label": "Dynamic aria-label",
+            "description": "Use {x_color_scheme} as placeholder for the current mode label",
+            "required": [
+                "type",
+                "=",
+                [
+                    "switch",
+                    "single-button",
+                    "dropdown",
+                    ""
+                ]
+            ],
+            "placeholder": "Color scheme: {x_color_scheme}. Click to toggle.",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "includeSystem": {
+            "label": "Include system option",
+            "required": [
+                "type",
+                "=",
+                [
+                    "dropdown",
+                    "buttons"
+                ]
+            ],
+            "placeholder": "True",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "enableTooltips": {
+            "label": "Enable tooltips",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "tooltipText": {
+            "label": "Tooltip text",
+            "required": [
+                [
+                    "enableTooltips",
+                    "=",
+                    true
+                ],
+                [
+                    "type",
+                    "=",
+                    [
+                        "dropdown",
+                        "single-button",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Color scheme",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "tooltipPosition": {
+            "label": "Tooltip position",
+            "required": [
+                "enableTooltips",
+                "=",
+                true
+            ],
+            "placeholder": "Top",
+            "options": {
+                "top": "Top",
+                "bottom": "Bottom",
+                "left": "Left",
+                "right": "Right"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "top",
+                    "bottom",
+                    "left",
+                    "right"
+                ]
+            },
+            "controlType": "select"
+        },
+        "iconStyle": {
+            "label": "Icon type",
+            "required": [
+                "type",
+                "=",
+                [
+                    "single-button",
+                    "switch",
+                    ""
+                ]
+            ],
+            "placeholder": "Morphing icons",
+            "options": {
+                "icons": "Custom icons",
+                "animated-preset": "Morphing icons"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "icons",
+                    "animated-preset"
+                ]
+            },
+            "controlType": "select"
+        },
+        "animatedPreset": {
+            "label": "Morphing icon presets",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "!=",
+                    "icons"
+                ]
+            ],
+            "placeholder": "Preset 1 (CSS)",
+            "options": {
+                "css-rays": "Preset 1 (CSS)",
+                "css-morph": "Preset 2 (CSS)",
+                "lines": "Preset 3 (SVG)"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "css-rays",
+                    "css-morph",
+                    "lines"
+                ]
+            },
+            "controlType": "select"
+        },
+        "moonCrescentOffset": {
+            "label": "Moon eclipse size",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "!=",
+                    "icons"
+                ],
+                [
+                    "animatedPreset",
+                    "=",
+                    "css-morph"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-moon-eclipse-scale",
+                    "selector": ".x-sun-moon-css-morph"
+                }
+            ],
+            "placeholder": "5",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "moonRotation": {
+            "label": "Moon rotation",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "!=",
+                    "icons"
+                ],
+                [
+                    "animatedPreset",
+                    "=",
+                    "css-morph"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-moon-rotation",
+                    "selector": ".x-sun-moon-css-morph"
+                }
+            ],
+            "placeholder": "-40deg",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "sunRayScale": {
+            "label": "Sun ray size",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "!=",
+                    "icons"
+                ],
+                [
+                    "animatedPreset",
+                    "=",
+                    "css-morph"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-sun-ray-scale",
+                    "selector": ".x-sun-moon-css-morph:after"
+                }
+            ],
+            "placeholder": "8",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "sunRayDistanceScale": {
+            "label": "Sun ray distance",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "!=",
+                    "icons"
+                ],
+                [
+                    "animatedPreset",
+                    "=",
+                    "css-morph"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-sun-ray-distance-scale",
+                    "selector": ".x-sun-moon-css-morph:after"
+                }
+            ],
+            "placeholder": "4",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "raysCrescentScale": {
+            "label": "Moon eclipse size",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "!=",
+                    "icons"
+                ],
+                [
+                    "animatedPreset",
+                    "=",
+                    [
+                        "css-rays",
+                        ""
+                    ]
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-rays-eclipse-scale",
+                    "selector": ".x-sun-moon-css-rays__part:nth-child(1)"
+                }
+            ],
+            "placeholder": "6",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "raysRotation": {
+            "label": "Moon rotation",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "!=",
+                    "icons"
+                ],
+                [
+                    "animatedPreset",
+                    "=",
+                    [
+                        "css-rays",
+                        ""
+                    ]
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-rays-rotation",
+                    "selector": ".x-sun-moon-css-rays__part:nth-child(1)"
+                }
+            ],
+            "placeholder": "0deg",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "raysDistanceScale": {
+            "label": "Sun ray distance",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "!=",
+                    "icons"
+                ],
+                [
+                    "animatedPreset",
+                    "=",
+                    [
+                        "css-rays",
+                        ""
+                    ]
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-rays-distance-scale",
+                    "selector": ".x-sun-moon-css-rays__part:nth-child(n+2)"
+                }
+            ],
+            "placeholder": "7",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "customIconSize": {
+            "label": "Icon size",
+            "css": [
+                {
+                    "property": "font-size",
+                    "selector": ".x-color-scheme-toggle__switch-icon, .x-color-scheme-toggle__trigger, .x-color-scheme-toggle__switch-thumb, .x-color-scheme-toggle__single-button, .x-color-scheme-toggle__button"
+                }
+            ],
+            "placeholder": "18px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "customIconColor": {
+            "label": "Icon color",
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".x-color-scheme-toggle__switch-icon, .x-color-scheme-toggle__trigger, .x-color-scheme-toggle__switch-thumb, .x-color-scheme-toggle__single-button, .x-color-scheme-toggle__button"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "switchThumbAnimation": {
+            "label": "Icon animation",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    "switch"
+                ],
+                [
+                    "switchIconPlacement",
+                    "=",
+                    [
+                        "thumb",
+                        ""
+                    ]
+                ],
+                [
+                    "iconStyle",
+                    "=",
+                    "icons"
+                ]
+            ],
+            "placeholder": "None",
+            "options": {
+                "none": "None",
+                "fade": "Fade",
+                "rotate": "Rotate",
+                "flip": "Flip"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "none",
+                    "fade",
+                    "rotate",
+                    "flip"
+                ]
+            },
+            "controlType": "select"
+        },
+        "customIconSep": {
+            "label": "Custom icons",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "dropdown",
+                        "buttons",
+                        "switch",
+                        "single-button",
+                        ""
+                    ]
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "systemIcon": {
+            "label": "System icon",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "dropdown",
+                        "buttons"
+                    ]
+                ],
+                [
+                    "includeSystem",
+                    "=",
+                    [
+                        "true",
+                        ""
+                    ]
+                ]
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "lightIcon": {
+            "label": "Light icon",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "dropdown",
+                        "buttons",
+                        "switch",
+                        "single-button",
+                        ""
+                    ]
+                ]
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "darkIcon": {
+            "label": "Dark icon",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "dropdown",
+                        "buttons",
+                        "switch",
+                        "single-button",
+                        ""
+                    ]
+                ]
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "singleButtonAnimation": {
+            "label": "Icon animation",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "dropdown",
+                        "single-button",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "None",
+            "options": {
+                "none": "None",
+                "fade": "Fade",
+                "rotate": "Rotate 360",
+                "flip-x": "Flip horizontal",
+                "flip-y": "Flip vertical",
+                "slide-down": "Slide down",
+                "slide-up": "Slide up",
+                "slide-left": "Slide left",
+                "slide-right": "Slide right"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "none",
+                    "fade",
+                    "rotate",
+                    "flip-x",
+                    "flip-y",
+                    "slide-down",
+                    "slide-up",
+                    "slide-left",
+                    "slide-right"
+                ]
+            },
+            "controlType": "select"
+        },
+        "singleButtonTransitionDuration": {
+            "label": "Transition",
+            "required": [
+                [
+                    "type",
+                    "=",
+                    [
+                        "dropdown",
+                        "single-button",
+                        "switch",
+                        ""
+                    ]
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-toggle-transition-duration",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "0.35s",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "viewTransitionSep": {
+            "label": "View transition",
+            "description": "Control how all elements on the page switch between color modes (effect not seen inside builder)",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "viewTransitionEffect": {
+            "label": "Effect",
+            "placeholder": "None",
+            "options": {
+                "none": "None",
+                "fade": "Fade",
+                "swipe_down": "Swipe down",
+                "swipe_up": "Swipe up",
+                "swipe_left": "Swipe left",
+                "swipe_right": "Swipe right",
+                "vertical_split": "Vertical split",
+                "horizontal_split": "Horizontal split"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "none",
+                    "fade",
+                    "swipe_down",
+                    "swipe_up",
+                    "swipe_left",
+                    "swipe_right",
+                    "vertical_split",
+                    "horizontal_split"
+                ]
+            },
+            "controlType": "select"
+        },
+        "viewTransitionDuration": {
+            "label": "Duration",
+            "css": [
+                {
+                    "property": "--x-view-transition-duration",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "0.15s",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "viewTransitionTiming": {
+            "label": "Timing function",
+            "css": [
+                {
+                    "property": "--x-view-transition-timing",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "linear",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "dropdownTriggerSep": {
+            "label": "Toggle button",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "dropdownTriggerSize": {
+            "label": "Button size",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-trigger-width",
+                    "selector": ".x-color-scheme-toggle__trigger"
+                },
+                {
+                    "property": "--x-color-scheme-trigger-height",
+                    "selector": ".x-color-scheme-toggle__trigger"
+                }
+            ],
+            "placeholder": "30px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dropdownTriggerColor": {
+            "label": "Color",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".x-color-scheme-toggle__trigger"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownTriggerBackground": {
+            "label": "Background",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-color-scheme-toggle__trigger"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownTriggerBorder": {
+            "label": "Border",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-color-scheme-toggle__trigger"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "dropdownTriggerBoxShadow": {
+            "label": "Box shadow",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-color-scheme-toggle__trigger"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "dropdownTriggerPadding": {
+            "label": "Padding",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-color-scheme-toggle__trigger"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "dropdownVerticalPosition": {
+            "label": "Vertical position",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "placeholder": "Below",
+            "options": {
+                "below": "Below",
+                "above": "Above"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "below",
+                    "above"
+                ]
+            },
+            "controlType": "select"
+        },
+        "dropdownHorizontalPosition": {
+            "label": "Horizontal position",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "placeholder": "Left",
+            "options": {
+                "right": "Right",
+                "left": "Left",
+                "center": "Center"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "right",
+                    "left",
+                    "center"
+                ]
+            },
+            "controlType": "select"
+        },
+        "dropdownAnimationTranslateY": {
+            "label": "Animation translate Y",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-dropdown-translate-y",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "-4px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dropdownAnimationScale": {
+            "label": "Animation scale",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-dropdown-scale",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "1",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dropdownContainerSeparator": {
+            "label": "Dropdown container",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "dropdownBackground": {
+            "label": "Background",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-color-scheme-toggle__dropdown"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownBorder": {
+            "label": "Border",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-color-scheme-toggle__dropdown"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "dropdownBoxShadow": {
+            "label": "Box shadow",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-color-scheme-toggle__dropdown"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "dropdownPadding": {
+            "label": "Padding",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-color-scheme-toggle__dropdown"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "dropdownWidth": {
+            "label": "Width",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "min-width",
+                    "selector": ".x-color-scheme-toggle__dropdown"
+                }
+            ],
+            "placeholder": "150px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dropdownOptionsSeparator": {
+            "label": "Dropdown options",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "dropdownOptionTypography": {
+            "label": "Typography",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".x-color-scheme-toggle__option"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "dropdownOptionColor": {
+            "label": "Color",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".x-color-scheme-toggle__option"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownOptionBackground": {
+            "label": "Background",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-color-scheme-toggle__option"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownOptionSelectedColor": {
+            "label": "Color (Active)",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".x-color-scheme-toggle__option[aria-selected=\"true\"]"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownOptionSelectedBackground": {
+            "label": "Background (Active)",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-color-scheme-toggle__option[aria-selected=\"true\"]"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownOptionPadding": {
+            "label": "Padding",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-color-scheme-toggle__option"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "dropdownOptionGap": {
+            "label": "Gap",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": ".x-color-scheme-toggle__option"
+                }
+            ],
+            "placeholder": "8px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dropdownOptionIconSeparator": {
+            "label": "Option icons",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "dropdownOptionIconSize": {
+            "label": "Icon size",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "font-size",
+                    "selector": ".x-color-scheme-toggle__option > *:not(span)"
+                }
+            ],
+            "placeholder": "18px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dropdownOptionIconColor": {
+            "label": "Icon color",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".x-color-scheme-toggle__option > *:not(span)"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownOptionIconBackground": {
+            "label": "Icon background",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-color-scheme-toggle__option > *:not(span)"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dropdownOptionIconBorder": {
+            "label": "Icon border",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-color-scheme-toggle__option > *:not(span)"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "dropdownOptionIconBoxShadow": {
+            "label": "Icon box shadow",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-color-scheme-toggle__option > *:not(span)"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "dropdownOptionIconPadding": {
+            "label": "Icon padding",
+            "required": [
+                "type",
+                "=",
+                "dropdown"
+            ],
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-color-scheme-toggle__option > *:not(span)"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "switchTrackSep": {
+            "label": "Track",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "switchTrackBackground": {
+            "label": "Background",
+            "required": [
+                "type",
+                "=",
+                "switch"
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-switch-track-bg",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "switchHeight": {
+            "label": "Height",
+            "required": [
+                "type",
+                "=",
+                "switch"
+            ],
+            "css": [
+                {
+                    "property": "height",
+                    "selector": ".x-color-scheme-toggle__switch-track"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "switchWidth": {
+            "label": "Width",
+            "required": [
+                "type",
+                "=",
+                "switch"
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-switch-width",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "60px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "switchPadding": {
+            "label": "Padding",
+            "required": [
+                "type",
+                "=",
+                "switch"
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-switch-padding",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "0.25em",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "switchThumbSep": {
+            "label": "Thumb",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "switchThumbSize": {
+            "label": "Size",
+            "required": [
+                "type",
+                "=",
+                "switch"
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-switch-thumb-size",
+                    "selector": ""
+                }
+            ],
+            "placeholder": "30px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "switchThumbBackground": {
+            "label": "Background",
+            "required": [
+                "type",
+                "=",
+                "switch"
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-switch-thumb-bg",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "buttonsRadioGroupSep": {
+            "label": "Radio group",
+            "required": [
+                "type",
+                "=",
+                [
+                    "buttons"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "buttonsGroupBackground": {
+            "label": "Background",
+            "required": [
+                "type",
+                "=",
+                [
+                    "buttons"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-toggle-bg",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "buttonsGroupBorder": {
+            "label": "Border",
+            "required": [
+                "type",
+                "=",
+                [
+                    "buttons"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-color-scheme-toggle__group"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "buttonsGroupShadow": {
+            "label": "Box shadow",
+            "required": [
+                "type",
+                "=",
+                [
+                    "buttons"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-color-scheme-toggle__group"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "buttonsGroupPadding": {
+            "label": "Padding",
+            "required": [
+                "type",
+                "=",
+                [
+                    "buttons"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-color-scheme-toggle__group"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "buttonsGroupButtonsSep": {
+            "label": "Buttons",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "singleButtonSize": {
+            "label": "Button size",
+            "css": [
+                {
+                    "property": "--x-color-scheme-trigger-width",
+                    "selector": ".x-color-scheme-toggle__single-button"
+                },
+                {
+                    "property": "--x-color-scheme-trigger-height",
+                    "selector": ".x-color-scheme-toggle__single-button"
+                },
+                {
+                    "property": "--x-color-schema-radio-size",
+                    "selector": ".x-color-scheme-toggle__button"
+                },
+                {
+                    "property": "--x-color-schema-radio-size",
+                    "selector": ".x-color-scheme-toggle__button"
+                }
+            ],
+            "placeholder": "30px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "singleButtonBackground": {
+            "label": "Background color",
+            "required": [
+                "type",
+                "=",
+                [
+                    "single-button",
+                    "buttons",
+                    ""
+                ]
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-color-scheme-toggle__single-button"
+                },
+                {
+                    "property": "background-color",
+                    "selector": ".x-color-scheme-toggle__button"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "buttonsActiveBackground": {
+            "label": "Background (Active)",
+            "required": [
+                "type",
+                "=",
+                [
+                    "buttons"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-toggle-active-bg",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "buttonsActiveColor": {
+            "label": "Color (Active)",
+            "required": [
+                "type",
+                "=",
+                [
+                    "buttons"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-toggle-active-color",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "buttonsBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": "button"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "buttonsPadding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": "button"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "buttonsInactiveOpacity": {
+            "label": "Opacity (Inactive)",
+            "required": [
+                "type",
+                "=",
+                [
+                    "buttons"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-color-scheme-toggle-inactive-opacity",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        }
+    },
+    "controlGroups": {
+        "icons": {
+            "title": "Icons",
+            "tab": "content"
+        },
+        "labels": {
+            "title": "Labels",
+            "tab": "content"
+        },
+        "buttonStyle": {
+            "title": "Button (Styles)",
+            "tab": "content",
+            "required": [
+                "type",
+                "=",
+                [
+                    "single-button",
+                    "buttons",
+                    ""
+                ]
+            ]
+        },
+        "toggleStyle": {
+            "title": "Toggle (Styles)",
+            "tab": "content",
+            "required": [
+                "type",
+                "=",
+                [
+                    "dropdown"
+                ]
+            ]
+        },
+        "dropdownStyle": {
+            "title": "Dropdown (Styles)",
+            "tab": "content",
+            "required": [
+                "type",
+                "=",
+                [
+                    "dropdown"
+                ]
+            ]
+        },
+        "switchStyle": {
+            "title": "Switch (Styles)",
+            "tab": "content",
+            "required": [
+                "type",
+                "=",
+                [
+                    "switch"
+                ]
+            ]
+        },
+        "tooltips": {
+            "title": "Tooltip",
+            "tab": "content",
+            "required": [
+                "type",
+                "=",
+                [
+                    "",
+                    "dropdown",
+                    "buttons",
+                    "single-button"
+                ]
+            ]
+        },
+        "viewTransition": {
+            "title": "View transition",
+            "tab": "content"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-color-scheme-toggle__trigger",
+            "x-color-scheme-toggle__dropdown-",
+            "x-color-scheme-toggle__trigger-inner",
+            "x-color-scheme-toggle__trigger-icon--light",
+            "x-color-scheme-toggle__trigger-icon",
+            "x-color-scheme-toggle__trigger-icon--dark",
+            "x-color-scheme-toggle__dropdown",
+            "x-color-scheme-toggle__option-system",
+            "x-color-scheme-toggle__option",
+            "x-color-scheme-toggle__option-light",
+            "x-color-scheme-toggle__option-dark",
+            "x-color-scheme-toggle__group",
+            "x-color-scheme-toggle__button-system",
+            "x-color-scheme-toggle__button",
+            "x-color-scheme-toggle__button-light",
+            "x-color-scheme-toggle__button-dark",
+            "x-color-scheme-toggle__switch",
+            "x-color-scheme-toggle__switch-track",
+            "x-color-scheme-toggle__switch-icon--light",
+            "x-color-scheme-toggle__switch-icon",
+            "x-color-scheme-toggle__switch-icon--dark",
+            "x-color-scheme-toggle__switch-thumb",
+            "x-color-scheme-toggle__switch-thumb--gooey",
+            "x-sun-moon-css-rays__part",
+            "x-sun-moon-css-rays-inward__circle",
+            "x-sun-moon-css-rays-inward__ray",
+            "x-color-scheme-toggle__switch-thumb-icon--light",
+            "x-color-scheme-toggle__switch-thumb-icon--dark",
+            "x-color-scheme-toggle__single-button",
+            "x-color-scheme-toggle__single-button-inner",
+            "x-color-scheme-toggle__single-button-icon--light",
+            "x-color-scheme-toggle__single-button-icon",
+            "x-color-scheme-toggle__single-button-icon--dark"
+        ],
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Color Scheme Toggle element class.",
+        "keywords": [
+            "scheme",
+            "toggle",
+            "dark mode",
+            "switch",
+            "theme"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

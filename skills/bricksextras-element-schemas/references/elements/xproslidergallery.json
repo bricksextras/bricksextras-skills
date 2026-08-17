@@ -1,0 +1,940 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "bricksextras://elements/xproslidergallery",
+ "schemaVersion": "1.7.3",
+ "type": "object",
+ "title": "Pro Slider Gallery",
+ "description": "Schema for BricksExtras Pro Slider Gallery element",
+ "metadata": {
+  "name": "xproslidergallery",
+  "category": "extras",
+  "tag": "div",
+  "nestable": false
+ },
+ "settings": {
+  "_border": {
+   "css": [
+    {
+     "selector": "img"
+    }
+   ],
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "text"
+  },
+  "_boxShadow": {
+   "css": [
+    {
+     "selector": "img"
+    }
+   ],
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "text"
+  },
+  "intro": {
+   "description": "This element should be placed inside of the Pro Slider",
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "separator"
+  },
+  "items": {
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "image-gallery"
+  },
+  "imageLimit": {
+   "label": "Maximum (Images)",
+   "valueSchema": {
+    "oneOf": [
+     {
+      "type": "string",
+      "description": "Value with unit (e.g., \"10px\", \"50%\")"
+     },
+     {
+      "type": "number"
+     }
+    ]
+   },
+   "controlType": "number"
+  },
+  "imageOffset": {
+   "label": "Offset",
+   "valueSchema": {
+    "oneOf": [
+     {
+      "type": "string",
+      "description": "Value with unit (e.g., \"10px\", \"50%\")"
+     },
+     {
+      "type": "number"
+     }
+    ]
+   },
+   "controlType": "number"
+  },
+  "randomiseOrder": {
+   "label": "Randomise order",
+   "valueSchema": {
+    "type": "boolean"
+   },
+   "controlType": "checkbox"
+  },
+  "linkStart": {
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "separator"
+  },
+  "link": {
+   "label": "Link to",
+   "placeholder": "None",
+   "options": {
+    "lightbox": "Lightbox",
+    "attachment": "Attachment Page",
+    "media": "Media File",
+    "custom": "Custom URL"
+   },
+   "valueSchema": {
+    "type": "string",
+    "enum": [
+     "lightbox",
+     "attachment",
+     "media",
+     "custom"
+    ]
+   },
+   "controlType": "select"
+  },
+  "lightboxImageGrouping": {
+   "label": "Group images into lightbox",
+   "required": [
+    "link",
+    "=",
+    "lightbox"
+   ],
+   "valueSchema": {
+    "type": "boolean"
+   },
+   "controlType": "checkbox"
+  },
+  "lightboxImageSize": {
+   "label": "Image size",
+   "required": [
+    "link",
+    "=",
+    [
+     "dynamiclightbox",
+     "lightbox",
+     "media"
+    ]
+   ],
+   "placeholder": "Full",
+   "options": {
+    "thumbnail": "Thumbnail (150x150)",
+    "medium": "Medium (300x300)",
+    "medium_large": "Medium Large (768x0)",
+    "large": "Large (1024x1024)",
+    "1536x1536": "2x medium large (1536x1536)",
+    "2048x2048": "2x large (2048x2048)",
+    "full": "Full"
+   },
+   "valueSchema": {
+    "type": "string",
+    "enum": [
+     "thumbnail",
+     "medium",
+     "medium_large",
+     "large",
+     "1536x1536",
+     "2048x2048",
+     "full"
+    ]
+   },
+   "controlType": "select"
+  },
+  "lightboxAnimationType": {
+   "label": "Animation",
+   "required": [
+    "link",
+    "=",
+    "lightbox"
+   ],
+   "placeholder": "Fade",
+   "options": {
+    "none": "None",
+    "fade": "Fade",
+    "zoom": "Zoom"
+   },
+   "valueSchema": {
+    "type": "string",
+    "enum": [
+     "none",
+     "fade",
+     "zoom"
+    ]
+   },
+   "controlType": "select"
+  },
+  "lightboxImageClick": {
+   "label": "Image click action",
+   "required": [
+    "link",
+    "=",
+    "lightbox"
+   ],
+   "placeholder": "Zoom",
+   "options": {
+    "zoom": "Zoom",
+    "zoom-or-close": "Zoom or close",
+    "toogle-controls": "Toggle controls",
+    "next": "Next",
+    "close": "Close"
+   },
+   "valueSchema": {
+    "type": "string",
+    "enum": [
+     "zoom",
+     "zoom-or-close",
+     "toogle-controls",
+     "next",
+     "close"
+    ]
+   },
+   "controlType": "select"
+  },
+  "lightboxCaption": {
+   "label": "Caption",
+   "required": [
+    "link",
+    "=",
+    "lightbox"
+   ],
+   "valueSchema": {
+    "type": "boolean"
+   },
+   "controlType": "checkbox"
+  },
+  "lightboxThumbnails": {
+   "label": "Thumbnail navigation",
+   "required": [
+    [
+     "link",
+     "=",
+     "lightbox"
+    ],
+    [
+     "lightboxImageGrouping",
+     "=",
+     true
+    ]
+   ],
+   "valueSchema": {
+    "type": "boolean"
+   },
+   "controlType": "checkbox"
+  },
+  "lightboxThumbnailSize": {
+   "label": "Thumbnail size",
+   "required": [
+    [
+     "link",
+     "=",
+     "lightbox"
+    ],
+    [
+     "lightboxThumbnails",
+     "=",
+     true
+    ]
+   ],
+   "placeholder": 60,
+   "valueSchema": {
+    "oneOf": [
+     {
+      "type": "string",
+      "description": "Value with unit (e.g., \"10px\", \"50%\")"
+     },
+     {
+      "type": "number"
+     }
+    ]
+   },
+   "controlType": "number"
+  },
+  "lightboxThumbnailInfo": {
+   "required": [
+    [
+     "link",
+     "=",
+     "lightbox"
+    ],
+    [
+     "lightboxThumbnails",
+     "=",
+     true
+    ],
+    [
+     "lightboxPadding",
+     "=",
+     ""
+    ]
+   ],
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "info"
+  },
+  "lightboxPadding": {
+   "label": "Padding (px)",
+   "required": [
+    "link",
+    "=",
+    "lightbox"
+   ],
+   "valueSchema": {
+    "type": "object",
+    "description": "Spacing value with directional properties",
+    "properties": {
+     "top": {
+      "type": "string",
+      "description": "Top spacing value with unit"
+     },
+     "right": {
+      "type": "string",
+      "description": "Right spacing value with unit"
+     },
+     "bottom": {
+      "type": "string",
+      "description": "Bottom spacing value with unit"
+     },
+     "left": {
+      "type": "string",
+      "description": "Left spacing value with unit"
+     }
+    },
+    "additionalProperties": false
+   },
+   "controlType": "spacing"
+  },
+  "linkCustom": {
+   "label": "Custom links",
+   "required": [
+    "link",
+    "=",
+    "custom"
+   ],
+   "placeholder": "Custom link",
+   "valueSchema": {
+    "type": "array",
+    "description": "Repeater items",
+    "items": {
+     "type": "object"
+    }
+   },
+   "controlType": "repeater",
+   "fields": {
+    "link": {
+     "label": "Link",
+     "valueSchema": {
+      "type": "object",
+      "description": "Link settings",
+      "properties": {
+       "type": {
+        "type": "string"
+       },
+       "url": {
+        "type": "string"
+       },
+       "postId": {
+        "type": [
+         "string",
+         "integer"
+        ]
+       },
+       "newTab": {
+        "type": "boolean"
+       },
+       "rel": {
+        "type": "string"
+       },
+       "title": {
+        "type": "string"
+       },
+       "ariaLabel": {
+        "type": "string"
+       },
+       "lightboxId": {
+        "type": "string"
+       },
+       "lightboxType": {
+        "type": "string"
+       }
+      }
+     },
+     "controlType": "link"
+    }
+   }
+  },
+  "linkEnd": {
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "separator"
+  },
+  "aspectRatio": {
+   "label": "Aspect ratio",
+   "placeholder": "",
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "number"
+  },
+  "objectFit": {
+   "label": "Object fit",
+   "css": [
+    {
+     "property": "object-fit",
+     "selector": "img"
+    }
+   ],
+   "placeholder": "Fill",
+   "options": {
+    "fill": "Fill",
+    "contain": "Contain",
+    "cover": "Cover",
+    "none": "None",
+    "scale-down": "Scale down"
+   },
+   "valueSchema": {
+    "type": "string",
+    "enum": [
+     "fill",
+     "contain",
+     "cover",
+     "none",
+     "scale-down"
+    ]
+   },
+   "controlType": "select"
+  },
+  "objectPosition": {
+   "label": "Object position",
+   "required": [
+    "objectFit"
+   ],
+   "css": [
+    {
+     "property": "object-position",
+     "selector": "img"
+    }
+   ],
+   "placeholder": "50% 50%",
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "text"
+  },
+  "maybeSRCSET": {
+   "label": "srcset",
+   "placeholder": "Disable",
+   "options": {
+    "disable": "Disable",
+    "enable": "Enable"
+   },
+   "valueSchema": {
+    "type": "string",
+    "enum": [
+     "disable",
+     "enable"
+    ]
+   },
+   "controlType": "select"
+  },
+  "caption": {
+   "label": "Caption",
+   "valueSchema": {
+    "type": "boolean"
+   },
+   "controlType": "checkbox"
+  },
+  "captionBackground": {
+   "label": "Background",
+   "css": [
+    {
+     "property": "background",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "valueSchema": {
+    "type": "object",
+    "description": "Background settings"
+   },
+   "controlType": "background"
+  },
+  "captionBorder": {
+   "label": "Border",
+   "css": [
+    {
+     "property": "border",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "valueSchema": {
+    "type": "object",
+    "description": "Border settings",
+    "properties": {
+     "width": {
+      "type": "object",
+      "description": "Spacing value with directional properties",
+      "properties": {
+       "top": {
+        "type": "string",
+        "description": "Top spacing value with unit"
+       },
+       "right": {
+        "type": "string",
+        "description": "Right spacing value with unit"
+       },
+       "bottom": {
+        "type": "string",
+        "description": "Bottom spacing value with unit"
+       },
+       "left": {
+        "type": "string",
+        "description": "Left spacing value with unit"
+       }
+      },
+      "additionalProperties": false
+     },
+     "style": {
+      "type": "string",
+      "enum": [
+       "none",
+       "solid",
+       "dashed",
+       "dotted",
+       "double",
+       "groove",
+       "ridge",
+       "inset",
+       "outset"
+      ]
+     },
+     "color": {
+      "description": "Color value in various formats",
+      "oneOf": [
+       {
+        "type": "object",
+        "properties": {
+         "hex": {
+          "type": "string",
+          "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+         }
+        },
+        "required": [
+         "hex"
+        ]
+       },
+       {
+        "type": "object",
+        "properties": {
+         "rgb": {
+          "type": "string",
+          "pattern": "^rgba?\\("
+         }
+        },
+        "required": [
+         "rgb"
+        ]
+       },
+       {
+        "type": "object",
+        "properties": {
+         "hsl": {
+          "type": "string",
+          "pattern": "^hsla?\\("
+         }
+        },
+        "required": [
+         "hsl"
+        ]
+       },
+       {
+        "type": "object",
+        "properties": {
+         "raw": {
+          "type": "string",
+          "description": "Raw color value or CSS variable"
+         }
+        },
+        "required": [
+         "raw"
+        ]
+       }
+      ]
+     },
+     "radius": {
+      "type": "object",
+      "description": "Spacing value with directional properties",
+      "properties": {
+       "top": {
+        "type": "string",
+        "description": "Top spacing value with unit"
+       },
+       "right": {
+        "type": "string",
+        "description": "Right spacing value with unit"
+       },
+       "bottom": {
+        "type": "string",
+        "description": "Bottom spacing value with unit"
+       },
+       "left": {
+        "type": "string",
+        "description": "Left spacing value with unit"
+       }
+      },
+      "additionalProperties": false
+     }
+    }
+   },
+   "controlType": "border"
+  },
+  "captionTypography": {
+   "label": "Typography",
+   "css": [
+    {
+     "property": "font",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "valueSchema": {
+    "type": "object",
+    "description": "Typography settings",
+    "properties": {
+     "font-family": {
+      "type": "string"
+     },
+     "font-size": {
+      "type": "string"
+     },
+     "font-weight": {
+      "type": [
+       "string",
+       "integer"
+      ]
+     },
+     "font-style": {
+      "type": "string",
+      "enum": [
+       "normal",
+       "italic",
+       "oblique"
+      ]
+     },
+     "line-height": {
+      "type": "string"
+     },
+     "letter-spacing": {
+      "type": "string"
+     },
+     "text-align": {
+      "type": "string",
+      "enum": [
+       "left",
+       "center",
+       "right",
+       "justify"
+      ]
+     },
+     "text-transform": {
+      "type": "string",
+      "enum": [
+       "none",
+       "uppercase",
+       "lowercase",
+       "capitalize"
+      ]
+     },
+     "text-decoration": {
+      "type": "string"
+     },
+     "color": {
+      "description": "Color value in various formats",
+      "oneOf": [
+       {
+        "type": "object",
+        "properties": {
+         "hex": {
+          "type": "string",
+          "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+         }
+        },
+        "required": [
+         "hex"
+        ]
+       },
+       {
+        "type": "object",
+        "properties": {
+         "rgb": {
+          "type": "string",
+          "pattern": "^rgba?\\("
+         }
+        },
+        "required": [
+         "rgb"
+        ]
+       },
+       {
+        "type": "object",
+        "properties": {
+         "hsl": {
+          "type": "string",
+          "pattern": "^hsla?\\("
+         }
+        },
+        "required": [
+         "hsl"
+        ]
+       },
+       {
+        "type": "object",
+        "properties": {
+         "raw": {
+          "type": "string",
+          "description": "Raw color value or CSS variable"
+         }
+        },
+        "required": [
+         "raw"
+        ]
+       }
+      ]
+     }
+    }
+   },
+   "controlType": "typography"
+  },
+  "captionTop": {
+   "label": "Top",
+   "css": [
+    {
+     "property": "top",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "valueSchema": {
+    "oneOf": [
+     {
+      "type": "string",
+      "description": "Value with unit (e.g., \"10px\", \"50%\")"
+     },
+     {
+      "type": "number"
+     }
+    ]
+   },
+   "controlType": "number"
+  },
+  "captionRight": {
+   "label": "Right",
+   "css": [
+    {
+     "property": "right",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "valueSchema": {
+    "oneOf": [
+     {
+      "type": "string",
+      "description": "Value with unit (e.g., \"10px\", \"50%\")"
+     },
+     {
+      "type": "number"
+     }
+    ]
+   },
+   "controlType": "number"
+  },
+  "captionBottom": {
+   "label": "Bottom",
+   "css": [
+    {
+     "property": "bottom",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "valueSchema": {
+    "oneOf": [
+     {
+      "type": "string",
+      "description": "Value with unit (e.g., \"10px\", \"50%\")"
+     },
+     {
+      "type": "number"
+     }
+    ]
+   },
+   "controlType": "number"
+  },
+  "captionLeft": {
+   "label": "Left",
+   "css": [
+    {
+     "property": "left",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "valueSchema": {
+    "oneOf": [
+     {
+      "type": "string",
+      "description": "Value with unit (e.g., \"10px\", \"50%\")"
+     },
+     {
+      "type": "number"
+     }
+    ]
+   },
+   "controlType": "number"
+  },
+  "captionWidth": {
+   "label": "Width",
+   "css": [
+    {
+     "property": "width",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "valueSchema": {
+    "oneOf": [
+     {
+      "type": "string",
+      "description": "Value with unit (e.g., \"10px\", \"50%\")"
+     },
+     {
+      "type": "number"
+     }
+    ]
+   },
+   "controlType": "number"
+  },
+  "captionPadding": {
+   "label": "Padding",
+   "css": [
+    {
+     "property": "padding",
+     "selector": ".x-slider_slide-caption"
+    }
+   ],
+   "placeholder": {
+    "top": "10px",
+    "right": "15px",
+    "bottom": "10px",
+    "left": "15px"
+   },
+   "valueSchema": {
+    "type": "object",
+    "description": "Spacing value with directional properties",
+    "properties": {
+     "top": {
+      "type": "string",
+      "description": "Top spacing value with unit"
+     },
+     "right": {
+      "type": "string",
+      "description": "Right spacing value with unit"
+     },
+     "bottom": {
+      "type": "string",
+      "description": "Bottom spacing value with unit"
+     },
+     "left": {
+      "type": "string",
+      "description": "Left spacing value with unit"
+     }
+    },
+    "additionalProperties": false
+   },
+   "controlType": "spacing"
+  },
+  "lazyLoadSupport": {
+   "label": "Support lazy load",
+   "placeholder": "Splide lazy load",
+   "options": {
+    "none": "None",
+    "splide": "Splide lazy load",
+    "bricks": "Bricks Lazy load"
+   },
+   "valueSchema": {
+    "type": "string",
+    "enum": [
+     "none",
+     "splide",
+     "bricks"
+    ]
+   },
+   "controlType": "select"
+  },
+  "tagsSep": {
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "separator"
+  },
+  "listTag": {
+   "label": "HTML tag (List)",
+   "placeholder": "ul",
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "text"
+  },
+  "slideTag": {
+   "label": "HTML tag (Slide)",
+   "placeholder": "li",
+   "valueSchema": {
+    "type": "string"
+   },
+   "controlType": "text"
+  }
+ },
+ "controlGroups": {
+  "captions": {
+   "title": "Captions",
+   "required": [
+    "caption",
+    "=",
+    true
+   ]
+  }
+ },
+ "rendering": {
+  "description": "HTML structure and CSS classes used by this element",
+  "cssClasses": [
+   "x-splide__list",
+   "x-slider_slide-image",
+   "x-slider_slide-caption"
+  ],
+  "rootElement": "div"
+ },
+ "documentation": {
+  "description": "* Pro Slider Gallery element class.",
+  "keywords": [
+   "slider",
+   "gallery",
+   "image"
+  ],
+  "usage": {
+   "category": "extras",
+   "nestable": false
+  }
+ }
+}

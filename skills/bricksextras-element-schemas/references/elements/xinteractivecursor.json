@@ -1,0 +1,646 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xinteractivecursor",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Interactive Cursor",
+    "description": "Schema for BricksExtras Interactive Cursor element",
+    "metadata": {
+        "name": "xinteractivecursor",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "builderHidden": {
+            "label": "Hide in builder",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "builderHidden_sep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "hoverSelectors": {
+            "label": "CSS selectors (Hover)",
+            "default": "a, button, input, textarea, .splide__slide, .vds-button",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "trailDelay": {
+            "label": "Speed (Cursor trail)",
+            "placeholder": 0.20000000000000001,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "statusSep": {
+            "label": "Status",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "builderPreview": {
+            "label": "Preview",
+            "default": "default",
+            "options": {
+                "default": "Default",
+                "trail-grow": "Hover",
+                "text-visible": "Text",
+                "mousedown": "Click"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "default",
+                    "trail-grow",
+                    "text-visible",
+                    "mousedown"
+                ]
+            },
+            "controlType": "select"
+        },
+        "ballScale": {
+            "label": "Scale (Cursor ball)",
+            "required": [
+                "builderPreview",
+                "=",
+                "default"
+            ],
+            "css": [
+                {
+                    "property": "--x-cursor-text-start",
+                    "selector": ""
+                }
+            ],
+            "placeholder": 0.69999999999999996,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "trailScale": {
+            "label": "Scale (Cursor trail)",
+            "required": [
+                "builderPreview",
+                "=",
+                "default"
+            ],
+            "css": [
+                {
+                    "property": "--x-cursor-trail-start",
+                    "selector": ""
+                }
+            ],
+            "placeholder": 1,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "hoverStateSep": {
+            "label": "Hover",
+            "description": "When cursor passes over any of the chosen hover selectors (above).",
+            "required": [
+                "builderPreview",
+                "=",
+                "trail-grow"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "ballHoverScale": {
+            "label": "Scale (Cursor ball)",
+            "required": [
+                "builderPreview",
+                "=",
+                "trail-grow"
+            ],
+            "css": [
+                {
+                    "property": "--x-cursor-text-end",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "trailHoverScale": {
+            "label": "Scale (Cursor trail)",
+            "required": [
+                "builderPreview",
+                "=",
+                "trail-grow"
+            ],
+            "css": [
+                {
+                    "property": "--x-cursor-trail-scale",
+                    "selector": ""
+                }
+            ],
+            "placeholder": 3,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "textVisibleSep": {
+            "label": "Text",
+            "description": "When hovering over elements with a data-x-hover attribute.",
+            "required": [
+                "builderPreview",
+                "=",
+                "text-visible"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "ballTextScale": {
+            "label": "Scale (Cursor ball)",
+            "required": [
+                "builderPreview",
+                "=",
+                "text-visible"
+            ],
+            "css": [
+                {
+                    "property": "--x-cursor-text-scale",
+                    "selector": ""
+                }
+            ],
+            "placeholder": 10,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "ballTypography": {
+            "label": "Typography",
+            "required": [
+                "builderPreview",
+                "=",
+                "text-visible"
+            ],
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "mouseDownSep": {
+            "label": "Click",
+            "required": [
+                "builderPreview",
+                "=",
+                "mousedown"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "ballMousedownScale": {
+            "label": "Scale (Cursor ball)",
+            "required": [
+                "builderPreview",
+                "=",
+                "mousedown"
+            ],
+            "css": [
+                {
+                    "property": "--x-cursor-text-down",
+                    "selector": ""
+                }
+            ],
+            "placeholder": 0.29999999999999999,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "trailMousedownScale": {
+            "label": "Scale (Cursor trail)",
+            "required": [
+                "builderPreview",
+                "=",
+                "mousedown"
+            ],
+            "css": [
+                {
+                    "property": "--x-cursor-trail-down",
+                    "selector": ""
+                }
+            ],
+            "placeholder": 0.80000000000000004,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "stylesSep": {
+            "label": "Styles",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "ballColor": {
+            "label": "Color (Cursor ball)",
+            "css": [
+                {
+                    "property": "--x-cursor-ball-color",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "ballRadius": {
+            "label": "Border radius (Cursor ball)",
+            "css": [
+                {
+                    "property": "border-radius",
+                    "selector": ".x-cursor_ball::after"
+                }
+            ],
+            "placeholder": "50%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "trailColor": {
+            "label": "Color (Cursor trail)",
+            "css": [
+                {
+                    "property": "--x-cursor-trail-color",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "trailRadius": {
+            "label": "Border radius (Cursor trail)",
+            "css": [
+                {
+                    "property": "border-radius",
+                    "selector": ".x-cursor_trail"
+                }
+            ],
+            "placeholder": "50%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "waitSep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "wait": {
+            "label": "Delay (Loading)",
+            "placeholder": 100,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-cursor_ball",
+            "x-cursor_inner",
+            "x-cursor_trail",
+            "x-cursor_text"
+        ],
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Interactive Cursor element class.",
+        "keywords": [
+            "cursor"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

@@ -1,0 +1,461 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xstarrating",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Star Rating",
+    "description": "Schema for BricksExtras Star Rating element",
+    "metadata": {
+        "name": "xstarrating",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "starRating": {
+            "label": "Rating",
+            "placeholder": "4",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "totalStars": {
+            "label": "Total",
+            "placeholder": "5",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "iconSeparator": {
+            "label": "Icons",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "iconBehaviour": {
+            "label": "Type",
+            "placeholder": "Icons",
+            "options": {
+                "color": "Colors",
+                "icons": "Icons"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "color",
+                    "icons"
+                ]
+            },
+            "controlType": "select"
+        },
+        "markedIcon": {
+            "label": "Icon",
+            "css": [
+                {
+                    "selector": ".x-star-rating_star-marked > *"
+                }
+            ],
+            "default": {
+                "library": "fontawesomeSolid",
+                "icon": "fas fa-star"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "halfmarkedIcon": {
+            "label": "Icon (Half)",
+            "required": [
+                [
+                    "iconBehaviour",
+                    "!=",
+                    "color"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-star-rating_star-half-marked > *"
+                }
+            ],
+            "default": {
+                "library": "fontawesomeSolid",
+                "icon": "fas fa-star-half-stroke"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "icon": {
+            "label": "Icon (Empty)",
+            "required": [
+                [
+                    "iconBehaviour",
+                    "!=",
+                    "color"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-star-rating_star > *"
+                }
+            ],
+            "default": {
+                "library": "fontawesomeRegular",
+                "icon": "fa fa-star"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "iconColor": {
+            "label": "Color",
+            "required": [
+                [
+                    "iconBehaviour",
+                    "!=",
+                    "color"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "color"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fullColor": {
+            "label": "Color",
+            "required": [
+                [
+                    "iconBehaviour",
+                    "=",
+                    "color"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": "&[data-x-icon=color]",
+                    "property": "--x-star-color"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "empytyColor": {
+            "label": "Empty star color",
+            "required": [
+                [
+                    "iconBehaviour",
+                    "=",
+                    "color"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": "&[data-x-icon=color]",
+                    "property": "--x-star-empty-color"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "iconSize": {
+            "label": "Icon size",
+            "css": [
+                {
+                    "property": "font-size",
+                    "selector": "& > div > *"
+                },
+                {
+                    "property": "font-size"
+                }
+            ],
+            "placeholder": "20px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "iconGap": {
+            "label": "Gap",
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "iconMargin": {
+            "label": "Margin",
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": "& > div > *"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-star-rating_star-marked",
+            "x-star-rating_star-half-marked",
+            "x-star-rating_star"
+        ],
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Star Rating element class.",
+        "keywords": [
+            "star",
+            "rating"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

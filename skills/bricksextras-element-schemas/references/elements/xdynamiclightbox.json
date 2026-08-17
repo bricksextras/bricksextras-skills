@@ -1,0 +1,2554 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xdynamiclightbox",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Dynamic lightbox",
+    "description": "Schema for BricksExtras Dynamic lightbox element. A nestable element",
+    "metadata": {
+        "name": "xdynamiclightbox",
+        "category": "extras",
+        "tag": "div",
+        "nestable": true
+    },
+    "settings": {
+        "builderHidden": {
+            "label": "Hide in builder",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "builderHidden_sep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "lightboxContent": {
+            "label": "Content",
+            "default": "inline",
+            "options": {
+                "inline": "Add elements",
+                "iframe": "iFrame",
+                "gallery": "Gallery",
+                "manual": "Custom  (Links)"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "inline",
+                    "iframe",
+                    "gallery",
+                    "manual"
+                ]
+            },
+            "controlType": "select"
+        },
+        "gallerySep": {
+            "description": "Image gallery",
+            "required": [
+                "lightboxContent",
+                "=",
+                [
+                    "gallery"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "imageGallery": {
+            "required": [
+                "lightboxContent",
+                "=",
+                [
+                    "gallery"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "image-gallery"
+        },
+        "linkSelector": {
+            "label": "Selector (Link)",
+            "required": [
+                "lightboxContent",
+                "=",
+                [
+                    "manual",
+                    "inline"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "componentScope": {
+            "label": "Component scope",
+            "required": [
+                "lightboxContent",
+                "=",
+                [
+                    "manual",
+                    "inline"
+                ]
+            ],
+            "placeholder": "False",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "contentSource": {
+            "label": "Source",
+            "required": [
+                "lightboxContent",
+                "=",
+                [
+                    "iframe"
+                ]
+            ],
+            "placeholder": "/",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "contentSelector": {
+            "label": "Selector (iFrame)",
+            "description": "If the iFrame source is a page on your site, you can limit the iFrame content to one individual selector",
+            "required": [
+                "lightboxContent",
+                "=",
+                [
+                    "iframe"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "lightboxContentSep": {
+            "label": "Content",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "lightboxContentHeight": {
+            "label": "Height",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "lightboxContentMaxHeight": {
+            "label": "Max. height",
+            "css": [
+                {
+                    "selector": "",
+                    "property": "--x-lightbox-maxheight",
+                    "important": true
+                }
+            ],
+            "placeholder": "100vh",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "lightboxContentWidth": {
+            "label": "Width",
+            "css": [
+                {
+                    "selector": ".gslide-inline",
+                    "property": "width",
+                    "important": true
+                },
+                {
+                    "selector": ".ginner-container",
+                    "property": "max-width",
+                    "important": true
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "configVidSep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "autoplayVideos": {
+            "label": "Autoplay video",
+            "required": [
+                "lightboxContent",
+                "=",
+                "manual"
+            ],
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "videosWidth": {
+            "label": "Max. width (Video)",
+            "required": [
+                "lightboxContent",
+                "=",
+                "manual"
+            ],
+            "placeholder": "960px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "videosUIcolor": {
+            "label": "Color (Video)",
+            "required": [
+                "lightboxContent",
+                "=",
+                "manual"
+            ],
+            "css": [
+                {
+                    "selector": "",
+                    "property": "--plyr-color-main"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "imagesWidth": {
+            "label": "Max. width (Images / Galleries)",
+            "css": [
+                {
+                    "selector": ".gslide-image > img",
+                    "property": "width",
+                    "important": true
+                },
+                {
+                    "selector": ".x_lightbox_dummy_content_gallery",
+                    "property": "width",
+                    "important": true
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "backdrop_color_sep": {
+            "label": "Backdrop",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "backdrop_color": {
+            "label": "Background color",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".goverlay"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "maybeGrouping": {
+            "label": "Grouping",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "maybeLoop": {
+            "label": "Loop",
+            "required": [
+                "maybeGrouping",
+                "=",
+                true
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "draggable": {
+            "label": "Draggable",
+            "required": [
+                "maybeGrouping",
+                "=",
+                true
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "slideEffect": {
+            "label": "Effect",
+            "required": [
+                "maybeGrouping",
+                "=",
+                true
+            ],
+            "placeholder": "Slide",
+            "options": {
+                "slide": "Slide",
+                "fade": "Fade",
+                "none": "None"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "slide",
+                    "fade",
+                    "none"
+                ]
+            },
+            "controlType": "select"
+        },
+        "groupingScope": {
+            "label": "Grouping Scope",
+            "required": [
+                "maybeGrouping",
+                "=",
+                true
+            ],
+            "default": "queryloop",
+            "placeholder": "Default",
+            "options": {
+                "global": "Default",
+                "component": "Component",
+                "queryloop": "Query loop"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "global",
+                    "component",
+                    "queryloop"
+                ]
+            },
+            "controlType": "select"
+        },
+        "closeOnOutsideClick": {
+            "label": "Click backdrop to close",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "keyboardNavigation": {
+            "label": "Keyboard Navigation",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "hashToClose": {
+            "label": "Hash link to close",
+            "placeholder": "Disable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "returnFocus": {
+            "label": "Return focus to trigger on close",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "allowID": {
+            "label": "Allow ID styling to be added",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "closeButton": {
+            "label": "Close button",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "lazyDOMLoading": {
+            "label": "Lazy loading",
+            "required": [
+                "lightboxContent",
+                "=",
+                [
+                    "inline"
+                ]
+            ],
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "configSep": {
+            "description": "To add a custom close button inside the lightbox content, add the attribute name &quot;data-x-lightbox-close&quot; to your chosen element.",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "sep"
+        },
+        "_flexWrap": {
+            "label": "Flex wrap",
+            "css": [
+                {
+                    "property": "flex-wrap",
+                    "selector": ".x-dynamic-lightbox_content"
+                }
+            ],
+            "placeholder": "No wrap",
+            "options": {
+                "nowrap": "No wrap",
+                "wrap": "Wrap",
+                "wrap-reverse": "Wrap reverse"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "nowrap",
+                    "wrap",
+                    "wrap-reverse"
+                ]
+            },
+            "controlType": "select"
+        },
+        "_direction": {
+            "label": "Direction",
+            "css": [
+                {
+                    "property": "flex-direction",
+                    "selector": ".x-dynamic-lightbox_content"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "direction"
+        },
+        "_justifyContent": {
+            "label": "Align main axis",
+            "css": [
+                {
+                    "property": "justify-content",
+                    "selector": ".x-dynamic-lightbox_content"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "justify-content"
+        },
+        "_alignItems": {
+            "label": "Align cross axis",
+            "css": [
+                {
+                    "property": "align-items",
+                    "selector": ".x-dynamic-lightbox_content"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "align-items"
+        },
+        "_columnGap": {
+            "label": "Column gap",
+            "css": [
+                {
+                    "property": "column-gap",
+                    "selector": ".x-dynamic-lightbox_content"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "_rowGap": {
+            "label": "Row gap",
+            "css": [
+                {
+                    "property": "row-gap",
+                    "selector": ".x-dynamic-lightbox_content"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "content_padding": {
+            "label": "Content padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".gslide-inline .ginlined-content"
+                }
+            ],
+            "placeholder": {
+                "top": "40px",
+                "right": "40px",
+                "bottom": "40px",
+                "left": "40px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "slide_padding": {
+            "label": "Padding (Slide)",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".gslide-inner-content"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "contentBackground": {
+            "label": "Background",
+            "required": [
+                "lightboxContent",
+                "=",
+                [
+                    "inline"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ".gslide-inline"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "contentBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".ginner-container .gslide-inline"
+                },
+                {
+                    "property": "border",
+                    "selector": ".ginner-container .gslide-external"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "contentOverflow": {
+            "label": "Overflow",
+            "css": [
+                {
+                    "property": "overflow",
+                    "selector": ".ginner-container"
+                }
+            ],
+            "placeholder": "Auto",
+            "options": {
+                "hidden": "Hidden",
+                "Auto": "Auto"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "hidden",
+                    "Auto"
+                ]
+            },
+            "controlType": "select"
+        },
+        "closeButtonSep": {
+            "label": "Close button",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "closeColor": {
+            "label": "Color",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".gcontainer .gclose path"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "closeBackgroundColor": {
+            "label": "Background color",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".gcontainer .gclose"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "closeBorder": {
+            "label": "Border",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".gcontainer .gclose"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "closeBoxShadow": {
+            "label": "Box shadow",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".gcontainer .gclose"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "closeHeight": {
+            "label": "Height",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "height",
+                    "selector": ".gcontainer .gclose"
+                }
+            ],
+            "placeholder": "35",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "closeWidth": {
+            "label": "Button width",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "width",
+                    "selector": ".gcontainer .gclose"
+                }
+            ],
+            "placeholder": "35",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "closeiconSize": {
+            "label": "Icon size",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "width",
+                    "selector": ".gcontainer .gclose svg"
+                }
+            ],
+            "placeholder": "18",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "closeMargin": {
+            "label": "Margin",
+            "required": [
+                "closeButton",
+                "!=",
+                "false"
+            ],
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".gcontainer .gclose"
+                }
+            ],
+            "placeholder": {
+                "top": "20px",
+                "right": "20px",
+                "bottom": "20px",
+                "left": "20px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "navSep": {
+            "label": "Arrows",
+            "required": [
+                "maybeGrouping",
+                "=",
+                true
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "navHide": {
+            "label": "Disable",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "navColor": {
+            "label": "Color",
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".gcontainer .gbtn:not(.gclose) path"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "navBackgroundColor": {
+            "label": "Background color",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".gcontainer .gbtn:not(.gclose)"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "navBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".gcontainer .gbtn:not(.gclose)"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "navBoxShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".gcontainer .gbtn:not(.gclose)"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "navHeight": {
+            "label": "Height",
+            "css": [
+                {
+                    "property": "height",
+                    "selector": ".gcontainer .gbtn:not(.gclose)"
+                }
+            ],
+            "placeholder": "50",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "navWidth": {
+            "label": "Button width",
+            "css": [
+                {
+                    "property": "width",
+                    "selector": ".gcontainer .gbtn:not(.gclose)"
+                }
+            ],
+            "placeholder": "40",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "naviconSize": {
+            "label": "Icon size",
+            "css": [
+                {
+                    "property": "width",
+                    "selector": ".gcontainer .gbtn:not(.gclose) svg"
+                }
+            ],
+            "placeholder": "25",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "navPrevMarginSeparator": {
+            "label": "Previous",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "navPrevMargin": {
+            "label": "Margin",
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".gcontainer .gbtn.gprev"
+                }
+            ],
+            "placeholder": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "20px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "navNextMarginSeparator": {
+            "label": "Next",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "navNextMargin": {
+            "label": "Margin",
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".gcontainer .gbtn.gnext"
+                }
+            ],
+            "placeholder": {
+                "top": "0",
+                "right": "20px",
+                "bottom": "0",
+                "left": "0"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "maybeCaptions": {
+            "label": "Enable",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "captionPosition": {
+            "label": "Position",
+            "placeholder": "Bottom of viewport",
+            "options": {
+                "captionsBottomViewport": "Bottom of viewport",
+                "captionsUnderContent": "Under content"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "captionsBottomViewport",
+                    "captionsUnderContent"
+                ]
+            },
+            "controlType": "select"
+        },
+        "moreLength": {
+            "label": "Truncate length",
+            "placeholder": "60",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "moreText": {
+            "label": "More text",
+            "placeholder": "See more",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "captionsTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".gdesc-inner .gslide-desc"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "captionsBackground": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".gdesc-inner"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "captionsPadding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".gdesc-inner"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "preview_animation": {
+            "label": "Preview",
+            "description": "Set the start / end positions to control the movement as the lightbox is revealed/closed",
+            "placeholder": "Open",
+            "options": {
+                "x-lightbox_preview-start": "Start",
+                "x-lightbox_preview-open": "Open",
+                "x-lightbox_preview-end": "End"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "x-lightbox_preview-start",
+                    "x-lightbox_preview-open",
+                    "x-lightbox_preview-end"
+                ]
+            },
+            "controlType": "select"
+        },
+        "start_translate_x": {
+            "label": "Translate X",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-lightbox_preview-start"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-lightbox-translatex",
+                    "selector": ".gcontainer"
+                }
+            ],
+            "placeholder": "0%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "start_translate_y": {
+            "label": "Translate Y",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-lightbox_preview-start"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-lightbox-translatey",
+                    "selector": ".gcontainer"
+                }
+            ],
+            "placeholder": "10%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "start_scale": {
+            "label": "Scale",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-lightbox_preview-start"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".gcontainer",
+                    "property": "--x-lightbox-scale"
+                }
+            ],
+            "placeholder": "1",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "end_translate_x": {
+            "label": "Translate X",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-lightbox_preview-end"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-lightbox-close-translatex",
+                    "selector": ".gcontainer"
+                }
+            ],
+            "placeholder": "0%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "end_translate_y": {
+            "label": "Translate Y",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-lightbox_preview-end"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-lightbox-close-translatey",
+                    "selector": ".gcontainer"
+                }
+            ],
+            "placeholder": "-5%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "end_scale": {
+            "label": "Scale",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-lightbox_preview-end"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".gcontainer",
+                    "property": "--x-lightbox-close-scale"
+                }
+            ],
+            "placeholder": "1",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "reduce_motion": {
+            "label": "If &#039;Reduce motion&#039; enabled",
+            "placeholder": "Animation",
+            "options": {
+                "fade": "Fade",
+                "animate": "Animation",
+                "notransition": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "fade",
+                    "animate",
+                    "notransition"
+                ]
+            },
+            "controlType": "select"
+        }
+    },
+    "controlGroups": {
+        "grouping": {
+            "title": "Grouping",
+            "tab": "content",
+            "required": [
+                "lightboxContent",
+                "!=",
+                [
+                    "calendar"
+                ]
+            ]
+        },
+        "config": {
+            "title": "Configure",
+            "tab": "content"
+        },
+        "styling": {
+            "title": "Styling UI",
+            "tab": "content"
+        },
+        "inner_layout": {
+            "title": "Inner content",
+            "tab": "content"
+        },
+        "animation": {
+            "title": "Animation",
+            "tab": "content"
+        },
+        "captions": {
+            "title": "Captions",
+            "tab": "content",
+            "required": [
+                "lightboxContent",
+                "!=",
+                [
+                    "inline",
+                    "iframe"
+                ]
+            ]
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-dynamic-lightbox_content-",
+            "x-dynamic-lightbox_captions",
+            "x-dynamic-lightbox_nav-hide",
+            "x-dynamic-lightbox_link",
+            "x-dynamic-lightbox_link-",
+            "x-dynamic-lightbox_content"
+        ],
+        "rootElement": "div",
+        "nestable": true,
+        "childrenContainer": "Renders child elements within the structure"
+    },
+    "documentation": {
+        "description": "* Dynamic Lightbox element class.",
+        "keywords": [
+            "dynamic lightbox",
+            "lightbox"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": true
+        },
+        "bestPractices": [
+            "This is a nestable element - add child elements to build your content structure"
+        ]
+    }
+}

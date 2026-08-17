@@ -1,0 +1,297 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xreadingprogressbar",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Reading progress bar",
+    "description": "Schema for BricksExtras Reading progress bar element",
+    "metadata": {
+        "name": "xreadingprogressbar",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "containerSelector": {
+            "label": "Selector (Container)",
+            "placeholder": "body",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "progressPosition": {
+            "label": "Position",
+            "default": "positionTop",
+            "options": {
+                "positionTop": "Top",
+                "positionBottom": "Bottom",
+                "custom": "Custom"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "positionTop",
+                    "positionBottom",
+                    "custom"
+                ]
+            },
+            "controlType": "select"
+        },
+        "ariaLabel": {
+            "label": "aria-label",
+            "placeholder": "Reading progress bar",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "mainsep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "start": {
+            "label": "Start when top of container reaches..",
+            "placeholder": "Top of viewport",
+            "options": {
+                "top": "Top of viewport",
+                "middle": "Middle of viewport",
+                "bottom": "Bottom of viewport"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "top",
+                    "middle",
+                    "bottom"
+                ]
+            },
+            "controlType": "select"
+        },
+        "end": {
+            "label": "End when bottom of container reaches..",
+            "placeholder": "Bottom of viewport",
+            "options": {
+                "top": "Top of viewport",
+                "middle": "Middle of viewport",
+                "bottom": "Bottom of viewport"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "top",
+                    "middle",
+                    "bottom"
+                ]
+            },
+            "controlType": "select"
+        },
+        "styleSep": {
+            "label": "Styles",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "progressHeight": {
+            "label": "Height",
+            "css": [
+                {
+                    "selector": "",
+                    "property": "height"
+                }
+            ],
+            "placeholder": "4px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "background": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "progressBackground": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ".x-reading-progress-bar_progress"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "progressBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-reading-progress-bar_progress"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-reading-progress-bar_progress"
+        ],
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Reading Progress Bar element class.",
+        "keywords": [
+            "reading",
+            "progress",
+            "bar"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

@@ -1,0 +1,4456 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xproslidercontrol",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Pro Slider Control",
+    "description": "Schema for BricksExtras Pro Slider Control element. A nestable element",
+    "metadata": {
+        "name": "xproslidercontrol",
+        "category": "extras",
+        "tag": "div",
+        "nestable": true
+    },
+    "settings": {
+        "intro": {
+            "description": "This element should be placed outside of the Pro Slider",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "slider": {
+            "label": "Slider to control",
+            "placeholder": "Within the same section",
+            "options": {
+                "section": "Within the same section",
+                "selector": "Specific selector",
+                "component": "Within the same component"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "section",
+                    "selector",
+                    "component"
+                ]
+            },
+            "controlType": "select"
+        },
+        "sliderSelector": {
+            "label": "Selector (Slider)",
+            "required": [
+                "slider",
+                "=",
+                "selector"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "componentScope": {
+            "label": "Component scope",
+            "required": [
+                "slider",
+                "=",
+                "selector"
+            ],
+            "placeholder": "False",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "controlType": {
+            "label": "Type",
+            "placeholder": "Progress Bar",
+            "options": {
+                "progressBar": "Progress Bar",
+                "counter": "Counter",
+                "navArrow": "Previous / Next",
+                "playPause": "Play / Pause (Autoplay)",
+                "autoplayProgress": "Progress Bar (Autoplay)",
+                "slideContent": "Content (Slide)",
+                "paginationDots": "Pagination Dots"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "progressBar",
+                    "counter",
+                    "navArrow",
+                    "playPause",
+                    "autoplayProgress",
+                    "slideContent",
+                    "paginationDots"
+                ]
+            },
+            "controlType": "select"
+        },
+        "slideToGetContent": {
+            "label": "Slide",
+            "required": [
+                "controlType",
+                "=",
+                "slideContent"
+            ],
+            "placeholder": "Active",
+            "options": {
+                "active": "Active",
+                "previous": "Previous",
+                "next": "Next"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "active",
+                    "previous",
+                    "next"
+                ]
+            },
+            "controlType": "select"
+        },
+        "countType": {
+            "label": "Counting pages or slides",
+            "required": [
+                "controlType",
+                "=",
+                "counter"
+            ],
+            "placeholder": "Slides to move",
+            "options": {
+                "pages": "Pages to move",
+                "slides": "Slides to move"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "pages",
+                    "slides"
+                ]
+            },
+            "controlType": "select"
+        },
+        "contentTag": {
+            "label": "Tag",
+            "required": [
+                "controlType",
+                "=",
+                "slideContent"
+            ],
+            "placeholder": "div",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "playIcon": {
+            "label": "Icon (Play)",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "css": [
+                {
+                    "selector": ".x-splide__toggle__play > *"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "pauseIcon": {
+            "label": "Icon (Pause)",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "css": [
+                {
+                    "selector": ".x-splide__toggle__pause > *"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "playAriaLabel": {
+            "label": "aria-label ( Play)",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "pauseAriaLabel": {
+            "label": "aria-label ( Pause)",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "buttonSep": {
+            "label": "Button style",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "buttonTypography": {
+            "label": "Typography",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".x-splide__toggle"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "buttonBorder": {
+            "label": "Border",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-splide__toggle"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "buttonBackground": {
+            "label": "Background",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ".x-splide__toggle"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "buttonShadow": {
+            "label": "Box shadow",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-splide__toggle"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "buttonMargin": {
+            "label": "Margin",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".x-splide__toggle"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "buttonPadding": {
+            "label": "Padding",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ],
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-splide__toggle"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "counterCurrentSeparator": {
+            "label": "Current slide number",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "indexCurrentText": {
+            "label": "Prefix",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "indexCurrentTextSuffix": {
+            "label": "Suffix",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "indexTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".x-slider_counter-index"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "indexBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-slider_counter-index"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "indexBackground": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ".x-slider_counter-index"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "indexShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-slider_counter-index"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "indexMargin": {
+            "label": "Margin (Number)",
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".x-slider_counter-index-number"
+                }
+            ],
+            "placeholder": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "5px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "indexPadding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-slider_counter-index"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "counterSeparator": {
+            "label": "Separator",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "slideSeperatorText": {
+            "label": "Separator",
+            "default": "of",
+            "placeholder": "of",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "seperatorTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".x-slider_counter-seperator"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "seperatorMargin": {
+            "label": "Margin",
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".x-slider_counter-seperator"
+                }
+            ],
+            "placeholder": {
+                "top": "0",
+                "right": "5px",
+                "bottom": "0",
+                "left": "5px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "counterTotalSeparator": {
+            "label": "Total slides",
+            "required": [
+                "controlType",
+                "=",
+                "counter"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "slideTotalText": {
+            "label": "Prefix",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "slideTotalTextSuffix": {
+            "label": "Suffix",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "totalTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".x-slider_counter-total"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "totalBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-slider_counter-total"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "totalBackground": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ".x-slider_counter-total"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "totalShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-slider_counter-total"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "totalMargin": {
+            "label": "Margin (Number)",
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".x-slider_counter-total-number"
+                }
+            ],
+            "placeholder": {
+                "top": "0",
+                "right": "5px",
+                "bottom": "0",
+                "left": "0"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "totalPadding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-slider_counter-total"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "progressbarSeparator": {
+            "label": "Progress Bar",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "progressBarClickable": {
+            "label": "Interactive",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "default": true,
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "progressSegmented": {
+            "label": "Segment progress bar",
+            "required": [
+                [
+                    "controlType",
+                    "!=",
+                    [
+                        "counter",
+                        "playPause",
+                        "navArrow"
+                    ]
+                ],
+                [
+                    "progressBarClickable",
+                    "=",
+                    true
+                ]
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "progressBarSegmentGap": {
+            "label": "Gap",
+            "required": [
+                [
+                    "controlType",
+                    "!=",
+                    [
+                        "counter",
+                        "playPause",
+                        "navArrow"
+                    ]
+                ],
+                [
+                    "progressBarClickable",
+                    "=",
+                    true
+                ],
+                [
+                    "progressSegmented",
+                    "=",
+                    true
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-slider-progress-gap",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "placeholder": "2%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "progressBarAriaLabel": {
+            "label": "aria-label",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "placeholder": "Slider progress",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "progressDirection": {
+            "label": "Direction",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "placeholder": "Left to right",
+            "options": {
+                "ltr": "Left to right",
+                "rtl": "Right to left"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "ltr",
+                    "rtl"
+                ]
+            },
+            "controlType": "select"
+        },
+        "progressBarTransition": {
+            "label": "Duration",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "transition-duration",
+                    "selector": ".x-slider_progress-bar"
+                }
+            ],
+            "placeholder": "400ms",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "progressBarBackground": {
+            "label": "Background",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "progressBarActiveBackground": {
+            "label": "Background (Active)",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ".x-slider_progress-bar"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "progressBarBorder": {
+            "label": "Border",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "progressBarThickness": {
+            "label": "Thickness",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--xsliderprogress-thickness",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "placeholder": "4px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "progressPositioning": {
+            "label": "Position",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "position",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "placeholder": "relative",
+            "options": {
+                "static": "static",
+                "absolute": "absolute"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "static",
+                    "absolute"
+                ]
+            },
+            "controlType": "select"
+        },
+        "progressTop": {
+            "label": "Top",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "top",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "progressRight": {
+            "label": "Right",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "right",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "progressBottom": {
+            "label": "Bottom",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "bottom",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "progressLeft": {
+            "label": "Left",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "left",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "progressMargin": {
+            "label": "Margin",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "counter",
+                    "playPause",
+                    "navArrow"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".x-slider_progress"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "navSeparator": {
+            "label": "Navigation",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "navArrow"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "navType": {
+            "label": "Type (Previous / Next)",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "navArrow"
+                ]
+            ],
+            "placeholder": "Previous",
+            "options": {
+                "prev": "Previous",
+                "next": "Next"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "prev",
+                    "next"
+                ]
+            },
+            "controlType": "select"
+        },
+        "buttonType": {
+            "label": "Content",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "navArrow"
+                ]
+            ],
+            "placeholder": "Icon",
+            "options": {
+                "icon": "Icon",
+                "nest": "Add elements (Nestable)"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "icon",
+                    "nest"
+                ]
+            },
+            "controlType": "select"
+        },
+        "prevIcon": {
+            "label": "Icon",
+            "required": [
+                [
+                    "navType",
+                    "!=",
+                    "next"
+                ],
+                [
+                    "controlType",
+                    "=",
+                    "navArrow"
+                ],
+                [
+                    "buttonType",
+                    "!=",
+                    "nest"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-slider-control_nav--prev .x-slider-control_nav-arrow > *"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "nextIcon": {
+            "label": "Icon",
+            "required": [
+                [
+                    "navType",
+                    "=",
+                    "next"
+                ],
+                [
+                    "controlType",
+                    "=",
+                    "navArrow"
+                ],
+                [
+                    "buttonType",
+                    "!=",
+                    "nest"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-slider-control_nav--next .x-slider-control_nav-arrow > *"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "prevAriaLabel": {
+            "label": "aria-label",
+            "required": [
+                [
+                    "navType",
+                    "!=",
+                    "next"
+                ],
+                [
+                    "controlType",
+                    "=",
+                    "navArrow"
+                ]
+            ],
+            "placeholder": "Previous Slide",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "nextAriaLabel": {
+            "label": "aria-label",
+            "required": [
+                [
+                    "navType",
+                    "=",
+                    "next"
+                ],
+                [
+                    "controlType",
+                    "=",
+                    "navArrow"
+                ]
+            ],
+            "placeholder": "Next Slide",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "navbuttonSep": {
+            "label": "Button style",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "navArrow"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "navbuttonTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".x-slider-control_nav"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "navbuttonBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-slider-control_nav"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "navbuttonBackground": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "background",
+                    "selector": ".x-slider-control_nav"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "navbuttonShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-slider-control_nav"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "navButtonWidth": {
+            "label": "Width",
+            "css": [
+                {
+                    "selector": ".x-slider-control_nav",
+                    "property": "width"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "navButtonHeight": {
+            "label": "Height",
+            "css": [
+                {
+                    "selector": ".x-slider-control_nav",
+                    "property": "height"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "navButtonOpacity": {
+            "label": "Opacity",
+            "css": [
+                {
+                    "selector": ".x-slider-control_nav",
+                    "property": "opacity"
+                }
+            ],
+            "placeholder": "1",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "navButtonOpacityDisabled": {
+            "label": "Opacity (Disabled)",
+            "css": [
+                {
+                    "selector": ".x-slider-control_nav[disabled]",
+                    "property": "opacity"
+                },
+                {
+                    "selector": ".x-slider-control_nav:disabled",
+                    "property": "opacity"
+                }
+            ],
+            "placeholder": "0.35",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "navbuttonPadding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-slider-control_nav"
+                }
+            ],
+            "placeholder": {
+                "top": "15px",
+                "right": "20px",
+                "bottom": "15px",
+                "left": "20px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "autoplayProgressType": {
+            "label": "Type",
+            "placeholder": "Progress Bar",
+            "options": {
+                "progressBar": "Progress Bar",
+                "circle": "Circle"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "progressBar",
+                    "circle"
+                ]
+            },
+            "controlType": "select"
+        },
+        "autoplayCircleWidth": {
+            "label": "Size",
+            "required": [
+                "autoplayProgressType",
+                "=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-slider-control_autoplay_container",
+                    "property": "width"
+                },
+                {
+                    "selector": ".x-slider-control_autoplay_container",
+                    "property": "height"
+                }
+            ],
+            "placeholder": "100px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "autoplayProgressSegmented": {
+            "label": "Segment autoplay progress bar",
+            "required": [
+                "autoplayProgressType",
+                "!=",
+                [
+                    "circle"
+                ]
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "autoplayProgressSegmentGap": {
+            "label": "Segment gap",
+            "required": [
+                "autoplayProgressSegmented",
+                "=",
+                true
+            ],
+            "css": [
+                {
+                    "property": "--x-slider-autoplay-gap",
+                    "selector": ".x-slider-control_autoplay_progress"
+                }
+            ],
+            "placeholder": "2%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "autoplayprogreslineSep": {
+            "label": "Progress",
+            "required": [
+                "autoplayProgressType",
+                "=",
+                [
+                    "circle"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "autoplayprogressLineWidth": {
+            "label": "Line width",
+            "required": [
+                "autoplayProgressType",
+                "=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-slider-control_autoplay_circle circle",
+                    "property": "--x-autoplay-stroke-width"
+                }
+            ],
+            "placeholder": "10",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "autoplayprogressLineColor": {
+            "label": "Color",
+            "required": [
+                "autoplayProgressType",
+                "=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-slider-control_autoplay_circle circle",
+                    "property": "stroke"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "autoplayprogresBgSep": {
+            "label": "Circle",
+            "required": [
+                "autoplayProgressType",
+                "=",
+                [
+                    "circle"
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "autoplayprogressBgWidth": {
+            "label": "Line width",
+            "required": [
+                "autoplayProgressType",
+                "=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-slider-control_autoplay_circle_bg circle",
+                    "property": "--x-autoplay-stroke-width"
+                }
+            ],
+            "placeholder": "10",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "autoplayprogressBgColor": {
+            "label": "Color",
+            "required": [
+                "autoplayProgressType",
+                "=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-slider-control_autoplay_circle_bg circle",
+                    "property": "stroke"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "autoplayprogressBarBackground": {
+            "label": "Background",
+            "required": [
+                "autoplayProgressType",
+                "!=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-slider-control_autoplay_progress"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "autoplayprogressBarActiveBackground": {
+            "label": "Background (Active)",
+            "required": [
+                "autoplayProgressType",
+                "!=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-slider-control_autoplay_progress-bar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "autoplayprogressBarBorder": {
+            "label": "Border",
+            "required": [
+                "autoplayProgressType",
+                "!=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-slider-control_autoplay_progress"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "autoplayprogressBarThickness": {
+            "label": "Thickness",
+            "required": [
+                "autoplayProgressType",
+                "!=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "height",
+                    "selector": ".x-slider-control_autoplay_progress-bar"
+                }
+            ],
+            "placeholder": "4px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "autoplayprogressDirection": {
+            "label": "Direction",
+            "required": [
+                "autoplayProgressType",
+                "!=",
+                [
+                    "circle"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "transform-origin",
+                    "selector": ".x-slider-control_autoplay_progress-bar"
+                }
+            ],
+            "placeholder": "Left to right",
+            "options": {
+                "left": "Left to right",
+                "right": "Right to left"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "left",
+                    "right"
+                ]
+            },
+            "controlType": "select"
+        },
+        "slideContentType": {
+            "label": "Content type",
+            "placeholder": "Pro Slider Gallery Caption",
+            "options": {
+                "caption": "Pro Slider Gallery Caption",
+                "attribute": "Slide Data Attribute",
+                "custom": "Custom element"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "caption",
+                    "attribute",
+                    "custom"
+                ]
+            },
+            "controlType": "select"
+        },
+        "slideContentSelector": {
+            "label": "Selector (Element)",
+            "required": [
+                "slideContentType",
+                "=",
+                "custom"
+            ],
+            "placeholder": ".some-element",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "slideAttribute": {
+            "label": "Custom attribute (Slide)",
+            "required": [
+                "slideContentType",
+                "=",
+                "attribute"
+            ],
+            "placeholder": "data-x-content",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "dotHeight": {
+            "label": "Height",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "height",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page"
+                }
+            ],
+            "placeholder": "10px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dotWidth": {
+            "label": "Width",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "width",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page"
+                }
+            ],
+            "placeholder": "10px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dotColor": {
+            "label": "Color",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page"
+                },
+                {
+                    "property": "background-color",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dotBorder": {
+            "label": "Border",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "dotActiveSep": {
+            "label": "Dots (Active)",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "dotScaleActive": {
+            "label": "Scale",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "transform",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page.is-active",
+                    "value": "scale(%s)"
+                }
+            ],
+            "placeholder": "1",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dotColorActive": {
+            "label": "Color",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page.is-active"
+                },
+                {
+                    "property": "background-color",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page.is-active"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dotBorderActive": {
+            "label": "Border",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page.is-active"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "dotHeightActive": {
+            "label": "Height",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "height",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page.is-active"
+                }
+            ],
+            "placeholder": "10px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dotWidthActive": {
+            "label": "Width",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "width",
+                    "selector": ".x-slider-control_pagination .splide__pagination__page.is-active"
+                }
+            ],
+            "placeholder": "10px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dotLayoutSep": {
+            "label": "Layout",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "dotDirection": {
+            "label": "Direction",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "flex-direction",
+                    "selector": ".x-slider-control_pagination"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "direction"
+        },
+        "dotGap": {
+            "label": "Gap",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ],
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": ".x-slider-control_pagination"
+                }
+            ],
+            "placeholder": "5px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        }
+    },
+    "controlGroups": {
+        "counterCurrent": {
+            "title": "Current slide",
+            "required": [
+                "controlType",
+                "=",
+                "counter"
+            ]
+        },
+        "counterSeperator": {
+            "title": "Separator",
+            "required": [
+                "controlType",
+                "=",
+                "counter"
+            ]
+        },
+        "counterTotal": {
+            "title": "Total slides",
+            "required": [
+                "controlType",
+                "=",
+                "counter"
+            ]
+        },
+        "playButtonIconGroup": {
+            "title": "Icons",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ]
+        },
+        "playButtonGroup": {
+            "title": "Button style",
+            "required": [
+                "controlType",
+                "=",
+                "playPause"
+            ]
+        },
+        "progressBarGroup": {
+            "title": "Progress Bar",
+            "required": [
+                "controlType",
+                "!=",
+                [
+                    "navArrow",
+                    "playPause",
+                    "counter",
+                    "autoplayProgress",
+                    "slideContent",
+                    "paginationDots"
+                ]
+            ]
+        },
+        "navArrowGroup": {
+            "title": "Previous / Next",
+            "required": [
+                "controlType",
+                "=",
+                "navArrow"
+            ]
+        },
+        "autoplayProgressGroup": {
+            "title": "Progress Bar (Autoplay)",
+            "required": [
+                "controlType",
+                "=",
+                "autoplayProgress"
+            ]
+        },
+        "slideContentGroup": {
+            "title": "Content (Slide)",
+            "required": [
+                "controlType",
+                "=",
+                "slideContent"
+            ]
+        },
+        "paginationDotsGroup": {
+            "title": "Pagination Dots",
+            "required": [
+                "controlType",
+                "=",
+                "paginationDots"
+            ]
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-slider_progress",
+            "x-slider_progress-bar",
+            "x-slider_counter",
+            "x-slider_counter-seperator",
+            "x-slider_counter-total",
+            "x-slider_counter-total-prefix",
+            "x-slider_counter-total-suffix",
+            "x-slider_counter-index",
+            "x-slider_counter-index-prefix",
+            "x-slider_counter-index-suffix",
+            "x-slider_counter-index-number",
+            "x-slider_counter-total-number",
+            "x-slider-control_pagination"
+        ],
+        "rootElement": "div",
+        "nestable": true,
+        "childrenContainer": "Renders child elements within the structure"
+    },
+    "documentation": {
+        "description": "* Pro Slider Control element class.",
+        "keywords": [
+            "slider",
+            "control",
+            "progress",
+            "counter",
+            "arrows"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": true
+        },
+        "bestPractices": [
+            "This is a nestable element - add child elements to build your content structure"
+        ]
+    }
+}

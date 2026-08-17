@@ -1,0 +1,168 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://settings/headerextras",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Header Extras",
+    "description": "Schema for the BricksExtras 'Header Extras' settings group, injected into page settings and header/content-template settings via the builder/settings/page/controls_data and builder/settings/template/controls_data filters. Not an element — there is no live schema ability for this group (bricks/list-settings-schema covers Bricks core global settings only, and bricks/get-page-settings / bricks/get-template-settings return an opaque stored-values object with no field metadata). This file is hand-derived from includes/BricksExtrasHeaderExtras.php and is the only schema source for this settings group — keep it in sync with that file's extras_header_builder_options(), extras_header(), and extras_header_attributes() methods if the plugin version changes.",
+    "metadata": {
+        "controlGroup": "xHeaderGroup",
+        "groupLabel": "Header Extras",
+        "appliesTo": ["page settings (content area)", "header template settings", "content template settings"],
+        "excludedFrom": ["footer template settings", "popup template settings"],
+        "sourceFile": "includes/BricksExtrasHeaderExtras.php",
+        "sourceMethods": {
+            "registration": "extras_header_builder_options()",
+            "overlayRuntime": "extras_header()",
+            "stickyRuntimeAttributes": "extras_header_attributes()",
+            "precedenceResolver": "get_current_template_setting()"
+        }
+    },
+    "notes": {
+        "precedence": "get_current_template_setting() resolves each key independently: page settings first (if the key literally exists in page settings, even as an empty/false value, it wins and short-circuits — see the isset()/array_key_exists() check), then content template settings (only if truthy), then header template settings (only if truthy), then the PHP-side runtime default. This means a page-level key set to an empty/false value can still 'win' over a truthy content/header template value, unlike the two lower tiers which only apply when truthy.",
+        "breakpointOptions": "xOverlayHeader and xStickyHeaderAbove share the same dynamically-built options list: one entry per site's registered Bricks breakpoint (\\Bricks\\Breakpoints::$breakpoints, keyed by numeric width, labeled '{label} ( > {width+1}px )'), plus two synthetic values 'none' and 'always'. Breakpoint widths are site-specific (this site's registered breakpoints at time of writing: desktop/1279 (base), tablet_portrait/991, mobile_landscape/767, mobile_portrait/478) — always confirm current values via bricks/get-design-context (breakpoints field) rather than assuming these, since custom breakpoints are enabled per-site.",
+        "checkboxGotcha": "xStickyHeaderScroll and xStickyHeaderHide are rendered as a select control ('true'/'false' string options), not a real Bricks checkbox — but disableHeader-style true/false semantics elsewhere in this plugin/Bricks core are often read via isset() rather than by value, so never assume 'setting a boolean-looking field to false' is equivalent to removing/disabling it without checking the specific consuming code. For the fields in this schema specifically, both PHP consumption points do a strict '=== \"true\"' string check, so explicitly writing 'false' does correctly disable them (unlike the unrelated disableHeader page-setting checkbox this plugin also has, which is read via isset() and requires key removal, not a false value, to disable)."
+    },
+    "settings": {
+        "xOverlayHeaderSep": {
+            "label": "Overlay Header",
+            "controlType": "separator",
+            "description": "Position the header over the top of the first section and remove header row background colors",
+            "note": "Not a real setting — a visual section divider in the builder UI only. No corresponding key is ever read or written."
+        },
+        "xOverlayHeader": {
+            "label": "Breakpoint",
+            "controlType": "select",
+            "placeholder": "Default",
+            "valueSchema": {
+                "type": "string",
+                "enum": ["none", "always", "<breakpoint-width>"],
+                "description": "'<breakpoint-width>' is a literal numeric string matching one of this site's registered Bricks breakpoint widths, e.g. \"991\"."
+            },
+            "default": null,
+            "runtimeDefaultBehavior": "Unset/falsy is treated as 'none' at read time (extras_header() line ~249: `(bool) get_current_template_setting('xOverlayHeader') ? ... : 'none'`), which disables overlay mode entirely — no CSS is emitted, no data-x-overlay gating applies visually.",
+            "mechanism": "'none' → overlay CSS never emitted. 'always' → overlay CSS emitted unwrapped (applies at every viewport width). A breakpoint width → overlay CSS is wrapped in `@media only screen and (min-width: {width+1}px)`. This is CSS media-query gating, server-rendered via wp_add_inline_style — not a JS runtime comparison (contrast with xStickyHeaderAbove below)."
+        },
+        "xHeaderZindex": {
+            "label": "z-index",
+            "controlType": "number",
+            "min": 0,
+            "max": 1000,
+            "valueSchema": { "type": "integer" },
+            "default": null,
+            "runtimeDefaultBehavior": "Unset/falsy → the #brx-header z-index rule is omitted entirely from the generated inline CSS (no fallback value written)."
+        },
+        "xStickyHeaderSep": {
+            "label": "Sticky header",
+            "controlType": "separator",
+            "note": "Not a real setting — visual divider only."
+        },
+        "xStickyHeaderScroll": {
+            "label": "Enable",
+            "controlType": "select",
+            "options": { "true": "Enable", "false": "Disable" },
+            "valueSchema": { "type": "string", "enum": ["true", "false"] },
+            "default": null,
+            "runtimeDefaultBehavior": "Read via strict `'true' === get_current_template_setting('xStickyHeaderScroll')` in both extras_header() and extras_header_attributes() — unset, empty, or any value other than the exact string 'true' behaves as disabled. This is the master switch every other xSticky* setting below depends on; none of them have any effect while this is not exactly 'true'.",
+            "note": "Despite looking like a boolean, this is a string-valued select control, not a checkbox — the value must be the literal string 'true', not a JSON boolean true, to activate (mirrors how the ability layer round-trips it, e.g. observed live as the string \"true\" via bricks/get-template-settings)."
+        },
+        "xStickyHeaderAbove": {
+            "label": "Breakpoint",
+            "controlType": "select",
+            "placeholder": "None",
+            "required": ["xStickyHeaderScroll", "=", "true"],
+            "valueSchema": {
+                "type": "string",
+                "enum": ["none", "always", "<breakpoint-width>"],
+                "description": "Same dynamic breakpoint-width option set as xOverlayHeader above."
+            },
+            "default": null,
+            "runtimeDefaultBehavior": "**No schema default is set, and unset/falsy is read as literal 'none' at runtime** (extras_header_attributes() line ~410: `get_current_template_setting('xStickyHeaderAbove') ? intval(...) + 1 : 'none'`), written into the header's `data-x-break` HTML attribute as the string \"none\". The frontend header.js reads that attribute as `mediaWidth` and gates all sticky activation on `window.innerWidth >= mediaWidth` — comparing a number against the string \"none\" coerces to NaN, and any comparison against NaN is always false. Net effect: xStickyHeaderScroll can be exactly 'true', xStickyHeaderScrollDistance can be correctly set, and sticky will still never activate at any viewport width, with no error anywhere — until xStickyHeaderAbove is explicitly set. Set to 'always' for the common 'just make it sticky' case, or a specific breakpoint width to gate by viewport.",
+            "severity": "high — this is the most common way sticky silently does nothing despite every other setting being correct and persisted."
+        },
+        "xStickyHeaderScrollDistance": {
+            "label": "Scroll distance (px)",
+            "controlType": "number",
+            "required": ["xStickyHeaderScroll", "=", "true"],
+            "info": "Distance scrolled down the page before header becomes sticky",
+            "valueSchema": { "type": "integer" },
+            "default": null,
+            "runtimeDefaultBehavior": "Unset/falsy → written as data-x-scroll=\"0\" (sticky-active triggers immediately on any scroll, once xStickyHeaderAbove actually allows activation)."
+        },
+        "xStickyHeaderZindex": {
+            "label": "Sticky z-index",
+            "controlType": "number",
+            "units": true,
+            "placeholder": "999",
+            "required": ["xStickyHeaderScroll", "=", "true"],
+            "valueSchema": { "type": "integer" },
+            "default": 999,
+            "runtimeDefaultBehavior": "Unset/falsy → effective value falls back to 999 in the generated CSS (`#brx-header.x-header_sticky-active { z-index: 999; }`) — this one genuinely has a working fallback, matching its placeholder."
+        },
+        "xStickyHeaderFadeDuration": {
+            "label": "Duration (Header)",
+            "controlType": "number",
+            "units": true,
+            "required": ["xStickyHeaderScroll", "=", "true"],
+            "valueSchema": { "type": "integer" },
+            "default": null,
+            "runtimeDefaultBehavior": "Unset/falsy → CSS custom property --x-header-fade-transition is set to '0' (no transition duration, instant fade)."
+        },
+        "xStickyHeaderTransitionDuration": {
+            "label": "Duration (Header row)",
+            "controlType": "number",
+            "units": true,
+            "required": ["xStickyHeaderScroll", "=", "true"],
+            "valueSchema": { "type": "integer" },
+            "default": null,
+            "runtimeDefaultBehavior": "Unset/falsy → CSS custom property --x-header-transition is set to '0' (no transition duration, instant)."
+        },
+        "xHideHeaderSep": {
+            "label": "Hide Header",
+            "controlType": "separator",
+            "description": "Hide the sticky header after scrolling a certain distance",
+            "note": "Not a real setting — visual divider only."
+        },
+        "xStickyHeaderHide": {
+            "label": "Hide header after scrolling",
+            "controlType": "select",
+            "options": { "true": "Enable", "false": "Disable" },
+            "valueSchema": { "type": "string", "enum": ["true", "false"] },
+            "default": null,
+            "runtimeDefaultBehavior": "Read via strict `'true' === get_current_template_setting('xStickyHeaderHide')`. Independent of xStickyHeaderScroll's own default — but has no effect at all unless xStickyHeaderScroll is also exactly 'true', since the entire hide-header code branch lives inside the sticky-enabled branch of extras_header_attributes().",
+            "note": "A second, independent behavior layered on top of sticky (Headroom.js-based) — not a duplicate enable switch for sticky itself. See the SKILL.md 'Never do' note."
+        },
+        "xStickyHeaderHideEffect": {
+            "label": "Animation",
+            "controlType": "select",
+            "options": { "fade": "Fade", "slideUp": "Slide up" },
+            "required": ["xStickyHeaderHide", "=", "true"],
+            "valueSchema": { "type": "string", "enum": ["fade", "slideUp"] },
+            "default": "slideUp",
+            "runtimeDefaultBehavior": "Unset/falsy → effective value falls back to 'slideUp' (data-x-hide-effect attribute) — a working fallback."
+        },
+        "xStickyHeaderHideDistance": {
+            "label": "Scroll distance (px)",
+            "controlType": "number",
+            "required": ["xStickyHeaderHide", "=", "true"],
+            "valueSchema": { "type": "integer" },
+            "default": null,
+            "runtimeDefaultBehavior": "Unset/falsy → written as data-x-header-hide=\"0\"."
+        },
+        "xStickyHeaderHideTollerance": {
+            "label": "Tolerance (px)",
+            "controlType": "number",
+            "required": ["xStickyHeaderHide", "=", "true"],
+            "valueSchema": { "type": "integer" },
+            "default": null,
+            "runtimeDefaultBehavior": "Unset/falsy → written as data-x-header-tollerance=\"0\". Note the misspelling ('Tollerance') is the real control key, not a typo to correct when writing settings.",
+            "note": "Field key is genuinely spelled 'xStickyHeaderHideTollerance' (double-L) in the plugin source — do not 'correct' it to 'Tolerance' when writing settings, the key must match exactly."
+        },
+        "xOverlayHeaderApply": {
+            "label": "Apply",
+            "controlType": "apply",
+            "reload": true,
+            "note": "Not a real setting — a builder-UI-only apply/reload button control type. No corresponding key is ever read or written."
+        }
+    }
+}

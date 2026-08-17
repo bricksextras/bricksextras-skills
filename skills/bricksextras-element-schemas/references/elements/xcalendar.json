@@ -1,0 +1,3209 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xcalendar",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Calendar",
+    "description": "Schema for BricksExtras Calendar element",
+    "metadata": {
+        "name": "xcalendar",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "hasLoop": {
+            "label": "Query loop",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "query": {
+            "label": "Query",
+            "required": [
+                [
+                    "hasLoop",
+                    "!=",
+                    ""
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "query"
+        },
+        "queryLoopInfo": {
+            "required": [
+                [
+                    "hasLoop",
+                    "=",
+                    ""
+                ]
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "info"
+        },
+        "requiredSep": {
+            "label": "Required",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "titleField": {
+            "label": "Title",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "placeholder": "{post_title}",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "startField": {
+            "label": "Start date",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "placeholder": "{post_date}",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "optionalSep": {
+            "label": "Optional",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "endField": {
+            "label": "End date",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "colorField": {
+            "label": "Color",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "allDayField": {
+            "label": "All Day?",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "displayField": {
+            "label": "Display",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "locationField": {
+            "label": "Location",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "descriptionField": {
+            "label": "Description",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "enableRecurring": {
+            "label": "Recurring",
+            "description": "Allow items to repeat",
+            "required": [
+                "hasLoop",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "rruleRules": {
+            "label": "Recurring Rules",
+            "placeholder": "Recurrence rule",
+            "valueSchema": {
+                "type": "array",
+                "description": "Repeater items",
+                "items": {
+                    "type": "object"
+                }
+            },
+            "controlType": "repeater",
+            "fields": {
+                "ruleName": {
+                    "label": "Name",
+                    "placeholder": "Select rule",
+                    "options": {
+                        "FREQ": "Frequency",
+                        "INTERVAL": "Interval",
+                        "COUNT": "Count",
+                        "UNTIL": "Until Date",
+                        "BYDAY": "By Day of Week",
+                        "BYDAY_MONTHLY": "By Weekday of Month",
+                        "BYMONTH": "By Month",
+                        "BYMONTHDAY": "By Day of Month",
+                        "BYYEARDAY": "By Day of Year",
+                        "BYWEEKNO": "By Week Number",
+                        "BYHOUR": "By Hour",
+                        "BYMINUTE": "By Minute",
+                        "BYSECOND": "By Second",
+                        "BYSETPOS": "By Position",
+                        "WKST": "Week Start"
+                    },
+                    "valueSchema": {
+                        "type": "string",
+                        "enum": [
+                            "FREQ",
+                            "INTERVAL",
+                            "COUNT",
+                            "UNTIL",
+                            "BYDAY",
+                            "BYDAY_MONTHLY",
+                            "BYMONTH",
+                            "BYMONTHDAY",
+                            "BYYEARDAY",
+                            "BYWEEKNO",
+                            "BYHOUR",
+                            "BYMINUTE",
+                            "BYSECOND",
+                            "BYSETPOS",
+                            "WKST"
+                        ]
+                    },
+                    "controlType": "select"
+                },
+                "ruleValue": {
+                    "label": "Value",
+                    "description": "(Dynamic data)",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                }
+            }
+        },
+        "exclusionDatesField": {
+            "label": "Exclusion dates",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "eventOverridesField": {
+            "label": "Event exceptions",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "calendarGap": {
+            "label": "Gap (Toolbar)",
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "headerToolbarSep": {
+            "label": "Toolbar (Header)",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "headerToolbar": {
+            "label": "Show",
+            "default": true,
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "headerToolbarLeft": {
+            "label": "Header A",
+            "required": [
+                "headerToolbar",
+                "!=",
+                ""
+            ],
+            "default": [
+                "prev",
+                "next"
+            ],
+            "placeholder": "Select buttons",
+            "options": {
+                "prev": "Prev",
+                "next": "Next",
+                "prevYear": "Prev Year",
+                "nextYear": "Next Year",
+                "today": "Today",
+                "title": "Title",
+                "spacer": "Spacer",
+                "dayGridYear": "Year (DayGrid)",
+                "dayGridMonth": "Month (DayGrid)",
+                "dayGridWeek": "Week (DayGrid)",
+                "dayGridDay": "Day (DayGrid)",
+                "timeGridWeek": "Week (TimeGrid)",
+                "timeGridDay": "Day (TimeGrid)",
+                "listDay": "Day (List)",
+                "listWeek": "Week (List)",
+                "listMonth": "Month (List)",
+                "listYear": "Year (List)",
+                "multiMonthYear": "Multi-Month"
+            },
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Single selection"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Multiple selection"
+                    }
+                ]
+            },
+            "controlType": "select"
+        },
+        "headerToolbarCenter": {
+            "label": "Header B",
+            "required": [
+                "headerToolbar",
+                "!=",
+                ""
+            ],
+            "default": [
+                "title"
+            ],
+            "placeholder": "Select buttons",
+            "options": {
+                "prev": "Prev",
+                "next": "Next",
+                "prevYear": "Prev Year",
+                "nextYear": "Next Year",
+                "today": "Today",
+                "title": "Title",
+                "spacer": "Spacer",
+                "dayGridYear": "Year (DayGrid)",
+                "dayGridMonth": "Month (DayGrid)",
+                "dayGridWeek": "Week (DayGrid)",
+                "dayGridDay": "Day (DayGrid)",
+                "timeGridWeek": "Week (TimeGrid)",
+                "timeGridDay": "Day (TimeGrid)",
+                "listDay": "Day (List)",
+                "listWeek": "Week (List)",
+                "listMonth": "Month (List)",
+                "listYear": "Year (List)",
+                "multiMonthYear": "Multi-Month"
+            },
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Single selection"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Multiple selection"
+                    }
+                ]
+            },
+            "controlType": "select"
+        },
+        "headerToolbarRight": {
+            "label": "Header C",
+            "required": [
+                "headerToolbar",
+                "!=",
+                ""
+            ],
+            "default": [
+                "dayGridMonth",
+                "timeGridWeek",
+                "listWeek"
+            ],
+            "placeholder": "Select buttons",
+            "options": {
+                "prev": "Prev",
+                "next": "Next",
+                "prevYear": "Prev Year",
+                "nextYear": "Next Year",
+                "today": "Today",
+                "title": "Title",
+                "spacer": "Spacer",
+                "dayGridYear": "Year (DayGrid)",
+                "dayGridMonth": "Month (DayGrid)",
+                "dayGridWeek": "Week (DayGrid)",
+                "dayGridDay": "Day (DayGrid)",
+                "timeGridWeek": "Week (TimeGrid)",
+                "timeGridDay": "Day (TimeGrid)",
+                "listDay": "Day (List)",
+                "listWeek": "Week (List)",
+                "listMonth": "Month (List)",
+                "listYear": "Year (List)",
+                "multiMonthYear": "Multi-Month"
+            },
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Single selection"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Multiple selection"
+                    }
+                ]
+            },
+            "controlType": "select"
+        },
+        "toolbarDirection": {
+            "label": "Direction",
+            "required": [
+                "headerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "flex-direction",
+                    "selector": ".fc-header-toolbar"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "direction"
+        },
+        "toolbarJustifyContent": {
+            "label": "Align main axis",
+            "required": [
+                "headerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "justify-content",
+                    "selector": ".fc-header-toolbar"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "justify-content"
+        },
+        "toolbarAlignItems": {
+            "label": "Align cross axis",
+            "required": [
+                "headerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "align-items",
+                    "selector": ".fc-header-toolbar"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "align-items"
+        },
+        "toolbarGap": {
+            "label": "Gap",
+            "required": [
+                "headerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": ".fc-header-toolbar"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "toolbarButtonsGap": {
+            "label": "Gap (Buttons)",
+            "required": [
+                "headerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": ".fc-header-toolbar div:has(>[type=\"button\"])"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "footerToolbarSep": {
+            "label": "Toolbar (Footer)",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "footerToolbar": {
+            "label": "Show",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "footerToolbarLeft": {
+            "label": "Footer A",
+            "required": [
+                "footerToolbar",
+                "!=",
+                ""
+            ],
+            "placeholder": "Select buttons",
+            "options": {
+                "prev": "Prev",
+                "next": "Next",
+                "prevYear": "Prev Year",
+                "nextYear": "Next Year",
+                "today": "Today",
+                "title": "Title",
+                "spacer": "Spacer",
+                "dayGridYear": "Year (DayGrid)",
+                "dayGridMonth": "Month (DayGrid)",
+                "dayGridWeek": "Week (DayGrid)",
+                "dayGridDay": "Day (DayGrid)",
+                "timeGridWeek": "Week (TimeGrid)",
+                "timeGridDay": "Day (TimeGrid)",
+                "listDay": "Day (List)",
+                "listWeek": "Week (List)",
+                "listMonth": "Month (List)",
+                "listYear": "Year (List)",
+                "multiMonthYear": "Multi-Month"
+            },
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Single selection"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Multiple selection"
+                    }
+                ]
+            },
+            "controlType": "select"
+        },
+        "footerToolbarCenter": {
+            "label": "Footer B",
+            "required": [
+                "footerToolbar",
+                "!=",
+                ""
+            ],
+            "placeholder": "Select buttons",
+            "options": {
+                "prev": "Prev",
+                "next": "Next",
+                "prevYear": "Prev Year",
+                "nextYear": "Next Year",
+                "today": "Today",
+                "title": "Title",
+                "spacer": "Spacer",
+                "dayGridYear": "Year (DayGrid)",
+                "dayGridMonth": "Month (DayGrid)",
+                "dayGridWeek": "Week (DayGrid)",
+                "dayGridDay": "Day (DayGrid)",
+                "timeGridWeek": "Week (TimeGrid)",
+                "timeGridDay": "Day (TimeGrid)",
+                "listDay": "Day (List)",
+                "listWeek": "Week (List)",
+                "listMonth": "Month (List)",
+                "listYear": "Year (List)",
+                "multiMonthYear": "Multi-Month"
+            },
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Single selection"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Multiple selection"
+                    }
+                ]
+            },
+            "controlType": "select"
+        },
+        "footerToolbarRight": {
+            "label": "Footer C",
+            "required": [
+                "footerToolbar",
+                "!=",
+                ""
+            ],
+            "placeholder": "Select buttons",
+            "options": {
+                "prev": "Prev",
+                "next": "Next",
+                "prevYear": "Prev Year",
+                "nextYear": "Next Year",
+                "today": "Today",
+                "title": "Title",
+                "spacer": "Spacer",
+                "dayGridYear": "Year (DayGrid)",
+                "dayGridMonth": "Month (DayGrid)",
+                "dayGridWeek": "Week (DayGrid)",
+                "dayGridDay": "Day (DayGrid)",
+                "timeGridWeek": "Week (TimeGrid)",
+                "timeGridDay": "Day (TimeGrid)",
+                "listDay": "Day (List)",
+                "listWeek": "Week (List)",
+                "listMonth": "Month (List)",
+                "listYear": "Year (List)",
+                "multiMonthYear": "Multi-Month"
+            },
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Single selection"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Multiple selection"
+                    }
+                ]
+            },
+            "controlType": "select"
+        },
+        "footerToolbarDirection": {
+            "label": "Direction",
+            "required": [
+                "footerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "flex-direction",
+                    "selector": ".fc-footer-toolbar"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "direction"
+        },
+        "footerToolbarJustifyContent": {
+            "label": "Align main axis",
+            "required": [
+                "footerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "justify-content",
+                    "selector": ".fc-footer-toolbar"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "justify-content"
+        },
+        "footerToolbarAlignItems": {
+            "label": "Align cross axis",
+            "required": [
+                "footerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "align-items",
+                    "selector": ".fc-footer-toolbar"
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "align-items"
+        },
+        "footerToolbarGap": {
+            "label": "Gap",
+            "required": [
+                "footerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": ".fc-footer-toolbar"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "footerToolbarButtonsGap": {
+            "label": "Gap (Buttons)",
+            "required": [
+                "footerToolbar",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "gap",
+                    "selector": ".fc-footer-toolbar div:has(>[type=\"button\"])"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "initialView": {
+            "label": "Initial View",
+            "placeholder": "Month (DayGrid)",
+            "options": {
+                "dayGridYear": "Year (DayGrid)",
+                "dayGridMonth": "Month (DayGrid)",
+                "dayGridWeek": "Week (DayGrid)",
+                "dayGridDay": "Day (DayGrid)",
+                "timeGridWeek": "Week (TimeGrid)",
+                "timeGridDay": "Day (TimeGrid)",
+                "listDay": "Day (List)",
+                "listWeek": "Week (List)",
+                "listMonth": "Month (List)",
+                "listYear": "Year (List)",
+                "multiMonthYear": "Multi-Month"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "dayGridYear",
+                    "dayGridMonth",
+                    "dayGridWeek",
+                    "dayGridDay",
+                    "timeGridWeek",
+                    "timeGridDay",
+                    "listDay",
+                    "listWeek",
+                    "listMonth",
+                    "listYear",
+                    "multiMonthYear"
+                ]
+            },
+            "controlType": "select"
+        },
+        "calendarHeight": {
+            "label": "Height",
+            "placeholder": "auto",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "aspectRatio": {
+            "label": "Aspect ratio",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "firstDay": {
+            "label": "First day of week",
+            "placeholder": "Sunday",
+            "options": {
+                "sunday": "Sunday",
+                "monday": "Monday",
+                "tuesday": "Tuesday",
+                "wednesday": "Wednesday",
+                "thursday": "Thursday",
+                "friday": "Friday",
+                "saturday": "Saturday"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "sunday",
+                    "monday",
+                    "tuesday",
+                    "wednesday",
+                    "thursday",
+                    "friday",
+                    "saturday"
+                ]
+            },
+            "controlType": "select"
+        },
+        "dayMinWidth": {
+            "label": "Min day width",
+            "placeholder": "150",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dayNarrowWidth": {
+            "label": "Narrow day width",
+            "placeholder": "80",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "dayMaxEvents": {
+            "label": "Max events to show per day",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "weekNumbers": {
+            "label": "Show week numbers",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "navLinks": {
+            "label": "Clickable dates",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "progressiveEventRendering": {
+            "label": "Progressive event rendering",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "weekends": {
+            "label": "Show weekends",
+            "placeholder": "True",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "hiddenDays": {
+            "label": "Hidden days",
+            "options": {
+                "sunday": "Sunday",
+                "monday": "Monday",
+                "tuesday": "Tuesday",
+                "wednesday": "Wednesday",
+                "thursday": "Thursday",
+                "friday": "Friday",
+                "saturday": "Saturday"
+            },
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Single selection"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Multiple selection"
+                    }
+                ]
+            },
+            "controlType": "select"
+        },
+        "eventsSep": {
+            "label": "Event display",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "displayEventTime": {
+            "label": "Show event times",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "displayEventEnd": {
+            "label": "Show event end times",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "gridSep": {
+            "label": "Grid views",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "dayHeaders": {
+            "label": "Show day headers",
+            "placeholder": "True",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "eventDisplay": {
+            "label": "Event default display style",
+            "placeholder": "List Item",
+            "options": {
+                "auto": "auto",
+                "block": "block",
+                "list-item": "List Item"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "auto",
+                    "block",
+                    "list-item"
+                ]
+            },
+            "controlType": "select"
+        },
+        "timelineSep": {
+            "label": "Timegrid views",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "nowIndicator": {
+            "label": "Show now indicator",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "fcNowIndicatorColor": {
+            "label": "Now Indicator Color",
+            "required": [
+                "nowIndicator",
+                "=",
+                true
+            ],
+            "css": [
+                {
+                    "property": "--fc-classic-now",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "allDaySlot": {
+            "label": "Show all-day slot",
+            "placeholder": "True",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "slotMinTime": {
+            "label": "Timegrid start time",
+            "placeholder": "00:00:00",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "slotMaxTime": {
+            "label": "Timegrid end time",
+            "placeholder": "24:00:00",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "slotDuration": {
+            "label": "Time slot duration",
+            "placeholder": "00:30:00",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "slotHeaderInterval": {
+            "label": "Slot header interval",
+            "placeholder": "01:00:00",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "scrollTime": {
+            "label": "Initial scroll time",
+            "placeholder": "06:00:00",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "multiMonthSep": {
+            "label": "Multi-Month views",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "multiMonthDuration": {
+            "label": "No. of months",
+            "placeholder": "4",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "multiMonthMaxColumns": {
+            "label": "Max columns",
+            "placeholder": "2",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "singleMonthMinWidth": {
+            "label": "Min month width",
+            "placeholder": "350",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "eventClickAction": {
+            "label": "Click",
+            "placeholder": "Link",
+            "options": {
+                "popup": "Show popup",
+                "url": "Link",
+                "none": "None"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "popup",
+                    "url",
+                    "none"
+                ]
+            },
+            "controlType": "select"
+        },
+        "eventPopup": {
+            "label": "Template",
+            "required": [
+                "eventClickAction",
+                "=",
+                "popup"
+            ],
+            "placeholder": "Select template",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "select"
+        },
+        "eventUrlField": {
+            "label": "URL",
+            "required": [
+                "eventClickAction",
+                "!=",
+                [
+                    "popup",
+                    "none"
+                ]
+            ],
+            "placeholder": "{post_url}",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "eventUrlTarget": {
+            "label": "Open in new tab",
+            "required": [
+                "eventClickAction",
+                "!=",
+                [
+                    "popup",
+                    "none"
+                ]
+            ],
+            "default": false,
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "manualLocale": {
+            "label": "Locale",
+            "description": "Translate month names, day names, and date formatting.",
+            "placeholder": "e.g., en, de, fr, es",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "autoLocale": {
+            "label": "Auto-detect locale",
+            "description": "Automatically detect locale from site language. Overrides above locale setting.",
+            "placeholder": "Disable",
+            "options": {
+                "enable": "Enable",
+                "disable": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "enable",
+                    "disable"
+                ]
+            },
+            "controlType": "select"
+        },
+        "buttonLabelsSep": {
+            "label": "Labels (Buttons)",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "labelToday": {
+            "label": "Today Button",
+            "placeholder": "Today",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelPrev": {
+            "label": "Previous Button",
+            "placeholder": "Previous",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelNext": {
+            "label": "Next Button",
+            "placeholder": "Next",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelPrevYear": {
+            "label": "Previous Year Button",
+            "placeholder": "Previous Year",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelNextYear": {
+            "label": "Next Year Button",
+            "placeholder": "Next year",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelAllDaySep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "labelAllDay": {
+            "label": "All-Day Text",
+            "placeholder": "All-day",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelNoEvents": {
+            "label": "No Events Text",
+            "placeholder": "No events to display",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "viewSpecificLabelsSep": {
+            "label": "Labels (Views)",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "labelDayGridYear": {
+            "label": "Year (DayGrid)",
+            "placeholder": "Year",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelDayGridMonth": {
+            "label": "Month (DayGrid)",
+            "placeholder": "Month",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelDayGridWeek": {
+            "label": "Week (DayGrid)",
+            "placeholder": "Week",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelDayGridDay": {
+            "label": "Day (DayGrid)",
+            "placeholder": "Day",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelTimeGridWeek": {
+            "label": "Week (TimeGrid)",
+            "placeholder": "Week",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelTimeGridDay": {
+            "label": "Day (TimeGrid)",
+            "placeholder": "Day",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelListDay": {
+            "label": "Day (List)",
+            "placeholder": "List",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelListWeek": {
+            "label": "Week (List)",
+            "placeholder": "List",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelListMonth": {
+            "label": "Month (List)",
+            "placeholder": "List",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelListYear": {
+            "label": "Year (List)",
+            "placeholder": "List",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelMultiMonthYear": {
+            "label": "Multi-Month",
+            "placeholder": "Multi-Month",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "titleMonth": {
+            "label": "Title: Month",
+            "placeholder": "Long",
+            "options": {
+                "numeric": "Numeric",
+                "2-digit": "2-digit",
+                "short": "Short",
+                "long": "Long"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit",
+                    "short",
+                    "long"
+                ]
+            },
+            "controlType": "select"
+        },
+        "titleYear": {
+            "label": "Title: Year",
+            "placeholder": "Full",
+            "options": {
+                "numeric": "Full",
+                "2-digit": "2-digit"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit"
+                ]
+            },
+            "controlType": "select"
+        },
+        "weekNumberFormat": {
+            "label": "Week numbers",
+            "placeholder": "Numeric",
+            "options": {
+                "numeric": "Numeric",
+                "2-digit": "2-digit"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit"
+                ]
+            },
+            "controlType": "select"
+        },
+        "listDayWeekday": {
+            "label": "List: Weekday",
+            "placeholder": "Long",
+            "options": {
+                "narrow": "Narrow",
+                "short": "Short",
+                "long": "Long"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "narrow",
+                    "short",
+                    "long"
+                ]
+            },
+            "controlType": "select"
+        },
+        "listDayMonth": {
+            "label": "List: Month",
+            "placeholder": "Long",
+            "options": {
+                "numeric": "Numeric",
+                "2-digit": "2-digit",
+                "short": "Short",
+                "long": "Long"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit",
+                    "short",
+                    "long"
+                ]
+            },
+            "controlType": "select"
+        },
+        "listDayDay": {
+            "label": "List: Day",
+            "placeholder": "Numeric",
+            "options": {
+                "numeric": "Numeric",
+                "2-digit": "2-digit"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit"
+                ]
+            },
+            "controlType": "select"
+        },
+        "eventTimeHour": {
+            "label": "Event time: Hour",
+            "placeholder": "2-digit",
+            "options": {
+                "numeric": "Numeric",
+                "2-digit": "2-digit"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit"
+                ]
+            },
+            "controlType": "select"
+        },
+        "eventTimeMinute": {
+            "label": "Event time: Minute",
+            "placeholder": "2-digit",
+            "options": {
+                "numeric": "Numeric",
+                "2-digit": "2-digit"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit"
+                ]
+            },
+            "controlType": "select"
+        },
+        "eventTimeMeridiem": {
+            "label": "Event time: AM/PM",
+            "placeholder": "Short",
+            "options": {
+                "short": "Short",
+                "narrow": "Narrow",
+                "false": "24-hour"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "short",
+                    "narrow",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "slotHeaderHour": {
+            "label": "Time grid: Hour",
+            "placeholder": "Numeric",
+            "options": {
+                "numeric": "Numeric",
+                "2-digit": "2-digit"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit"
+                ]
+            },
+            "controlType": "select"
+        },
+        "slotHeaderMinute": {
+            "label": "Time grid: Minute",
+            "placeholder": "2-digit",
+            "options": {
+                "numeric": "Numeric",
+                "2-digit": "2-digit"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "numeric",
+                    "2-digit"
+                ]
+            },
+            "controlType": "select"
+        },
+        "slotHeaderMeridiem": {
+            "label": "Time grid: AM/PM",
+            "placeholder": "Short",
+            "options": {
+                "short": "Short",
+                "narrow": "Narrow",
+                "false": "24-hour"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "short",
+                    "narrow",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "previewSeparator": {
+            "label": "Preview",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "previewDemoEvents": {
+            "label": "Preview demo events (for styling in builder)",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "generalColorsSeparator": {
+            "label": "General Colors",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "fcBackground": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "--fc-classic-background",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcForeground": {
+            "label": "Foreground (Text)",
+            "css": [
+                {
+                    "property": "--fc-classic-foreground",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "--fc-classic-border",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcFaintBg": {
+            "label": "Faint Background",
+            "css": [
+                {
+                    "property": "--fc-classic-faint",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcMutedBg": {
+            "label": "Muted Background",
+            "css": [
+                {
+                    "property": "--fc-classic-muted",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcStrongBg": {
+            "label": "Strong Background",
+            "css": [
+                {
+                    "property": "--fc-classic-strong",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcFaintForeground": {
+            "label": "Faint Foreground",
+            "css": [
+                {
+                    "property": "--fc-classic-faint-foreground",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcMutedForeground": {
+            "label": "Muted Foreground",
+            "css": [
+                {
+                    "property": "--fc-classic-muted-foreground",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcStrongBorder": {
+            "label": "Strong Border",
+            "css": [
+                {
+                    "property": "--fc-classic-strong-border",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "buttonsSeparator": {
+            "label": "Buttons",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "fcButtonBg": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "--fc-classic-button",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcButtonBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "--fc-classic-button-border",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcButtonForeground": {
+            "label": "Text Color",
+            "css": [
+                {
+                    "property": "--fc-classic-button-foreground",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcButtonOutline": {
+            "label": "Outline",
+            "css": [
+                {
+                    "property": "--fc-classic-button-outline",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcButtonStrongBg": {
+            "label": "Active/Hover Background",
+            "css": [
+                {
+                    "property": "--fc-classic-button-strong",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcButtonStrongBorder": {
+            "label": "Active/Hover Border",
+            "css": [
+                {
+                    "property": "--fc-classic-button-strong-border",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcButtonStrongForeground": {
+            "label": "Active/Hover Text Color",
+            "css": [
+                {
+                    "property": "--fc-classic-button-strong-foreground",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "eventsSeparator": {
+            "label": "Default event colors",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "fcEvent": {
+            "label": "Background",
+            "css": [
+                {
+                    "property": "--fc-classic-event",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcEventContrast": {
+            "label": "Color",
+            "css": [
+                {
+                    "property": "--fc-classic-event-contrast",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcHighlight": {
+            "label": "Color (Highlight)",
+            "css": [
+                {
+                    "property": "--fc-classic-highlight",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcEventPadding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "--fc-classic-event-padding",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "placeholder": "3px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "specialSeparator": {
+            "label": "Background event",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "fcBgEventColor": {
+            "label": "Color",
+            "css": [
+                {
+                    "property": "--fc-classic-background-event",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "fcBgEventOpacity": {
+            "label": "Opacity",
+            "css": [
+                {
+                    "property": "--fc-classic-background-event-opacity",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "placeholder": "10%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "fcBgEventForegroundOpacity": {
+            "label": "Opacity (Text)",
+            "css": [
+                {
+                    "property": "--fc-classic-background-event-foreground-opacity",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "placeholder": "80%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "fcToday": {
+            "label": "Background (Today)",
+            "css": [
+                {
+                    "property": "--fc-classic-today",
+                    "selector": ".x-calendar"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        }
+    },
+    "controlGroups": {
+        "fields": {
+            "title": "Field mapping",
+            "tab": "content"
+        },
+        "recurring": {
+            "title": "Recurring rules",
+            "tab": "content",
+            "required": [
+                [
+                    "hasLoop",
+                    "!=",
+                    ""
+                ],
+                [
+                    "enableRecurring",
+                    "!=",
+                    ""
+                ]
+            ]
+        },
+        "config": {
+            "title": "Views",
+            "tab": "content"
+        },
+        "toolbar": {
+            "title": "Toolbar",
+            "tab": "content"
+        },
+        "calendarStyle": {
+            "title": "Styles",
+            "tab": "content"
+        },
+        "popup": {
+            "title": "Actions",
+            "tab": "content"
+        },
+        "labels": {
+            "title": "Labels",
+            "tab": "content"
+        },
+        "formats": {
+            "title": "Date &amp; Time Formats",
+            "tab": "content"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Calendar element class.",
+        "keywords": [
+            "calendar",
+            "events",
+            "schedule"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

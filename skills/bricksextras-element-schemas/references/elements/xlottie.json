@@ -1,0 +1,324 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xlottie",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Lottie",
+    "description": "Schema for BricksExtras Lottie element",
+    "metadata": {
+        "name": "xlottie",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "lottieURL": {
+            "label": "URL",
+            "placeholder": "https://assets8.lottiefiles.com/packages/lf20_8qDRX7nBln.json",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "width": {
+            "label": "Width",
+            "css": [
+                {
+                    "selector": "",
+                    "property": "width"
+                }
+            ],
+            "placeholder": "300px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "frameStart": {
+            "label": "Start frame",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "frameEnd": {
+            "label": "End frame",
+            "placeholder": "60",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "speed": {
+            "label": "Speed",
+            "required": [
+                "trigger",
+                "!=",
+                [
+                    "scroll",
+                    "scrollSelector",
+                    "cursor"
+                ]
+            ],
+            "placeholder": "1",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "interactivitySep": {
+            "label": "Interactivity",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "trigger": {
+            "label": "Trigger",
+            "default": "click",
+            "placeholder": "None",
+            "options": {
+                "viewport": "When visible in viewport",
+                "scroll": "Scroll (Relative to this element)",
+                "scrollSelector": "Scroll (Relative to another element)",
+                "click": "Click on this element",
+                "clickSelector": "Click on another element",
+                "hover": "Hover over this element",
+                "hoverSelector": "Hover over another element",
+                "cursor": "Cursor position"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "viewport",
+                    "scroll",
+                    "scrollSelector",
+                    "click",
+                    "clickSelector",
+                    "hover",
+                    "hoverSelector",
+                    "cursor"
+                ]
+            },
+            "controlType": "select"
+        },
+        "clickElementSelector": {
+            "label": "Selector (Element)",
+            "required": [
+                "trigger",
+                "=",
+                "clickSelector"
+            ],
+            "placeholder": ".element-class",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "reverseClick": {
+            "label": "Reverse on second click",
+            "required": [
+                "trigger",
+                "=",
+                [
+                    "click",
+                    "clickSelector"
+                ]
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "scrollElementSelector": {
+            "label": "Selector (Element)",
+            "required": [
+                "trigger",
+                "=",
+                "scrollSelector"
+            ],
+            "placeholder": ".container-class",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "hoverSelector": {
+            "label": "Selector (Element)",
+            "required": [
+                "trigger",
+                "=",
+                "hoverSelector"
+            ],
+            "placeholder": ".container-class",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "hoverReverse": {
+            "label": "Reverse on mouseout",
+            "required": [
+                "trigger",
+                "=",
+                [
+                    "hover",
+                    "hoverSelector"
+                ]
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "offsetTop": {
+            "label": "Offset (Top)",
+            "description": "Percentage distance from the top of viewport for animation to start",
+            "required": [
+                "trigger",
+                "=",
+                [
+                    "scroll",
+                    "scrollSelector"
+                ]
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "offsetBottom": {
+            "label": "Offset (Bottom)",
+            "description": "Percentage distance from the bottom of viewport for animation to start",
+            "required": [
+                "trigger",
+                "=",
+                [
+                    "scroll",
+                    "scrollSelector"
+                ]
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "autoPlay": {
+            "label": "Autoplay",
+            "required": [
+                "trigger",
+                "=",
+                [
+                    "none",
+                    "viewport"
+                ]
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "loop": {
+            "label": "Loop",
+            "required": [
+                "trigger",
+                "=",
+                [
+                    "none",
+                    "viewport"
+                ]
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "perfSep": {
+            "label": "Performance",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "lottieVersion": {
+            "label": "Lottie version",
+            "description": "Lottie light is ~39% lighter version of Lottie that doesn&#039;t support expressions or effects. Use light unless your chosen animation needs those supported",
+            "default": "light",
+            "placeholder": "Light",
+            "options": {
+                "light": "Light",
+                "full": "Full"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "light",
+                    "full"
+                ]
+            },
+            "controlType": "select"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Lottie element class.",
+        "keywords": [
+            "lottie"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

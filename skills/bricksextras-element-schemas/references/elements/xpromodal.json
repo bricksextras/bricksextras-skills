@@ -1,0 +1,1633 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xpromodal",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Modal (Template)",
+    "description": "Schema for BricksExtras Modal (Template) element",
+    "metadata": {
+        "name": "xpromodal",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "builderHidden": {
+            "label": "Hide in builder",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "builderHidden_sep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "backdrop_color": {
+            "label": "Color (Backdrop)",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-modal_backdrop"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "disableScroll": {
+            "label": "Disable scroll when open",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "closeButtonSep": {
+            "label": "Close button",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "maybe_remove_close": {
+            "label": "Disable",
+            "description": "Elements with the data-x-modal-close attribute can close the modal",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "modal_content": {
+            "label": "Content",
+            "default": "wysiwyg",
+            "placeholder": "Text editor",
+            "options": {
+                "template": "Template",
+                "wysiwyg": "Text editor"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "template",
+                    "wysiwyg"
+                ]
+            },
+            "controlType": "select"
+        },
+        "modal_template": {
+            "label": "Template",
+            "required": [
+                "modal_content",
+                "!=",
+                [
+                    "nestable",
+                    "wysiwyg"
+                ]
+            ],
+            "placeholder": "Select template",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "select"
+        },
+        "modal_wysiwyg": {
+            "label": "Text editor",
+            "required": [
+                "modal_content",
+                "=",
+                "wysiwyg"
+            ],
+            "default": "<h4>Modal Content</h4><p>Edit me. Aenean commodo ligula egget dolor. Aenean massa. Sum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "editor"
+        },
+        "triggers": {
+            "label": "Triggers to show modal",
+            "placeholder": "Trigger",
+            "valueSchema": {
+                "type": "array",
+                "description": "Repeater items",
+                "items": {
+                    "type": "object"
+                }
+            },
+            "controlType": "repeater",
+            "fields": {
+                "label": {
+                    "label": "Name (Optional)",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "type": {
+                    "label": "Type",
+                    "options": {
+                        "pageLoad": "On page load (ms)",
+                        "pageLoadURLParameter": "On page load (URL parameter)",
+                        "scroll": "Scroll distance (px)",
+                        "scrolledToElement": "Scroll to element",
+                        "exitIntent": "Page exit intent",
+                        "pageViews": "Number of page views",
+                        "timeInactive": "Time inactive (s)",
+                        "elementClick": "Click element",
+                        "elementHover": "Hover element"
+                    },
+                    "valueSchema": {
+                        "type": "string",
+                        "enum": [
+                            "pageLoad",
+                            "pageLoadURLParameter",
+                            "scroll",
+                            "scrolledToElement",
+                            "exitIntent",
+                            "pageViews",
+                            "timeInactive",
+                            "elementClick",
+                            "elementHover"
+                        ]
+                    },
+                    "controlType": "select"
+                },
+                "selector": {
+                    "label": "Selector (Element)",
+                    "required": [
+                        "type",
+                        "=",
+                        [
+                            "scrolledToElement",
+                            "elementClick",
+                            "elementHover"
+                        ]
+                    ],
+                    "placeholder": ".your-class",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "componentScope": {
+                    "label": "Component scope",
+                    "required": [
+                        "type",
+                        "=",
+                        [
+                            "scrolledToElement",
+                            "elementClick",
+                            "elementHover"
+                        ]
+                    ],
+                    "placeholder": "False",
+                    "options": {
+                        "true": "True",
+                        "false": "False"
+                    },
+                    "valueSchema": {
+                        "type": "string",
+                        "enum": [
+                            "true",
+                            "false"
+                        ]
+                    },
+                    "controlType": "select"
+                },
+                "aria_controls": {
+                    "label": "Add aria-controls to trigger",
+                    "required": [
+                        "type",
+                        "=",
+                        [
+                            "elementClick"
+                        ]
+                    ],
+                    "valueSchema": {
+                        "type": "boolean"
+                    },
+                    "controlType": "checkbox"
+                },
+                "delay": {
+                    "label": "Delay (ms)",
+                    "required": [
+                        "type",
+                        "=",
+                        [
+                            "pageLoad",
+                            "pageLoadURLParameter",
+                            "elementClick",
+                            "elementHover",
+                            "scrolledToElement"
+                        ]
+                    ],
+                    "valueSchema": {
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    },
+                    "controlType": "number"
+                },
+                "query_includes": {
+                    "label": "URL parameter includes",
+                    "required": [
+                        "type",
+                        "=",
+                        [
+                            "pageLoadURLParameter"
+                        ]
+                    ],
+                    "placeholder": "referrer=facebook",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "views": {
+                    "label": "Views",
+                    "required": [
+                        "type",
+                        "=",
+                        [
+                            "pageViews"
+                        ]
+                    ],
+                    "valueSchema": {
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    },
+                    "controlType": "number"
+                },
+                "inactive_time": {
+                    "label": "Inactive time (s)",
+                    "required": [
+                        "type",
+                        "=",
+                        [
+                            "timeInactive"
+                        ]
+                    ],
+                    "valueSchema": {
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    },
+                    "controlType": "number"
+                },
+                "amount": {
+                    "label": "Scroll distance (px)",
+                    "required": [
+                        "type",
+                        "=",
+                        [
+                            "scroll"
+                        ]
+                    ],
+                    "valueSchema": {
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    },
+                    "controlType": "number"
+                }
+            }
+        },
+        "trigger_sep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "show_again": {
+            "label": "Reshow",
+            "placeholder": "Show again on next visit",
+            "options": {
+                "page_load": "Show again on next visit",
+                "never": "Never show again",
+                "after": "Only allow to show after:",
+                "evergreen": "Only show if evergreen countdown hasn&#039;t ended"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "page_load",
+                    "never",
+                    "after",
+                    "evergreen"
+                ]
+            },
+            "controlType": "select"
+        },
+        "show_again_days": {
+            "label": "Days",
+            "required": [
+                "show_again",
+                "=",
+                [
+                    "after"
+                ]
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "show_again_hours": {
+            "label": "Hours",
+            "required": [
+                "show_again",
+                "=",
+                [
+                    "after"
+                ]
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "show_once": {
+            "label": "Only show once per page visit",
+            "required": [
+                "show_once_session",
+                "!=",
+                true
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "show_once_session": {
+            "label": "Only show once per session",
+            "required": [
+                "show_once",
+                "!=",
+                true
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "modal_width": {
+            "label": "Content width",
+            "css": [
+                {
+                    "selector": ".x-modal_container",
+                    "property": "width"
+                }
+            ],
+            "placeholder": "600px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "vertical_align": {
+            "label": "Position (Vertical)",
+            "css": [
+                {
+                    "property": "vertical-align",
+                    "selector": ".x-modal_container"
+                }
+            ],
+            "placeholder": "Center",
+            "options": {
+                "top": "Top",
+                "middle": "Center",
+                "bottom": "Bottom"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "top",
+                    "middle",
+                    "bottom"
+                ]
+            },
+            "controlType": "select"
+        },
+        "horizontal_align": {
+            "label": "Position (Horizontal)",
+            "css": [
+                {
+                    "property": "text-align",
+                    "selector": ".x-modal_backdrop"
+                }
+            ],
+            "placeholder": "Center",
+            "options": {
+                "right": "Right",
+                "center": "Center",
+                "left": "Left"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "right",
+                    "center",
+                    "left"
+                ]
+            },
+            "controlType": "select"
+        },
+        "content_padding": {
+            "label": "Content padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-modal_content"
+                }
+            ],
+            "placeholder": {
+                "top": "30px",
+                "right": "30px",
+                "bottom": "30px",
+                "left": "30px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "padding": {
+            "label": "Space from edge of viewport",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-modal_backdrop"
+                }
+            ],
+            "placeholder": {
+                "top": "20px",
+                "right": "20px",
+                "bottom": "20px",
+                "left": "20px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "close_icon": {
+            "label": "Close icon",
+            "css": [
+                {
+                    "selector": ".x-modal_close svg"
+                }
+            ],
+            "default": {
+                "library": "themify",
+                "icon": "ti-close"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "button_text": {
+            "label": "Button text",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "aria_label": {
+            "label": "aria-label",
+            "placeholder": "Close modal",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "buttonTypography": {
+            "label": "Typography",
+            "css": [
+                {
+                    "property": "font",
+                    "selector": ".x-modal_close"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "iconSize": {
+            "label": "Icon size",
+            "css": [
+                {
+                    "property": "font-size",
+                    "selector": ".x-modal_close-icon"
+                }
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "iconColor": {
+            "label": "Color",
+            "css": [
+                {
+                    "property": "color",
+                    "selector": ".x-modal_close"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "iconBackgroundColor": {
+            "label": "Background color",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ".x-modal_close"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "iconBorder": {
+            "label": "Border",
+            "css": [
+                {
+                    "property": "border",
+                    "selector": ".x-modal_close"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "iconBoxShadow": {
+            "label": "Box shadow",
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-modal_close"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "button_padding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-modal_close"
+                }
+            ],
+            "placeholder": {
+                "top": "10px",
+                "right": "10px",
+                "bottom": "10px",
+                "left": "10px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "button_margin": {
+            "label": "Margin",
+            "css": [
+                {
+                    "property": "margin",
+                    "selector": ".x-modal_close"
+                }
+            ],
+            "placeholder": {
+                "top": "10px",
+                "right": "10px",
+                "bottom": "10px",
+                "left": "10px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "transitionDuration": {
+            "label": "Duration",
+            "css": [
+                {
+                    "selector": "",
+                    "property": "--x-modal-transition"
+                }
+            ],
+            "placeholder": "200ms",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "preview_animation": {
+            "label": "Preview",
+            "placeholder": "Open",
+            "options": {
+                "x-modal_preview-start": "Start",
+                "x-modal_preview-open": "Open",
+                "x-modal_preview-end": "End"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "x-modal_preview-start",
+                    "x-modal_preview-open",
+                    "x-modal_preview-end"
+                ]
+            },
+            "controlType": "select"
+        },
+        "start_translate_x": {
+            "label": "Translate X",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-modal_preview-start"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-modal-translatex",
+                    "selector": ".x-modal_backdrop"
+                }
+            ],
+            "placeholder": "0%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "start_translate_y": {
+            "label": "Translate Y",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-modal_preview-start"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-modal-translatey",
+                    "selector": ".x-modal_backdrop"
+                }
+            ],
+            "placeholder": "10%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "start_scale": {
+            "label": "Scale",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-modal_preview-start"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-modal_container",
+                    "property": "--x-modal-scale"
+                }
+            ],
+            "placeholder": "1",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "end_translate_x": {
+            "label": "Translate X",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-modal_preview-end"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-modal-close-translatex",
+                    "selector": ".x-modal_backdrop"
+                }
+            ],
+            "placeholder": "0%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "end_translate_y": {
+            "label": "Translate Y",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-modal_preview-end"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "--x-modal-close-translatey",
+                    "selector": ".x-modal_backdrop"
+                }
+            ],
+            "placeholder": "-5%",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "end_scale": {
+            "label": "Scale",
+            "required": [
+                "preview_animation",
+                "=",
+                [
+                    "x-modal_preview-end"
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-modal_container",
+                    "property": "--x-modal-close-scale"
+                }
+            ],
+            "placeholder": "1",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "reduce_motion": {
+            "label": "If &#039;Reduce motion&#039; enabled",
+            "placeholder": "Animation",
+            "options": {
+                "fade": "Fade",
+                "animate": "Animation",
+                "notransition": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "fade",
+                    "animate",
+                    "notransition"
+                ]
+            },
+            "controlType": "select"
+        },
+        "clickBackdropClose": {
+            "label": "Click backdrop to close",
+            "css": [
+                {
+                    "property": "pointer-events",
+                    "selector": ".x-modal_backdrop"
+                }
+            ],
+            "placeholder": "Enable",
+            "options": {
+                "auto": "Enable",
+                "none": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "auto",
+                    "none"
+                ]
+            },
+            "controlType": "select"
+        },
+        "escToClose": {
+            "label": "Press Esc to close",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "disableFocus": {
+            "label": "Focus the first focusable element",
+            "placeholder": "Enable",
+            "options": {
+                "false": "Enable",
+                "true": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "false",
+                    "true"
+                ]
+            },
+            "controlType": "select"
+        },
+        "hashToClose": {
+            "label": "Hash link to close",
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "resetForms": {
+            "label": "Reset forms inside modal when closed",
+            "placeholder": "True",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "maybeCustomAriaLabel": {
+            "label": "aria-label",
+            "placeholder": "Auto",
+            "options": {
+                "default": "Auto",
+                "custom": "Custom"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "default",
+                    "custom"
+                ]
+            },
+            "controlType": "select"
+        },
+        "customAriaLabel": {
+            "label": "Value",
+            "required": [
+                "maybeCustomAriaLabel",
+                "=",
+                [
+                    "custom"
+                ]
+            ],
+            "placeholder": "Modal",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "role": {
+            "label": "role",
+            "placeholder": "dialog",
+            "options": {
+                "dialog": "dialog",
+                "alertdialog": "alertdialog"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "dialog",
+                    "alertdialog"
+                ]
+            },
+            "controlType": "select"
+        }
+    },
+    "controlGroups": {
+        "content": {
+            "title": "Content",
+            "tab": "content"
+        },
+        "trigger": {
+            "title": "Trigger / Reshow",
+            "tab": "content"
+        },
+        "positioning": {
+            "title": "Size / Positioning",
+            "tab": "content"
+        },
+        "close_button": {
+            "title": "Close button",
+            "tab": "content",
+            "required": [
+                "maybe_remove_close",
+                "!=",
+                true
+            ]
+        },
+        "interaction": {
+            "title": "Interaction / Accessibility",
+            "tab": "content"
+        },
+        "animation": {
+            "title": "Animation",
+            "tab": "content"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "cssClasses": [
+            "x-modal_open",
+            "x-modal_backdrop",
+            "x-modal_container",
+            "x-modal_content",
+            "x-modal_close",
+            "x-modal_close-icon",
+            "x-modal_close-text"
+        ],
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Pro Modal element class.",
+        "keywords": [
+            "modal",
+            "dialog",
+            "popup"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

@@ -1,0 +1,392 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xqrcode",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "QR Code",
+    "description": "Schema for BricksExtras QR Code element",
+    "metadata": {
+        "name": "xqrcode",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "data": {
+            "label": "Data",
+            "placeholder": "https://be.local/",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "textarea"
+        },
+        "shape": {
+            "label": "Shape",
+            "placeholder": "Square",
+            "options": {
+                "square": "Square",
+                "circle": "Circle"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "square",
+                    "circle"
+                ]
+            },
+            "controlType": "select"
+        },
+        "outputType": {
+            "label": "Render",
+            "placeholder": "Canvas",
+            "options": {
+                "canvas": "Canvas",
+                "svg": "SVG"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "canvas",
+                    "svg"
+                ]
+            },
+            "controlType": "select"
+        },
+        "errorCorrectionLevel": {
+            "label": "Error correction",
+            "placeholder": "Medium (~15%)",
+            "options": {
+                "L": "Low (~7%)",
+                "M": "Medium (~15%)",
+                "Q": "Quartile (~25%)",
+                "H": "High (~30%)"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "L",
+                    "M",
+                    "Q",
+                    "H"
+                ]
+            },
+            "controlType": "select"
+        },
+        "mode": {
+            "label": "Mode",
+            "placeholder": "Byte",
+            "options": {
+                "Numeric": "Numeric",
+                "Alphanumeric": "Alphanumeric",
+                "Byte": "Byte",
+                "Kanji": "Kanji"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "Numeric",
+                    "Alphanumeric",
+                    "Byte",
+                    "Kanji"
+                ]
+            },
+            "controlType": "select"
+        },
+        "dotsSep": {
+            "label": "Dots",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "dotsColor": {
+            "label": "Color",
+            "placeholder": "#000000",
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "dotsType": {
+            "label": "Type",
+            "placeholder": "Square",
+            "options": {
+                "square": "Square",
+                "rounded": "Rounded",
+                "dots": "Dots",
+                "classy": "Classy",
+                "classy-rounded": "Classy Rounded",
+                "extra-rounded": "Extra Rounded"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "square",
+                    "rounded",
+                    "dots",
+                    "classy",
+                    "classy-rounded",
+                    "extra-rounded"
+                ]
+            },
+            "controlType": "select"
+        },
+        "cornerSquareSep": {
+            "label": "Corner squares",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "cornersSquareColor": {
+            "label": "Color",
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "cornersSquareType": {
+            "label": "Type",
+            "options": {
+                "square": "Square",
+                "dot": "Dots",
+                "extra-rounded": "Extra Rounded",
+                "rounded": "Rounded",
+                "dots": "Dots",
+                "classy": "Classy",
+                "classy-rounded": "Classy Rounded"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "square",
+                    "dot",
+                    "extra-rounded",
+                    "rounded",
+                    "dots",
+                    "classy",
+                    "classy-rounded"
+                ]
+            },
+            "controlType": "select"
+        },
+        "cornerDotSep": {
+            "label": "Corner dots",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "cornersDotColor": {
+            "label": "Color",
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "cornersDotType": {
+            "label": "Type",
+            "options": {
+                "square": "Square",
+                "dot": "Dots",
+                "rounded": "Rounded",
+                "dots": "Dots",
+                "classy": "Classy",
+                "classy-rounded": "Classy Rounded",
+                "extra-rounded": "Extra Rounded"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "square",
+                    "dot",
+                    "rounded",
+                    "dots",
+                    "classy",
+                    "classy-rounded",
+                    "extra-rounded"
+                ]
+            },
+            "controlType": "select"
+        }
+    },
+    "controlGroups": {
+        "dots": {
+            "title": "Dots",
+            "tab": "content"
+        },
+        "corners": {
+            "title": "Corners",
+            "tab": "content"
+        },
+        "config": {
+            "title": "Configure",
+            "tab": "content"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* QR Code element class.",
+        "keywords": [
+            "qr",
+            "code"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

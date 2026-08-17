@@ -1,0 +1,539 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xburgertrigger",
+    "schemaVersion": "1.7.3",
+    "type": "object",
+    "title": "Burger Trigger",
+    "description": "Schema for BricksExtras Burger Trigger element",
+    "metadata": {
+        "name": "xburgertrigger",
+        "category": "extras",
+        "tag": "div",
+        "nestable": false
+    },
+    "settings": {
+        "burger_animation": {
+            "label": "Animation",
+            "default": "x-hamburger--slider",
+            "placeholder": "Slider",
+            "options": {
+                "x-hamburger--3dx": "3dx",
+                "x-hamburger--3dy": "3dy",
+                "x-hamburger--arrow": "arrow",
+                "x-hamburger--arrowalt": "arrow-alt",
+                "x-hamburger--arrowturn": "arrowturn",
+                "x-hamburger--boring": "boring",
+                "x-hamburger--collapse": "collapse",
+                "x-hamburger--elastic": "elastic",
+                "x-hamburger--minus": "minus",
+                "x-hamburger--slider": "slider",
+                "x-hamburger--squeeze": "squeeze",
+                "x-hamburger--vortex": "vortex",
+                "x-hamburger--none": "None"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "x-hamburger--3dx",
+                    "x-hamburger--3dy",
+                    "x-hamburger--arrow",
+                    "x-hamburger--arrowalt",
+                    "x-hamburger--arrowturn",
+                    "x-hamburger--boring",
+                    "x-hamburger--collapse",
+                    "x-hamburger--elastic",
+                    "x-hamburger--minus",
+                    "x-hamburger--slider",
+                    "x-hamburger--squeeze",
+                    "x-hamburger--vortex",
+                    "x-hamburger--none"
+                ]
+            },
+            "controlType": "select"
+        },
+        "burger_scale": {
+            "label": "Scale",
+            "css": [
+                {
+                    "property": "--x-burger-size",
+                    "selector": ".x-hamburger-box"
+                }
+            ],
+            "placeholder": "0.8",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "burger_line_height": {
+            "label": "Line height",
+            "css": [
+                {
+                    "property": "--x-burger-line-height",
+                    "selector": ".x-hamburger-box"
+                }
+            ],
+            "placeholder": "4px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "burger_line_radius": {
+            "label": "Burger line border radius",
+            "css": [
+                {
+                    "property": "--x-burger-line-radius",
+                    "selector": ".x-hamburger-box"
+                }
+            ],
+            "placeholder": "4px",
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "burger_line_color": {
+            "label": "Color",
+            "css": [
+                {
+                    "property": "--x-burger-line-color",
+                    "selector": ".x-hamburger-box"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "button_bg": {
+            "label": "Background color",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "burger_padding": {
+            "label": "Padding",
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ""
+                }
+            ],
+            "placeholder": {
+                "top": "10px",
+                "right": "10px",
+                "bottom": "10px",
+                "left": "10px"
+            },
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "activeSep": {
+            "label": "Active styles",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "button_bg_active": {
+            "label": "Background color",
+            "css": [
+                {
+                    "property": "background-color",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "burger_line_color_active": {
+            "label": "Color",
+            "css": [
+                {
+                    "property": "--x-burger-line-color-active",
+                    "selector": ".x-hamburger-box"
+                }
+            ],
+            "valueSchema": {
+                "description": "Color value in various formats",
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hex": {
+                                "type": "string",
+                                "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                            }
+                        },
+                        "required": [
+                            "hex"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "rgb": {
+                                "type": "string",
+                                "pattern": "^rgba?\\("
+                            }
+                        },
+                        "required": [
+                            "rgb"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "hsl": {
+                                "type": "string",
+                                "pattern": "^hsla?\\("
+                            }
+                        },
+                        "required": [
+                            "hsl"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "raw": {
+                                "type": "string",
+                                "description": "Raw color value or CSS variable"
+                            }
+                        },
+                        "required": [
+                            "raw"
+                        ]
+                    }
+                ]
+            },
+            "controlType": "color"
+        },
+        "textSep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "aria_label": {
+            "label": "aria-label",
+            "placeholder": "Open menu",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "buttonText": {
+            "label": "Button text",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "text_padding": {
+            "label": "Text padding",
+            "required": [
+                "buttonText",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "padding",
+                    "selector": ".x-hamburger-text"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Spacing value with directional properties",
+                "properties": {
+                    "top": {
+                        "type": "string",
+                        "description": "Top spacing value with unit"
+                    },
+                    "right": {
+                        "type": "string",
+                        "description": "Right spacing value with unit"
+                    },
+                    "bottom": {
+                        "type": "string",
+                        "description": "Bottom spacing value with unit"
+                    },
+                    "left": {
+                        "type": "string",
+                        "description": "Left spacing value with unit"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "controlType": "spacing"
+        },
+        "flexDirection": {
+            "label": "Direction",
+            "required": [
+                "buttonText",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "flex-direction",
+                    "selector": ""
+                }
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "direction"
+        },
+        "buttonTextDisplay": {
+            "label": "Display (Button text)",
+            "required": [
+                "buttonText",
+                "!=",
+                ""
+            ],
+            "css": [
+                {
+                    "property": "display",
+                    "selector": ".x-hamburger-text"
+                }
+            ],
+            "options": {
+                "block": "Block",
+                "none": "None"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "block",
+                    "none"
+                ]
+            },
+            "controlType": "select"
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Burger Trigger element class.",
+        "keywords": [
+            "burger trigger",
+            "toggle",
+            "trigger",
+            "button"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": false
+        }
+    }
+}

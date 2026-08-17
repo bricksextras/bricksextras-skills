@@ -1,0 +1,283 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "BricksExtras Elements",
+    "version": "1.7.3",
+    "description": "Auto-generated schema index for all BricksExtras custom elements",
+    "elements": [
+        {
+            "name": "xaddtocalendar",
+            "label": "Add to Calendar",
+            "schemaPath": "./elements/xaddtocalendar.json"
+        },
+        {
+            "name": "xbacktotop",
+            "label": "Back to Top",
+            "schemaPath": "./elements/xbacktotop.json"
+        },
+        {
+            "name": "xbeforeafterimage",
+            "label": "Before / After Image",
+            "schemaPath": "./elements/xbeforeafterimage.json"
+        },
+        {
+            "name": "xbreadcrumbs",
+            "label": "Site Breadcrumbs",
+            "schemaPath": "./elements/xbreadcrumbs.json"
+        },
+        {
+            "name": "xburgertrigger",
+            "label": "Burger Trigger",
+            "schemaPath": "./elements/xburgertrigger.json"
+        },
+        {
+            "name": "xcalendar",
+            "label": "Calendar",
+            "schemaPath": "./elements/xcalendar.json"
+        },
+        {
+            "name": "xcolorschemetoggle",
+            "label": "Color Scheme Toggle",
+            "schemaPath": "./elements/xcolorschemetoggle.json"
+        },
+        {
+            "name": "xcontentswitcher",
+            "label": "Content Switcher",
+            "schemaPath": "./elements/xcontentswitcher.json"
+        },
+        {
+            "name": "xcontenttimeline",
+            "label": "Content Timeline",
+            "schemaPath": "./elements/xcontenttimeline.json"
+        },
+        {
+            "name": "xcopytoclipboard",
+            "label": "Copy to clipboard",
+            "schemaPath": "./elements/xcopytoclipboard.json"
+        },
+        {
+            "name": "xcountdown",
+            "label": "Pro Countdown",
+            "schemaPath": "./elements/xcountdown.json"
+        },
+        {
+            "name": "xdynamicchart",
+            "label": "Dynamic Chart",
+            "schemaPath": "./elements/xdynamicchart.json"
+        },
+        {
+            "name": "xdynamiclightbox",
+            "label": "Dynamic lightbox",
+            "schemaPath": "./elements/xdynamiclightbox.json"
+        },
+        {
+            "name": "xdynamictable",
+            "label": "Dynamic Table",
+            "schemaPath": "./elements/xdynamictable.json"
+        },
+        {
+            "name": "xfavorite",
+            "label": "Favorite Button",
+            "schemaPath": "./elements/xfavorite.json"
+        },
+        {
+            "name": "xfluentform",
+            "label": "Fluent Form",
+            "schemaPath": "./elements/xfluentform.json"
+        },
+        {
+            "name": "xheaderrow",
+            "label": "Header Row",
+            "schemaPath": "./elements/xheaderrow.json"
+        },
+        {
+            "name": "xheadersearch",
+            "label": "Header Search",
+            "schemaPath": "./elements/xheadersearch.json"
+        },
+        {
+            "name": "ximagehotspotmarker",
+            "label": "Image Hotspot Marker",
+            "schemaPath": "./elements/ximagehotspotmarker.json"
+        },
+        {
+            "name": "ximagehotspots",
+            "label": "Image hotspots",
+            "schemaPath": "./elements/ximagehotspots.json"
+        },
+        {
+            "name": "xinteractivecursor",
+            "label": "Interactive Cursor",
+            "schemaPath": "./elements/xinteractivecursor.json"
+        },
+        {
+            "name": "xlottie",
+            "label": "Lottie",
+            "schemaPath": "./elements/xlottie.json"
+        },
+        {
+            "name": "xmediacontrol",
+            "label": "Media Control",
+            "schemaPath": "./elements/xmediacontrol.json"
+        },
+        {
+            "name": "xmediaplayeraudio",
+            "label": "Media Player (Audio)",
+            "schemaPath": "./elements/xmediaplayeraudio.json"
+        },
+        {
+            "name": "xmediaplayer",
+            "label": "Media Player",
+            "schemaPath": "./elements/xmediaplayer.json"
+        },
+        {
+            "name": "xmediaplaylist",
+            "label": "Media Playlist",
+            "schemaPath": "./elements/xmediaplaylist.json"
+        },
+        {
+            "name": "xnestabletable",
+            "label": "Nestable Table",
+            "schemaPath": "./elements/xnestabletable.json"
+        },
+        {
+            "name": "xnotificationbar",
+            "label": "Header notification bar",
+            "schemaPath": "./elements/xnotificationbar.json"
+        },
+        {
+            "name": "xoffcanvasnestable",
+            "label": "Pro OffCanvas",
+            "schemaPath": "./elements/xoffcanvasnestable.json"
+        },
+        {
+            "name": "xoffcanvas",
+            "label": "OffCanvas (Template)",
+            "schemaPath": "./elements/xoffcanvas.json"
+        },
+        {
+            "name": "xpagetourstep",
+            "label": "Page Tour Step",
+            "schemaPath": "./elements/xpagetourstep.json"
+        },
+        {
+            "name": "xpagetour",
+            "label": "Page Tour",
+            "schemaPath": "./elements/xpagetour.json"
+        },
+        {
+            "name": "xpanoramascene",
+            "label": "Panorama Scene",
+            "schemaPath": "./elements/xpanoramascene.json"
+        },
+        {
+            "name": "xpanoramaviewer",
+            "label": "Panorama Viewer",
+            "schemaPath": "./elements/xpanoramaviewer.json"
+        },
+        {
+            "name": "xpopover",
+            "label": "Popover / Tooltip",
+            "schemaPath": "./elements/xpopover.json"
+        },
+        {
+            "name": "xproaccordion",
+            "label": "Pro Accordion",
+            "schemaPath": "./elements/xproaccordion.json"
+        },
+        {
+            "name": "xproalert",
+            "label": "Pro Alert",
+            "schemaPath": "./elements/xproalert.json"
+        },
+        {
+            "name": "xpromodalnestable",
+            "label": "Modal",
+            "schemaPath": "./elements/xpromodalnestable.json"
+        },
+        {
+            "name": "xpromodal",
+            "label": "Modal (Template)",
+            "schemaPath": "./elements/xpromodal.json"
+        },
+        {
+            "name": "xproslidercontrol",
+            "label": "Pro Slider Control",
+            "schemaPath": "./elements/xproslidercontrol.json"
+        },
+        {
+            "name": "xproslidergallery",
+            "label": "Pro Slider Gallery",
+            "schemaPath": "./elements/xproslidergallery.json"
+        },
+        {
+            "name": "xproslider",
+            "label": "Pro Slider",
+            "schemaPath": "./elements/xproslider.json"
+        },
+        {
+            "name": "xqrcode",
+            "label": "QR Code",
+            "schemaPath": "./elements/xqrcode.json"
+        },
+        {
+            "name": "xreadmoreless",
+            "label": "Read More / Less",
+            "schemaPath": "./elements/xreadmoreless.json"
+        },
+        {
+            "name": "xreadingprogressbar",
+            "label": "Reading progress bar",
+            "schemaPath": "./elements/xreadingprogressbar.json"
+        },
+        {
+            "name": "xshortcodewrapper",
+            "label": "Shortcode Wrapper",
+            "schemaPath": "./elements/xshortcodewrapper.json"
+        },
+        {
+            "name": "xslidemenu",
+            "label": "Slide menu",
+            "schemaPath": "./elements/xslidemenu.json"
+        },
+        {
+            "name": "xsocialshare",
+            "label": "Social Share",
+            "schemaPath": "./elements/xsocialshare.json"
+        },
+        {
+            "name": "xstarrating",
+            "label": "Star Rating",
+            "schemaPath": "./elements/xstarrating.json"
+        },
+        {
+            "name": "xtableofcontents",
+            "label": "Table of contents",
+            "schemaPath": "./elements/xtableofcontents.json"
+        },
+        {
+            "name": "xtabs",
+            "label": "Pro Tabs",
+            "schemaPath": "./elements/xtabs.json"
+        },
+        {
+            "name": "xtoastnotification",
+            "label": "Toast Notification",
+            "schemaPath": "./elements/xtoastnotification.json"
+        },
+        {
+            "name": "xtoast",
+            "label": "Toast",
+            "schemaPath": "./elements/xtoast.json"
+        },
+        {
+            "name": "xtoggleswitch",
+            "label": "Toggle Switch",
+            "schemaPath": "./elements/xtoggleswitch.json"
+        },
+        {
+            "name": "xwsforms",
+            "label": "WS Forms",
+            "schemaPath": "./elements/xwsforms.json"
+        }
+    ]
+}
