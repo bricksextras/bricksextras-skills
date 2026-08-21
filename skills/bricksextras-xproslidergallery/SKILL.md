@@ -1,6 +1,6 @@
 ---
 name: xproslidergallery
-description: "Use when populating xproslider slides dynamically from WordPress image gallery via xproslidergallery (BricksExtras), instead of hand-built manual slide blocks. Covers correct placement (inside slider, not outside), verified items value shape, captions, and vertical/gallery-mode interaction."
+description: "Use when populating xproslider slides dynamically from WordPress image gallery via xproslidergallery (BricksExtras), instead of hand-built manual slide blocks. Covers correct placement (inside slider, not outside), the items value shape, captions, and vertical/gallery-mode interaction."
 ---
 
 **Requires:** BricksExtras 1.7.3+ with xproslidergallery element enabled
@@ -90,7 +90,7 @@ Compare this to the Pro Slider skill's manual-slide structure, where `xproslider
 
 ---
 
-## Verified `items` value shape
+## `items` value shape
 
 The schema gives no `value_format` hint for `items` (`controlType: image-gallery`) — unlike almost every other control, which does. **The correct, native shape is an object, not a flat array** — matching a real builder-saved instance:
 
@@ -151,9 +151,9 @@ The `caption` checkbox (plus `captionTypography`/`captionBackground`/`captionBor
 
 ---
 
-## Verified pattern: side-by-side gallery-mode sliders (fade + vertical)
+## Pattern: side-by-side gallery-mode sliders (fade + vertical)
 
-Tested end-to-end: two independent gallery-mode sliders placed side by side in a flex row, sourcing the same WordPress images, one fade and one vertical.
+Two independent gallery-mode sliders placed side by side in a flex row, sourcing the same WordPress images, one fade and one vertical.
 
 **This JSON is an example, not the schema.** Before copying settings out of this block, read `references/elements/xproslidergallery.json` in `bricksextras-element-schemas` (live schema ability as fallback if missing/stale) and confirm they still exist and mean what's shown here.
 
@@ -179,9 +179,9 @@ Tested end-to-end: two independent gallery-mode sliders placed side by side in a
 }
 ```
 
-Both rendered the correct images in the correct order with no manual slide blocks and no manually-set hidden classes. These two sliders were **not synced to each other** — for that, use `xproslider`'s own `isNavigation`/`syncSelector` (see the Pro Slider skill), just with one set to `direction: ttb`.
+Both render with no manual slide blocks and no manually-set hidden classes needed. These two sliders are **not synced to each other** — for that, use `xproslider`'s own `isNavigation`/`syncSelector` (see the Pro Slider skill), just with one set to `direction: ttb`.
 
-**Gallery mode also works combined with `isNavigation`/`syncSelector` sync** — two `xproslider` instances, both `galleryMode: true` with their own `xproslidergallery` child (same image set on both), one as the main (`type: fade`, `_cssId` set) and one as the synced thumbnail strip (`type: slide`, `isNavigation`/`syncSelector` targeting the main): correct images in order on both, and the click-a-thumbnail-drives-the-main-slide sync behavior works end-to-end in the browser. Full pattern in the Pro Slider skill.
+**Gallery mode also works combined with `isNavigation`/`syncSelector` sync** — two `xproslider` instances, both `galleryMode: true` with their own `xproslidergallery` child (same image set on both), one as the main (`type: fade`, `_cssId` set) and one as the synced thumbnail strip (`type: slide`, `isNavigation`/`syncSelector` targeting the main). Full pattern in the Pro Slider skill.
 
 ---
 
@@ -190,6 +190,6 @@ Both rendered the correct images in the correct order with no manual slide block
 1. **Look up real attachment IDs first** — via whatever media-lookup ability the current MCP connection exposes (e.g. `bricks/find-media` on the native Bricks MCP) — never guess them.
 2. **Get the current schema** for `xproslidergallery` — check the bundled schema first per `bricksextras-element-schemas`; only if the bundle is missing or stale, call whatever live schema ability the current MCP connection exposes (e.g. `bricks/get-element-schema` with `parameters: {"elementName": "xproslidergallery"}` on the native Bricks MCP). Do the same for `xproslider` if not already done, since `galleryMode` lives on the slider's own settings.
 3. **Set `galleryMode: true` on the slider**, then nest the Gallery element as its **direct child**, replacing any manual slide blocks.
-4. **Build the `items` object** (`images` array + `size`) using the verified shape above — set `size: "full"` for anything full-width or otherwise large.
+4. **Build the `items` object** (`images` array + `size`) using the shape above — set `size: "full"` for anything full-width or otherwise large.
 5. **Decide on captions** if a per-image text overlay or a `slideContent: caption` Control readout is wanted (see the Control skill for the latter).
 6. **Insert and verify** the rendered output actually contains real `<img>`/`data-splide-lazy` URLs matching the intended attachment IDs, rather than trusting the settings alone.

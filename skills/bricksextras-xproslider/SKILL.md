@@ -265,15 +265,16 @@ Bricks elements do not expose their internal element ID as the DOM `id` by defau
 
 ### Sizing a synced thumbnail + main pair when the user gives no spec
 
-When the user asks for a thumbnail strip synced to a main slider and doesn't specify sizing, **don't default to a percentage-based flex width split** (e.g. thumbnail 20% / main 80% in a flex row) — that makes thumbnail size depend on viewport width and usually looks wrong (too large or too small at different breakpoints), and it isn't how thumbnail strips actually look in practice.
+When the user asks for a thumbnail strip synced to a main slider and doesn't specify sizing, default to a **CSS Grid row with the size ratio baked into the columns**:
 
-**Default instead to:**
-- The thumbnail slider gets a **small, fixed size** — either `fixedWidth`/`fixedHeight` (horizontal strip) or, for a vertical strip, an explicit `_width` (e.g. `20rem`) with `autoHeight: true` on the slider so each thumbnail's height comes from its own content/aspect-ratio rather than the "divide `height` by `perPage`" math described above.
+- Wrap both sliders in one `block`/`container` with `_display: "grid"` and `_gridTemplateColumns` set to a ratio like `"4fr 1fr"` (main : thumbnail). **Always wrap each fraction in `minmax(0, ...)`** (e.g. `"minmax(0, 4fr) minmax(0, 1fr)"`), on every breakpoint override too — a bare `fr` track has an implicit `min-width: auto`, which lets the slider's own intrinsic content size force that grid column (and the whole page) wider than the viewport, causing horizontal scroll. This applies to any `xproslider` sitting in a grid column, not just this synced pair pattern.
+- Give the main slider's slide `image` an `_aspectRatio` — `"1"` (square) is a safe default absent other direction. Its rendered height then follows from its own column width: `mainHeight = mainWidth / mainRatio`.
+- Give the **thumbnail slider itself** `direction: "ttb"` + a matching `_aspectRatio`, chosen algebraically so its height equals the main slider's at any viewport width: `thumbAspectRatio = thumbColumnFraction / (mainColumnFraction × mainAspectRatio)`. For `4fr 1fr` columns with a square (`ratio 1`) main slider: `1 / (4 × 1) = .25`.
+- A vertical slider (`direction: "ttb"`) needs either the Splide `height` option or `autoHeight: true` set to have a defined size — **prefer `autoHeight: true` paired with the `_aspectRatio` above** over a fixed pixel `height`, since the aspect-ratio keeps the thumbnail column's height correctly tied to the main slider's height as the layout's width changes across breakpoints, where a fixed `height` wouldn't.
 - Set `preloadPages` to roughly the number of thumbnails visible at once on desktop (e.g. `4` if 4 show without scrolling), so the initially-visible thumbnails aren't lazy-load-blank on first paint.
-- Match the thumbnail strip's rendered height (or width, for a horizontal strip) to the **main slider's actual height** rather than a fraction of the container. The clean way to do this without hardcoding pixel heights on both sliders: give the main slider an `_aspectRatio` (e.g. `"1"` for square) and give the thumbnail slider a matching `_aspectRatio` derived from its fixed width and the main slider's height, so both resolve to the same rendered height at any viewport width without either one needing a directly-set fixed height.
-- Let the main slider take the remaining flex space (no explicit `_width`/percentage) rather than assigning it a percentage — it should just fill what's left in the row after the thumbnail strip's fixed width.
+- For a horizontal thumbnail strip variant at a smaller breakpoint, reuse the same `xproslider` instance with breakpoint-suffixed setting overrides (e.g. `"direction:mobile_portrait": "ltr"`, `"perPage:mobile_portrait": "4"`, `"_aspectRatio:mobile_portrait": "unset"`) alongside a matching `"_gridTemplateColumns:{breakpoint}": "minmax(0, 1fr)"` on the wrapping grid to stack the columns, instead of building a second parallel element tree.
 - **Put `pagination`/`arrows` on the main slider only, not the thumbnail slider.** The thumbnail strip's slides already act as navigation (that's what `isNavigation` is for) — dots or arrows on the thumbnail slider itself are redundant next to the visible thumbnails. Default: `pagination: true`/`arrows: "true"` on the main slider, `pagination: false` and `arrows: "false"` on the thumbnail slider unless the user asks otherwise.
-- **Always set `preloadPages` explicitly — the schema's own placeholder default is `1`, and a "page" is not "everything currently visible."** `preloadPages` controls how many *pages* (groups of `perPage` slides) around the active one get eagerly loaded — it is not a count of visible slides. When `perPage` is left unset and sizing comes from `fixedWidth`/`fixedHeight` instead (the normal way to build a thumbnail strip — see above), Splide's internal page size defaults to **1 slide per page**, regardless of how many slides the fixed width actually shows at once. That means the default `preloadPages: 1` only eagerly loads 2 slides total (active + 1 neighbor page) even when 6–7 thumbnails are visibly sitting in the strip on page load — the rest sit as blank/spinner placeholders until Splide advances far enough to reach them. Confirmed by direct observation: a 700px-wide row of 90px fixed-width thumbnails (~7 visible) with `preloadPages` left unset rendered only 2 real images and 4 spinners on first paint.
+- **Always set `preloadPages` explicitly — the schema's own placeholder default is `1`, and a "page" is not "everything currently visible."** `preloadPages` controls how many *pages* (groups of `perPage` slides) around the active one get eagerly loaded — it is not a count of visible slides. When `perPage` is left unset and sizing comes from `fixedWidth`/`fixedHeight` instead (the normal way to build a thumbnail strip — see above), Splide's internal page size defaults to **1 slide per page**, regardless of how many slides the fixed width actually shows at once. That means the default `preloadPages: 1` only eagerly loads 2 slides total (active + 1 neighbor page) even when 6–7 thumbnails are visibly sitting in the strip on page load — the rest sit as blank/spinner placeholders until Splide advances far enough to reach them.
 
   The fix: work out how many slides are actually visible at once on desktop at the fixed-width/gap values you built, and set `preloadPages` to that count (e.g. `"7"` for ~7 visible fixed-width thumbnails) so the whole visible strip loads on first paint instead of only the active slide's immediate neighbor. When the container width and the slide's `fixedWidth`/`gap` are all known values you set yourself, the visible count is just arithmetic (container width ÷ (fixedWidth + gap)) — no need to screenshot-check something you can compute directly. Only fall back to a real screenshot right after navigation when the container width is itself unknown or responsive (e.g. inherited from a parent you didn't size, or intentionally fluid) so the visible count can't be reliably worked out in advance — a settings read-back won't reveal a wrong `preloadPages` value either way, only the rendered images will.
 
@@ -293,12 +294,24 @@ When the user asks for a thumbnail strip synced to a main slider and doesn't spe
   When the desired placement is outside the slider's own bounding box entirely — a separate layout region, a fixed external toolbar, dots placed beside unrelated content — the built-in offset controls won't reach that far cleanly. Reach for `xproslidercontrol` instead: it's a standalone element built to target and drive a slider from anywhere on the page, with normal in-flow placement of its own. See skill `xproslidercontrol`.
 - **Autoplay has two distinct modes that don't share settings.** `autoplayscroll: autoplay` (discrete interval-based advance) uses `interval` (ms) and `autoplayPaused`. `autoplayscroll: autoscroll` (continuous marquee-style scroll) uses `autoScrollSpeed` instead — setting `interval` while in `autoscroll` mode (or vice versa) has no effect.
 - **`imageWidth` and `imageForceWidth` are two separate checkboxes whose CSS collides — order matters.** Despite the names, `imageWidth`'s actual label is *"Force images to be 100% slide **height**"* (sets `width: auto; height: 100%` on `.x-slider_slide img` / `.x-slider_slide-image`) and `imageForceWidth`'s label is *"Force images to be 100% slide **width**"* (sets `width: 100%` on the same two selectors). Both target the `width` property on the same selectors, so with equal CSS specificity, **whichever control's rule is emitted later in the compiled stylesheet wins the `width` value** — the two don't compose automatically. To make an image fill **both** dimensions of the slide (the usual goal, especially in gallery mode — see the Gallery skill), both checkboxes must be enabled, **with `imageWidth` set before `imageForceWidth`** in the settings write, so `imageForceWidth`'s `width: 100%` is the later, winning rule while `imageWidth`'s `height: 100%` (untouched by the other control) still applies. Sending `{"imageWidth": true, "imageForceWidth": true}` in that key order round-trips correctly; reversing the order — or setting only one — produces the wrong final `width` value even though both checkboxes read back as `true`. A settings read-back showing both as `true` is **not** sufficient to confirm this is working — the actual rendered `width`/`height` on `.x-slider_slide img` needs checking, since the bug is in cascade order, not in whether the values saved.
-- **Vertical sliders (`direction: ttb`) have critical height requirements — pick one of the two modes below, don't leave both unset.** A `direction: ttb` slider with neither `perPage` nor `autoHeight` set (e.g. only `height` on its own) has no way to size its slides — this is a silent failure, not an error, so it's easy to ship a vertical slider that looks fine in the settings read-back but has zero visible extent or misshapen slides on the frontend.
-  - **If using `perPage` to set number of visible slides:** You MUST also set `height` on the slider. Splide divides the `height` by `perPage` to calculate individual slide heights. Without `height`, the slider has no visible extent.
-  - **If using `autoHeight`:** Enable `autoHeight` AND set `height`. The `height` determines the slider viewport/track height, and slides inside will take the height of their content (not divided by `perPage`). **This is the better default for a vertical thumbnail strip synced to a main gallery** (see the sizing-defaults section above, which already recommends `autoHeight` for exactly this case) — thumbnail images usually aren't uniform aspect ratios, and `autoHeight` lets each one keep its natural shape instead of being squashed into `height / perPage`.
-  - **Most slider options come directly from Splide:** See https://splidejs.com/guides/options/ for detailed option documentation.
-  - Example vertical thumbnail slider (perPage mode): `{"direction": "ttb", "height": "600px", "perPage": "3", "gap": "1rem"}` - the 600px is divided by 3 to give each slide ~200px height.
-  - Example vertical thumbnail slider (autoHeight mode, preferred for thumbnail strips): `{"direction": "ttb", "height": "600px", "autoHeight": true, "gap": "1rem"}`.
+- **Vertical sliders (`direction: ttb`) have a hard requirement: the slider box itself needs a real, defined height — nothing about `direction: ttb` gives it one on its own.** A `direction: ttb` slider with neither `perPage` nor `autoHeight` set (e.g. only `height` on its own) has no way to size its slides — this is a silent failure, not an error, so it's easy to ship a vertical slider that looks fine in the settings read-back but has zero visible extent or misshapen slides on the frontend.
+
+  The requirement is "give the box a real height" — it's not specifically that the literal `height` setting must be set. There are two ways to satisfy it:
+  - **A literal `height`** (e.g. `"600px"`) — the simplest option, but fixed in pixels: it won't adapt as the slider's own width changes across breakpoints (e.g. a thumbnail column that gets narrower on mobile).
+  - **An `_aspectRatio` on the slider itself** (see the grid-ratio sizing pattern above) — the height is then derived from whatever width the slider actually renders at, so it stays responsive as the layout's width changes. **This is usually the better choice for a thumbnail strip synced to a main slider**, since it keeps the thumbnail column's height correctly tied to the main slider's height at every viewport width, where a fixed pixel `height` wouldn't.
+
+  Either source of height then needs to be paired with a slide-count control — **prefer `autoHeight` over `perPage` by default**:
+  - **`autoHeight`** (preferred): each slide keeps its own natural height instead of an equal split. It still needs the same real box height (literal `height` or `_aspectRatio`) on the slider to compute against — it does not create height on its own.
+  - **`perPage`** (fixed number of equal-height slides visible at once): Splide divides the height (from whichever source above) by `perPage` to calculate individual slide heights. Reach for this only when the design specifically wants that even-division behavior; `autoHeight` is the safer default.
+
+  **If the slides themselves need to be equal height, don't rely on `perPage`'s division math to force it — set the height explicitly on the slide content instead**, either:
+  - a fixed `_height` (or `min-height`) on the slide's own `block`, or
+  - `_aspectRatio` on the `image` element inside each slide (paired with `_objectFit: "cover"`, per the earlier image-gallery gotcha) — the better choice when slides are photos of varying source dimensions, since it stays consistent without a hardcoded pixel value.
+
+  Most slider options come directly from Splide: see https://splidejs.com/guides/options/ for detailed option documentation.
+  - Example vertical thumbnail slider (autoHeight + literal height): `{"direction": "ttb", "height": "600px", "autoHeight": true, "gap": "1rem"}`.
+  - Example vertical thumbnail slider (autoHeight + aspect ratio, preferred for a responsive thumbnail strip): `{"direction": "ttb", "autoHeight": true, "_aspectRatio": ".25", "gap": "1rem"}` - no literal `height` at all; the slider's box height is derived from its own rendered width × the ratio, so it tracks a synced main slider's height across breakpoints automatically.
+  - Example forcing equal-height slides under `autoHeight` (gallery mode): give each `xproslidergallery`-generated image an `aspectRatio: "1"` + `objectFit: "cover"` on the Gallery element's own settings, rather than switching to `perPage`.
 
 ---
 
@@ -331,9 +344,104 @@ This is **a known constraint to watch for, not a single fix to apply by default*
 
 ---
 
-## Verified pattern: fade slider + synced thumbnail strip
+## Pattern: grid-ratio vertical thumbnail strip synced to a square main slider (default go-to)
 
-Tested end-to-end (rendered HTML inspected, not just settings re-read back) on a live site. Confirms the `_cssId` requirement and the slider-to-slider sync mechanism both work as documented.
+The default pattern for a thumbnail slider synced to a main image/gallery slider, absent other spec — the grid ratio and matching `_aspectRatio` keep both sliders the same height at any viewport width, with no hardcoded pixel heights on either.
+
+Wrapping grid (one `block`/`container`, ratio baked into the columns):
+
+**This JSON is an example, not the schema.** Before copying settings out of this block, read `references/elements/xproslider.json` in `bricksextras-element-schemas` (live schema ability as fallback if missing/stale) and confirm they still exist and mean what's shown here.
+
+```json
+{
+  "name": "block",
+  "settings": {
+    "_display": "grid",
+    "_gridTemplateColumns": "minmax(0, 4fr) minmax(0, 1fr)",
+    "_gridGap": "1rem",
+    "_gridTemplateColumns:mobile_portrait": "minmax(0, 1fr)"
+  },
+  "children": [
+    { "name": "block", "children": ["/* main xproslider goes here */"] },
+    { "name": "block", "children": ["/* thumbnail xproslider goes here */"] }
+  ]
+}
+```
+
+Main slider (square, drives the whole layout's height via its own column width):
+
+```json
+{
+  "name": "xproslider",
+  "settings": {
+    "_cssGlobalClasses": ["<id of a global class named e.g. gallery-main-slider>"],
+    "type": "fade",
+    "perPage": "1",
+    "arrows": "true",
+    "slidePadding": {"top": "0", "right": "0", "bottom": "0", "left": "0"}
+  },
+  "children": [
+    {
+      "name": "block",
+      "settings": {
+        "_cssClasses": "x-slider_slide splide__slide",
+        "hasLoop": true,
+        "query": {"objectType": "queryLoopExtras"},
+        "extrasQuery": "gallery",
+        "x_gallery_data": "{acf_gallery}"
+      },
+      "children": [
+        { "name": "image", "settings": {"image": {"useDynamicData": "{post_id}"}, "caption": "none", "_objectFit": "cover", "_aspectRatio": "1"} }
+      ]
+    }
+  ]
+}
+```
+
+Thumbnail slider (vertical, `_aspectRatio` chosen algebraically — `thumbColumnFraction ÷ (mainColumnFraction × mainAspectRatio)` = `1 ÷ (4 × 1)` = `.25` — so its height cancels out to match the main slider's height at any viewport width):
+
+```json
+{
+  "name": "xproslider",
+  "settings": {
+    "direction": "ttb",
+    "autoHeight": true,
+    "_aspectRatio": ".25",
+    "gap": "1rem",
+    "arrows": "false",
+    "isNavigation": true,
+    "syncSelector": ".gallery-main-slider",
+    "componentScope": "false",
+    "slidePadding": {"top": "0", "right": "0", "bottom": "0", "left": "0"},
+    "direction:mobile_portrait": "ltr",
+    "_aspectRatio:mobile_portrait": "unset",
+    "perPage:mobile_portrait": "4"
+  },
+  "children": [
+    {
+      "name": "block",
+      "settings": {
+        "_cssClasses": "x-slider_slide splide__slide",
+        "hasLoop": true,
+        "query": {"objectType": "queryLoopExtras"},
+        "extrasQuery": "gallery",
+        "x_gallery_data": "{acf_gallery}"
+      },
+      "children": [
+        { "name": "image", "settings": {"image": {"useDynamicData": "{post_id}"}, "caption": "none", "_objectFit": "cover", "_aspectRatio": "1"} }
+      ]
+    }
+  ]
+}
+```
+
+Note the `syncSelector` targets `.gallery-main-slider` — a real global class attached to the main slider via `_cssGlobalClasses`, not a plain local `_cssClasses` string, per `bricksextras-start-here`'s "classes added for styling/targeting: use a real global class" guidance. At `mobile_portrait`, the grid collapses to `minmax(0, 1fr)` (single column, stacked) and the same thumbnail slider instance flips to a horizontal row (`direction: ltr`, `perPage: 4`) instead of needing a second parallel element tree — see the sizing section above.
+
+---
+
+## Pattern: fade slider + synced thumbnail strip (horizontal, fixed-pixel alternative)
+
+Prefer the grid-ratio pattern above for a new build; reach for this one when the thumbnail strip needs fixed-pixel sizing instead of a viewport-proportional ratio (e.g. a horizontal-only design with no vertical variant).
 
 Main slider (full-bleed section, direct child, no container wrapper):
 
@@ -376,7 +484,7 @@ Thumbnail slider (separate section/container below, its own manual slide blocks 
 
 On render, Splide drives the sync itself — the thumbnail slider's wrapper picks up an extra `splide--nav` class it wasn't given explicitly, and each thumbnail slide automatically gets `role="button"` plus `aria-controls` pointing at the matching main slide ID, with `aria-current="true"` on the active one.
 
-**The same `isNavigation`/`syncSelector` sync also works combined with gallery mode on both sliders** (rather than manual slide blocks) — two `xproslider` instances, both `galleryMode: true` with their own `xproslidergallery` child (same image set on both), main slider `type: fade` with `_cssId`, thumbnail slider `type: slide` + `isNavigation`/`syncSelector` targeting it: correct images in the correct order on both, and the click-to-navigate sync behavior works end-to-end in the browser.
+**The same `isNavigation`/`syncSelector` sync also works combined with gallery mode on both sliders** (rather than manual slide blocks) — two `xproslider` instances, both `galleryMode: true` with their own `xproslidergallery` child (same image set on both), main slider `type: fade` with `_cssId`, thumbnail slider `type: slide` + `isNavigation`/`syncSelector` targeting it.
 
 ---
 
@@ -404,7 +512,8 @@ On render, Splide drives the sync itself — the thumbnail slider's wrapper pick
 - Do not manually build `.splide__track`/`.splide__list` wrappers — BricksExtras injects them automatically.
 - Do not put `hasLoop` on the parent `xproslider` when building a query-loop slider — it belongs on the slide `block` itself, alongside `query`. `hasLoop` on the slider is silently ignored.
 - Do not default a synced thumbnail+main slider pair to a percentage-based flex width split when the user hasn't specified sizing — default to a small fixed-size thumbnail strip (fixed width/height, or `autoHeight` for vertical) matched to the main slider's height/width via `_aspectRatio`, not viewport-relative percentages.
-- Do not build a `direction: ttb` (vertical) slider without setting either `perPage`+`height` or `autoHeight`+`height` — leaving both `perPage` and `autoHeight` unset gives slides no defined height and fails silently (settings read-back looks fine; frontend doesn't). For a thumbnail strip specifically, prefer `autoHeight: true` + `height` over `perPage` + `height`, since thumbnail images are rarely uniform aspect ratio and `perPage` math (`height / perPage`) squashes them.
+- Do not build a `direction: ttb` (vertical) slider without giving the box a real height (literal `height` or `_aspectRatio`) *and* pairing it with `autoHeight` (preferred) or `perPage` — leaving both unset gives slides no defined height and fails silently (settings read-back looks fine; frontend doesn't). Default to `autoHeight: true`, since thumbnail images are rarely uniform aspect ratio and `perPage`'s equal-division math (`height / perPage`) squashes them — and prefer `_aspectRatio` over a literal `height` when the strip is synced to a main slider, so it stays responsive across breakpoints instead of needing a hardcoded pixel value per breakpoint.
+- Do not reach for `perPage` just to force equal-height slides under `autoHeight` — set the height explicitly on the slide content instead (a fixed `_height`/`min-height` on the slide's `block`, or `_aspectRatio` + `_objectFit: "cover"` on the image inside).
 - Do not leave `preloadPages` unset "because it has a default" — the placeholder default is `1` *page*, and in a `fixedWidth` thumbnail strip (no explicit `perPage`) a page is just 1 slide, so only 2 slides load eagerly no matter how many are visibly sitting in the strip. Work out the real number of slides visible at once at the fixed-width/gap you built and set `preloadPages` to that number explicitly.
 - Do not leave `slidePadding` unset when the design needs images/content to fill the slide edge-to-edge — the slide's real default CSS padding (not just a schema placeholder) will leave visible gutters. Set `"slidePadding": {"top": "0", "right": "0", "bottom": "0", "left": "0"}` explicitly for any full-bleed slide.
 - Do not add an `image` element inside a slide without deciding `caption` explicitly — omitting the key does not mean "no caption" the way it does for most other controls; it renders the WordPress attachment caption by default. Set `"caption": "none"` unless a caption overlay is actually wanted.
