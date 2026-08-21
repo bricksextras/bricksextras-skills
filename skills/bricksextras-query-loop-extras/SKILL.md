@@ -72,6 +72,8 @@ For the simple case (count ≤ 1, orderby `date`), it uses WordPress's own `get_
 }
 ```
 
+**Reading the attachment's own metadata (caption, title, alt text, description, URL) inside the loop: use BricksExtras' `{x_attachment_*}` tags, not the image element's built-in `caption` control.** `{x_attachment_caption}`, `{x_attachment_title}`, `{x_attachment_alt_text}`, `{x_attachment_description}`, and `{x_attachment_url}` (see `bricksextras-dynamictags`) all resolve against the current loop item's attachment — the same iteration context `{post_id}` binds to above. Put one on any plain text element placed anywhere inside the loop `block` (not necessarily next to or inside the `image` element itself), which is the way to show a caption in an arbitrary position — e.g. an absolutely-positioned text element overlaid in a corner of the image — that the image element's own `caption` control can't reach, since that control only ever renders its own fixed `<figcaption>` markup in the image's own DOM position. Outside this loop context (or any loop context these tags support), they render empty rather than the raw tag — same silent-empty behavior as `{post_id}`.
+
 ## `related` — related posts by shared taxonomy terms
 
 `post_type` (or `any`), `count` (1–4 max), `order`/`orderby` (`orderby` options come from Bricks' own `queryOrderBy` list), `taxonomies` (multi-select, default `category`+`post_tag`) — posts sharing any term in any selected taxonomy with the current post, excluding the current post itself (`post__not_in`).
