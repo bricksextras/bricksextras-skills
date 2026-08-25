@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xoffcanvas",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "OffCanvas (Template)",
     "description": "Schema for BricksExtras OffCanvas (Template) element",

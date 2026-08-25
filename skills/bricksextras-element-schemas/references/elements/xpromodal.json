@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xpromodal",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Modal (Template)",
     "description": "Schema for BricksExtras Modal (Template) element",

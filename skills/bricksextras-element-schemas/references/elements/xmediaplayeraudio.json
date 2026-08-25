@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xmediaplayeraudio",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Media Player (Audio)",
     "description": "Schema for BricksExtras Media Player (Audio) element. A nestable element",

@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xtabs",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Pro Tabs",
     "description": "Schema for BricksExtras Pro Tabs element. A nestable element",

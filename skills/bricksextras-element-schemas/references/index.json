@@ -1,7 +1,8 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "BricksExtras Elements",
-    "version": "1.7.3",
+    "version": "0.1.0",
+    "verifiedUpTo": "1.7.3",
     "description": "Auto-generated schema index for all BricksExtras custom elements",
     "elements": [
         {

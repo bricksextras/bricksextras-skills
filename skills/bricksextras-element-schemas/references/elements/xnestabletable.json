@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xnestabletable",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Nestable Table",
     "description": "Schema for BricksExtras Nestable Table element. A nestable element",

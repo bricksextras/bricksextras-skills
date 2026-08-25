@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xreadingprogressbar",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Reading progress bar",
     "description": "Schema for BricksExtras Reading progress bar element",

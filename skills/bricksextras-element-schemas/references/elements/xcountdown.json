@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xcountdown",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Pro Countdown",
     "description": "Schema for BricksExtras Pro Countdown element",

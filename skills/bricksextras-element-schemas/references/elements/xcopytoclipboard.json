@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xcopytoclipboard",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Copy to clipboard",
     "description": "Schema for BricksExtras Copy to clipboard element. A nestable element",

@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xburgertrigger",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Burger Trigger",
     "description": "Schema for BricksExtras Burger Trigger element",

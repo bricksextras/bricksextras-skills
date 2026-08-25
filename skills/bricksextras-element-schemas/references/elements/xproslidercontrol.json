@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xproslidercontrol",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Pro Slider Control",
     "description": "Schema for BricksExtras Pro Slider Control element. A nestable element",

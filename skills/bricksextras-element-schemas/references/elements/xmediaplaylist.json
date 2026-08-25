@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xmediaplaylist",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Media Playlist",
     "description": "Schema for BricksExtras Media Playlist element. A nestable element",

@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xpanoramascene",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Panorama Scene",
     "description": "Schema for BricksExtras Panorama Scene element. A nestable element",

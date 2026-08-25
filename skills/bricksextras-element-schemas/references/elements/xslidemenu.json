@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xslidemenu",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Slide menu",
     "description": "Schema for BricksExtras Slide menu element. A nestable element",

@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xbacktotop",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Back to Top",
     "description": "Schema for BricksExtras Back to Top element. A nestable element",

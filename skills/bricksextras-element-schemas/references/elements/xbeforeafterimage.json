@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xbeforeafterimage",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Before / After Image",
     "description": "Schema for BricksExtras Before / After Image element. A nestable element",

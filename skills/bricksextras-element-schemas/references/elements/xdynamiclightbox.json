@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xdynamiclightbox",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Dynamic lightbox",
     "description": "Schema for BricksExtras Dynamic lightbox element. A nestable element",

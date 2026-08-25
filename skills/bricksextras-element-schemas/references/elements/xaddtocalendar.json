@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xaddtocalendar",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Add to Calendar",
     "description": "Schema for BricksExtras Add to Calendar element",

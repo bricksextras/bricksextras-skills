@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xnotificationbar",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Header notification bar",
     "description": "Schema for BricksExtras Header notification bar element. A nestable element",

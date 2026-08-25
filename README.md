@@ -71,6 +71,7 @@ List the skill folder names that were linked (not copied), and tell the user whe
 |---|---|
 | **bricksextras-start-here** | The stuff that applies everywhere: naming conventions, MCP schema fetching, targeting other elements, and where BricksExtras elements diverge from Bricks core. Always load this one. |
 | **bricksextras-element-schemas** | Bundled, version-checked schemas for every element — the first stop before falling back to a live `get-element-schema` call. |
+| **bricksextras-skills-update** | Checks whether this skills pack's version matches the BricksExtras plugin running on the site you're working on, and tells you how to update if not. Run on request only ("check for bricksextras skills updates"). |
 | **bricksextras-conditions** | Non-commerce `x_*` display conditions — post ancestry, category/tag, page type, taxonomy, loop position, dates, favorites, language/translation plugins. |
 | **bricksextras-conditions-commerce** | Commerce and membership `x_*` conditions: WooCommerce cart/product/coupon state, EDD, MemberPress, RCP, WishList Member, SureMembers, PMP, Woo Subscriptions/Memberships, FluentCart. |
 | **bricksextras-dynamictags** | Custom `{x_*}` dynamic-data tags — reading time, post terms, URL parameters, loop index, menu item fields, favorite IDs/counts, attachment metadata — and which need an active loop/query context to resolve. |

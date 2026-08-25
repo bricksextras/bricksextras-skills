@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xpagetour",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Page Tour",
     "description": "Schema for BricksExtras Page Tour element. A nestable element",

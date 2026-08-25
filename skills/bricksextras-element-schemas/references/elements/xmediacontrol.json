@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xmediacontrol",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Media Control",
     "description": "Schema for BricksExtras Media Control element",

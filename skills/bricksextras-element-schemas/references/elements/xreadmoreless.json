@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xreadmoreless",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Read More / Less",
     "description": "Schema for BricksExtras Read More / Less element. A nestable element",

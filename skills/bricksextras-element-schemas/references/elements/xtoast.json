@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xtoast",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Toast",
     "description": "Schema for BricksExtras Toast element. A nestable element",

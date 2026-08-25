@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xproaccordion",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Pro Accordion",
     "description": "Schema for BricksExtras Pro Accordion element. A nestable element",

@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xbreadcrumbs",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Site Breadcrumbs",
     "description": "Schema for BricksExtras Site Breadcrumbs element",

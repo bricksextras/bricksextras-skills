@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xinteractivecursor",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Interactive Cursor",
     "description": "Schema for BricksExtras Interactive Cursor element",
@@ -35,7 +34,7 @@
         },
         "trailDelay": {
             "label": "Speed (Cursor trail)",
-            "placeholder": 0.20000000000000001,
+            "placeholder": 0.2,
             "valueSchema": {
                 "oneOf": [
                     {
@@ -89,7 +88,7 @@
                     "selector": ""
                 }
             ],
-            "placeholder": 0.69999999999999996,
+            "placeholder": 0.7,
             "valueSchema": {
                 "oneOf": [
                     {
@@ -382,7 +381,7 @@
                     "selector": ""
                 }
             ],
-            "placeholder": 0.29999999999999999,
+            "placeholder": 0.3,
             "valueSchema": {
                 "oneOf": [
                     {
@@ -409,7 +408,7 @@
                     "selector": ""
                 }
             ],
-            "placeholder": 0.80000000000000004,
+            "placeholder": 0.8,
             "valueSchema": {
                 "oneOf": [
                     {

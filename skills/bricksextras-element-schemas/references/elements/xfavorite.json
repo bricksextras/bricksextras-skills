@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xfavorite",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Favorite Button",
     "description": "Schema for BricksExtras Favorite Button element. A nestable element",
