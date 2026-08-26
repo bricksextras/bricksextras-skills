@@ -1,0 +1,1928 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "bricksextras://elements/xcalendarcontrol",
+    "type": "object",
+    "title": "Calendar Control",
+    "description": "Schema for BricksExtras Calendar Control element",
+    "metadata": {
+        "name": "xcalendarcontrol",
+        "category": "extras",
+        "tag": "div",
+        "nestable": true
+    },
+    "settings": {
+        "calendar": {
+            "label": "Calendar",
+            "placeholder": "Within the same section",
+            "options": {
+                "section": "Within the same section",
+                "selector": "Specific selector",
+                "component": "Within the same component"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "section",
+                    "selector",
+                    "component"
+                ]
+            },
+            "controlType": "select"
+        },
+        "calendarSelector": {
+            "label": "Selector (Calendar)",
+            "required": [
+                "calendar",
+                "=",
+                "selector"
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "componentScope": {
+            "label": "Component scope",
+            "required": [
+                "calendar",
+                "=",
+                "selector"
+            ],
+            "placeholder": "False",
+            "options": {
+                "true": "True",
+                "false": "False"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
+        "sep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "controlType": {
+            "label": "Type",
+            "placeholder": "Switch view",
+            "options": {
+                "viewButton": "Switch view",
+                "prev": "Previous",
+                "next": "Next",
+                "today": "Today",
+                "prevYear": "Previous Year",
+                "nextYear": "Next Year",
+                "prevEvent": "Skip to Previous Events",
+                "nextEvent": "Skip to Next Events",
+                "title": "Title (Current view dates)"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "viewButton",
+                    "prev",
+                    "next",
+                    "today",
+                    "prevYear",
+                    "nextYear",
+                    "prevEvent",
+                    "nextEvent",
+                    "title"
+                ]
+            },
+            "controlType": "select"
+        },
+        "targetView": {
+            "label": "View",
+            "required": [
+                "controlType",
+                "=",
+                [
+                    "viewButton",
+                    ""
+                ]
+            ],
+            "placeholder": "Month (DayGrid)",
+            "options": {
+                "dayGridYear": "Year (DayGrid)",
+                "dayGridMonth": "Month (DayGrid)",
+                "dayGridWeek": "Week (DayGrid)",
+                "dayGridDay": "Day (DayGrid)",
+                "timeGridWeek": "Week (TimeGrid)",
+                "timeGridDay": "Day (TimeGrid)",
+                "listDay": "Day (List)",
+                "listWeek": "Week (List)",
+                "listMonth": "Month (List)",
+                "listYear": "Year (List)",
+                "multiMonthYear": "Multi-Month"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "dayGridYear",
+                    "dayGridMonth",
+                    "dayGridWeek",
+                    "dayGridDay",
+                    "timeGridWeek",
+                    "timeGridDay",
+                    "listDay",
+                    "listWeek",
+                    "listMonth",
+                    "listYear",
+                    "multiMonthYear"
+                ]
+            },
+            "controlType": "select"
+        },
+        "titleTag": {
+            "label": "Tag",
+            "required": [
+                "controlType",
+                "=",
+                "title"
+            ],
+            "placeholder": "H2",
+            "options": {
+                "h1": "h1",
+                "h2": "h2",
+                "h3": "h3",
+                "h4": "h4",
+                "h5": "h5",
+                "h6": "h6",
+                "div": "div",
+                "span": "span"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "h1",
+                    "h2",
+                    "h3",
+                    "h4",
+                    "h5",
+                    "h6",
+                    "div",
+                    "span"
+                ]
+            },
+            "controlType": "select"
+        },
+        "buttonContent": {
+            "label": "Content",
+            "required": [
+                "controlType",
+                "!=",
+                "title"
+            ],
+            "placeholder": "Default",
+            "options": {
+                "icon": "Icon",
+                "text": "Text",
+                "icon-text": "Icon + Text",
+                "text-icon": "Text + Icon",
+                "nest": "Add elements (Nestable)"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "icon",
+                    "text",
+                    "icon-text",
+                    "text-icon",
+                    "nest"
+                ]
+            },
+            "controlType": "select"
+        },
+        "buttonIcon": {
+            "label": "Icon",
+            "required": [
+                [
+                    "controlType",
+                    "!=",
+                    "title"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "icon",
+                        "icon-text",
+                        "text-icon"
+                    ]
+                ]
+            ],
+            "css": [
+                {
+                    "selector": ".x-calendar-control_icon > *"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Icon settings",
+                "properties": {
+                    "library": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "svg": {
+                        "type": "object"
+                    }
+                }
+            },
+            "controlType": "icon"
+        },
+        "labelPrev": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "prev"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "text",
+                        "icon-text",
+                        "text-icon"
+                    ]
+                ]
+            ],
+            "placeholder": "Previous",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelPrev": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "prev"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "icon"
+                    ]
+                ]
+            ],
+            "placeholder": "Previous",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelNext": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "next"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "text",
+                        "icon-text",
+                        "text-icon"
+                    ]
+                ]
+            ],
+            "placeholder": "Next",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelNext": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "next"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "icon"
+                    ]
+                ]
+            ],
+            "placeholder": "Next",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelToday": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "today"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "text",
+                        "icon-text",
+                        "text-icon",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Today",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelToday": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "today"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "icon",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Today",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelPrevYear": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "prevYear"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "text",
+                        "icon-text",
+                        "text-icon"
+                    ]
+                ]
+            ],
+            "placeholder": "Previous Year",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelPrevYear": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "prevYear"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "icon"
+                    ]
+                ]
+            ],
+            "placeholder": "Previous Year",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelNextYear": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "nextYear"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "text",
+                        "icon-text",
+                        "text-icon"
+                    ]
+                ]
+            ],
+            "placeholder": "Next year",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelNextYear": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "nextYear"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "icon"
+                    ]
+                ]
+            ],
+            "placeholder": "Next year",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelPrevEvent": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "prevEvent"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "text",
+                        "icon-text",
+                        "text-icon",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Skip to Previous Events",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelPrevEvent": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "prevEvent"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "icon",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Skip to Previous Events",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelNextEvent": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "nextEvent"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "text",
+                        "icon-text",
+                        "text-icon",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Skip to Next Events",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelNextEvent": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    "nextEvent"
+                ],
+                [
+                    "buttonContent",
+                    "=",
+                    [
+                        "icon",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Skip to Next Events",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelDayGridYear": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "dayGridYear"
+                    ]
+                ]
+            ],
+            "placeholder": "Year",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelDayGridYear": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "dayGridYear"
+                    ]
+                ]
+            ],
+            "placeholder": "Year view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelDayGridMonth": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "dayGridMonth",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Month",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelDayGridMonth": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "dayGridMonth",
+                        ""
+                    ]
+                ]
+            ],
+            "placeholder": "Month view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelDayGridWeek": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "dayGridWeek"
+                    ]
+                ]
+            ],
+            "placeholder": "Week",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelDayGridWeek": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "dayGridWeek"
+                    ]
+                ]
+            ],
+            "placeholder": "Week view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelDayGridDay": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "dayGridDay"
+                    ]
+                ]
+            ],
+            "placeholder": "Day",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelDayGridDay": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "dayGridDay"
+                    ]
+                ]
+            ],
+            "placeholder": "Day view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelTimeGridWeek": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "timeGridWeek"
+                    ]
+                ]
+            ],
+            "placeholder": "Week",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelTimeGridWeek": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "timeGridWeek"
+                    ]
+                ]
+            ],
+            "placeholder": "Week view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelTimeGridDay": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "timeGridDay"
+                    ]
+                ]
+            ],
+            "placeholder": "Day",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelTimeGridDay": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "timeGridDay"
+                    ]
+                ]
+            ],
+            "placeholder": "Day view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelListDay": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "listDay"
+                    ]
+                ]
+            ],
+            "placeholder": "List",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelListDay": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "listDay"
+                    ]
+                ]
+            ],
+            "placeholder": "List view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelListWeek": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "listWeek"
+                    ]
+                ]
+            ],
+            "placeholder": "List",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelListWeek": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "listWeek"
+                    ]
+                ]
+            ],
+            "placeholder": "List view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelListMonth": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "listMonth"
+                    ]
+                ]
+            ],
+            "placeholder": "List",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelListMonth": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "listMonth"
+                    ]
+                ]
+            ],
+            "placeholder": "List view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelListYear": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "listYear"
+                    ]
+                ]
+            ],
+            "placeholder": "List",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelListYear": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "listYear"
+                    ]
+                ]
+            ],
+            "placeholder": "List view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelMultiMonthYear": {
+            "label": "Text",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "multiMonthYear"
+                    ]
+                ]
+            ],
+            "placeholder": "Multi-Month",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "ariaLabelMultiMonthYear": {
+            "label": "Aria label",
+            "required": [
+                [
+                    "controlType",
+                    "=",
+                    [
+                        "viewButton",
+                        ""
+                    ]
+                ],
+                [
+                    "targetView",
+                    "=",
+                    [
+                        "multiMonthYear"
+                    ]
+                ]
+            ],
+            "placeholder": "Multi-Month view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "buttonBackground": {
+            "label": "Background",
+            "required": [
+                "controlType",
+                "!=",
+                "title"
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "buttonBorder": {
+            "label": "Border",
+            "required": [
+                "controlType",
+                "!=",
+                "title"
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "buttonTypography": {
+            "label": "Typography",
+            "required": [
+                "controlType",
+                "!=",
+                "title"
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "buttonBoxShadow": {
+            "label": "Box shadow",
+            "required": [
+                "controlType",
+                "!=",
+                "title"
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        },
+        "buttonDisabledOpacity": {
+            "label": "Opacity (Disabled)",
+            "required": [
+                "controlType",
+                "=",
+                [
+                    "prev",
+                    "next",
+                    "prevYear",
+                    "nextYear",
+                    "today"
+                ]
+            ],
+            "css": [
+                {
+                    "property": "opacity",
+                    "selector": "&[aria-disabled=\"true\"]"
+                }
+            ],
+            "placeholder": "0.6",
+            "min": 0,
+            "max": 1,
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "buttonActiveBackground": {
+            "label": "Background",
+            "required": [
+                "controlType",
+                "=",
+                [
+                    "viewButton",
+                    ""
+                ]
+            ],
+            "css": [
+                {
+                    "property": "background",
+                    "selector": "&[aria-pressed=\"true\"]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Background settings"
+            },
+            "controlType": "background"
+        },
+        "buttonActiveBorder": {
+            "label": "Border",
+            "required": [
+                "controlType",
+                "=",
+                [
+                    "viewButton",
+                    ""
+                ]
+            ],
+            "css": [
+                {
+                    "property": "border",
+                    "selector": "&[aria-pressed=\"true\"]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Border settings",
+                "properties": {
+                    "width": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "solid",
+                            "dashed",
+                            "dotted",
+                            "double",
+                            "groove",
+                            "ridge",
+                            "inset",
+                            "outset"
+                        ]
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    },
+                    "radius": {
+                        "type": "object",
+                        "description": "Spacing value with directional properties",
+                        "properties": {
+                            "top": {
+                                "type": "string",
+                                "description": "Top spacing value with unit"
+                            },
+                            "right": {
+                                "type": "string",
+                                "description": "Right spacing value with unit"
+                            },
+                            "bottom": {
+                                "type": "string",
+                                "description": "Bottom spacing value with unit"
+                            },
+                            "left": {
+                                "type": "string",
+                                "description": "Left spacing value with unit"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "controlType": "border"
+        },
+        "buttonActiveTypography": {
+            "label": "Typography",
+            "required": [
+                "controlType",
+                "=",
+                [
+                    "viewButton",
+                    ""
+                ]
+            ],
+            "css": [
+                {
+                    "property": "font",
+                    "selector": "&[aria-pressed=\"true\"]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Typography settings",
+                "properties": {
+                    "font-family": {
+                        "type": "string"
+                    },
+                    "font-size": {
+                        "type": "string"
+                    },
+                    "font-weight": {
+                        "type": [
+                            "string",
+                            "integer"
+                        ]
+                    },
+                    "font-style": {
+                        "type": "string",
+                        "enum": [
+                            "normal",
+                            "italic",
+                            "oblique"
+                        ]
+                    },
+                    "line-height": {
+                        "type": "string"
+                    },
+                    "letter-spacing": {
+                        "type": "string"
+                    },
+                    "text-align": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center",
+                            "right",
+                            "justify"
+                        ]
+                    },
+                    "text-transform": {
+                        "type": "string",
+                        "enum": [
+                            "none",
+                            "uppercase",
+                            "lowercase",
+                            "capitalize"
+                        ]
+                    },
+                    "text-decoration": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "description": "Color value in various formats",
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hex": {
+                                        "type": "string",
+                                        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                    }
+                                },
+                                "required": [
+                                    "hex"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "rgb": {
+                                        "type": "string",
+                                        "pattern": "^rgba?\\("
+                                    }
+                                },
+                                "required": [
+                                    "rgb"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "hsl": {
+                                        "type": "string",
+                                        "pattern": "^hsla?\\("
+                                    }
+                                },
+                                "required": [
+                                    "hsl"
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "raw": {
+                                        "type": "string",
+                                        "description": "Raw color value or CSS variable"
+                                    }
+                                },
+                                "required": [
+                                    "raw"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "controlType": "typography"
+        },
+        "buttonActiveBoxShadow": {
+            "label": "Box shadow",
+            "required": [
+                "controlType",
+                "=",
+                [
+                    "viewButton",
+                    ""
+                ]
+            ],
+            "css": [
+                {
+                    "property": "box-shadow",
+                    "selector": "&[aria-pressed=\"true\"]"
+                }
+            ],
+            "valueSchema": {
+                "type": "object",
+                "description": "Box shadow settings",
+                "properties": {
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "inset": {
+                                    "type": "boolean"
+                                },
+                                "color": {
+                                    "description": "Color value in various formats",
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hex": {
+                                                    "type": "string",
+                                                    "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                                                }
+                                            },
+                                            "required": [
+                                                "hex"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "rgb": {
+                                                    "type": "string",
+                                                    "pattern": "^rgba?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "rgb"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "hsl": {
+                                                    "type": "string",
+                                                    "pattern": "^hsla?\\("
+                                                }
+                                            },
+                                            "required": [
+                                                "hsl"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "raw": {
+                                                    "type": "string",
+                                                    "description": "Raw color value or CSS variable"
+                                                }
+                                            },
+                                            "required": [
+                                                "raw"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "h": {
+                                    "type": "string"
+                                },
+                                "v": {
+                                    "type": "string"
+                                },
+                                "blur": {
+                                    "type": "string"
+                                },
+                                "spread": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "controlType": "box-shadow"
+        }
+    },
+    "controlGroups": {
+        "button": {
+            "title": "Button (Styles)",
+            "tab": "content",
+            "required": [
+                "controlType",
+                "!=",
+                "title"
+            ]
+        },
+        "buttonActive": {
+            "title": "Button (Active)",
+            "tab": "content",
+            "required": [
+                "controlType",
+                "=",
+                [
+                    "viewButton",
+                    ""
+                ]
+            ]
+        }
+    },
+    "rendering": {
+        "description": "HTML structure and CSS classes used by this element",
+        "rootElement": "div"
+    },
+    "documentation": {
+        "description": "* Calendar Control element class.",
+        "keywords": [
+            "calendar",
+            "control",
+            "navigation"
+        ],
+        "usage": {
+            "category": "extras",
+            "nestable": true
+        }
+    }
+}

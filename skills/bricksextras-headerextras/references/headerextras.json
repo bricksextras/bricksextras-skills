@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://settings/headerextras",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Header Extras",
     "description": "Schema for the BricksExtras 'Header Extras' settings group, injected into page settings and header/content-template settings via the builder/settings/page/controls_data and builder/settings/template/controls_data filters. Not an element — there is no live schema ability for this group (bricks/list-settings-schema covers Bricks core global settings only, and bricks/get-page-settings / bricks/get-template-settings return an opaque stored-values object with no field metadata). This file is hand-derived from includes/BricksExtrasHeaderExtras.php and is the only schema source for this settings group — keep it in sync with that file's extras_header_builder_options(), extras_header(), and extras_header_attributes() methods if the plugin version changes.",

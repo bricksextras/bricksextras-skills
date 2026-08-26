@@ -57,6 +57,12 @@
                         "email": "Email",
                         "print": "Print",
                         "copy": "Copy URL",
+                        "claude": "Claude",
+                        "googleai": "Google AI",
+                        "chatgpt": "ChatGPT",
+                        "grok": "Grok",
+                        "perplexity": "Perplexity",
+                        "mistral": "Mistral AI",
                         "custom": "Custom"
                     },
                     "valueSchema": {
@@ -77,6 +83,12 @@
                             "email",
                             "print",
                             "copy",
+                            "claude",
+                            "googleai",
+                            "chatgpt",
+                            "grok",
+                            "perplexity",
+                            "mistral",
                             "custom"
                         ]
                     },
@@ -159,6 +171,27 @@
                         "type": "string"
                     },
                     "controlType": "textarea"
+                },
+                "aiPromptText": {
+                    "label": "Prompt text",
+                    "required": [
+                        "service",
+                        "=",
+                        [
+                            "claude",
+                            "googleai",
+                            "chatgpt",
+                            "grok",
+                            "perplexity",
+                            "mistral"
+                        ]
+                    ],
+                    "hasDynamicData": true,
+                    "placeholder": "Summarize the content of this URL:",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
                 },
                 "printSelector": {
                     "label": "Selector of content area to print",

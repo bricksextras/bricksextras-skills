@@ -9,7 +9,7 @@ description: "Use when building or debugging the Favorite Button element (xfavor
 
 Shipped by the **BricksExtras** plugin. Nestable. Persists a "favorites" list per list-name, stored in user meta for logged-in users or a cookie for logged-out users (only reachable when `access: "all"`).
 
-**Before writing settings, read this element's schema JSON now — do this even if you haven't loaded `bricksextras-start-here` or `bricksextras-element-schemas` this session:** open `references/elements/xfavorite.json` inside the `bricksextras-element-schemas` skill directory and read it. If that file is missing, or its `schemaVersion` doesn't match the live BricksExtras plugin version, fall back to whatever live schema ability the current MCP connection exposes (e.g. `bricks/get-element-schema` on the native Bricks MCP) for `xfavorite` instead. Do not proceed to write settings JSON until you've actually opened one of these two sources this session.
+**Before writing settings, read this element's schema JSON now — do this even if you haven't loaded `bricksextras-start-here` or `bricksextras-element-schemas` this session:** open `references/elements/xfavorite.json` inside the `bricksextras-element-schemas` skill directory and read it. If that file is missing, or `references/index.json`'s `verifiedUpTo` doesn't match the live BricksExtras plugin version, fall back to whatever live schema ability the current MCP connection exposes (e.g. `bricks/get-element-schema` on the native Bricks MCP) for `xfavorite` instead. Do not proceed to write settings JSON until you've actually opened one of these two sources this session.
 
 ## `buttonType` — four modes for different places in a favorites flow, not interchangeable
 

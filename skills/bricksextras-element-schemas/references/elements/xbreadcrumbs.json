@@ -1490,6 +1490,41 @@
             },
             "controlType": "select"
         },
+        "structuredDataFormat": {
+            "label": "Structured data format",
+            "required": [
+                [
+                    "source",
+                    "!=",
+                    [
+                        "rankmath",
+                        "navxt",
+                        "allinone",
+                        "seopress",
+                        "yoast",
+                        "slim"
+                    ]
+                ],
+                [
+                    "maybeSchema",
+                    "!=",
+                    "disable"
+                ]
+            ],
+            "placeholder": "Microdata",
+            "options": {
+                "microdata": "Microdata",
+                "json-ld": "JSON-LD "
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "microdata",
+                    "json-ld"
+                ]
+            },
+            "controlType": "select"
+        },
         "categorySp": {
             "valueSchema": {
                 "type": "string"
@@ -1561,6 +1596,88 @@
             "placeholder": "Select option",
             "valueSchema": {
                 "type": "string"
+            },
+            "controlType": "select"
+        },
+        "wooSep": {
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "maybeProductCategory": {
+            "label": "Include Product Category",
+            "required": [
+                "source",
+                "!=",
+                [
+                    "rankmath",
+                    "navxt",
+                    "allinone",
+                    "seopress",
+                    "yoast",
+                    "slim"
+                ]
+            ],
+            "placeholder": "Disable",
+            "options": {
+                "enable": "Enable",
+                "disable": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "enable",
+                    "disable"
+                ]
+            },
+            "controlType": "select"
+        },
+        "excludeProductCategories": {
+            "label": "Exclude Product Categories",
+            "required": [
+                "source",
+                "!=",
+                [
+                    "rankmath",
+                    "navxt",
+                    "allinone",
+                    "seopress",
+                    "yoast",
+                    "slim"
+                ]
+            ],
+            "placeholder": "Select option",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "select"
+        },
+        "maybeShop": {
+            "label": "Include Shop Page",
+            "required": [
+                "source",
+                "!=",
+                [
+                    "rankmath",
+                    "navxt",
+                    "allinone",
+                    "seopress",
+                    "yoast",
+                    "slim"
+                ]
+            ],
+            "placeholder": "Enable",
+            "options": {
+                "enable": "Enable",
+                "disable": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "enable",
+                    "disable"
+                ]
             },
             "controlType": "select"
         },

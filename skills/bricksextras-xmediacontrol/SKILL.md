@@ -11,7 +11,7 @@ Shipped by the **BricksExtras** plugin, as a sibling to `xmediaplayer` (the play
 
 Not nestable (`"nestable": false` in the live schema).
 
-**Before writing settings, read this element's schema JSON now — do this even if you haven't loaded `bricksextras-start-here` or `bricksextras-element-schemas` this session:** open `references/elements/xmediacontrol.json` inside the `bricksextras-element-schemas` skill directory and read it. If that file is missing, or its `schemaVersion` doesn't match the live BricksExtras plugin version, fall back to whatever live schema ability the current MCP connection exposes (e.g. `bricks/get-element-schema` on the native Bricks MCP) for `xmediacontrol` instead. Do not proceed to write settings JSON until you've actually opened one of these two sources this session.
+**Before writing settings, read this element's schema JSON now — do this even if you haven't loaded `bricksextras-start-here` or `bricksextras-element-schemas` this session:** open `references/elements/xmediacontrol.json` inside the `bricksextras-element-schemas` skill directory and read it. If that file is missing, or `references/index.json`'s `verifiedUpTo` doesn't match the live BricksExtras plugin version, fall back to whatever live schema ability the current MCP connection exposes (e.g. `bricks/get-element-schema` on the native Bricks MCP) for `xmediacontrol` instead. Do not proceed to write settings JSON until you've actually opened one of these two sources this session.
 
 ---
 

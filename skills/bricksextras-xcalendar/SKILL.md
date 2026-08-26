@@ -9,10 +9,15 @@ description: "Use when building or debugging the Calendar element (xcalendar) fr
 
 Shipped by the **BricksExtras** plugin. Wraps FullCalendar with an RRULE recurrence engine. **Not nestable** — unlike most other BricksExtras elements, the query loop lives directly on the calendar element itself (`hasLoop`/`query`), not on a child block. There is no per-event child element to build; every event's data comes from a set of field-mapping settings, each a plain text field that accepts a dynamic tag.
 
+This is the core calendar element — the one that actually renders FullCalendar and owns the query loop. It has one related sibling element:
+- **`xcalendarcontrol`** — external Today/Prev/Next/view-switcher/event-skip buttons, or a live view-title heading, that target a calendar from outside. See skill `xcalendarcontrol`.
+
+Load `xcalendarcontrol`'s skill alongside this one whenever the task involves external navigation controls (e.g. replacing or supplementing this element's own `headerToolbar`/`footerToolbar` buttons) — this skill covers the calendar element's own mechanics only.
+
 The field-format tables below describe the actual parsing rules for each setting — several are stricter or more permissive than the builder UI hints suggest.
 
 
-**Before building from any template below, read this element's schema JSON now — do this even if you haven't loaded `bricksextras-start-here` or `bricksextras-element-schemas` this session:** open `references/elements/xcalendar.json` inside the `bricksextras-element-schemas` skill directory and read it. If that file is missing, or its `schemaVersion` doesn't match the live BricksExtras plugin version, fall back to whatever live schema ability the current MCP connection exposes (e.g. `bricks/get-element-schema` on the native Bricks MCP) for `xcalendar` instead. The templates and examples below show documented required structure and common patterns only — the schema file (or live call) is the source of truth for the complete, current set of available settings. Do not proceed to write settings JSON until you've actually opened one of these two sources this session.
+**Before building from any template below, read this element's schema JSON now — do this even if you haven't loaded `bricksextras-start-here` or `bricksextras-element-schemas` this session:** open `references/elements/xcalendar.json` inside the `bricksextras-element-schemas` skill directory and read it. If that file is missing, or `references/index.json`'s `verifiedUpTo` doesn't match the live BricksExtras plugin version, fall back to whatever live schema ability the current MCP connection exposes (e.g. `bricks/get-element-schema` on the native Bricks MCP) for `xcalendar` instead. The templates and examples below show documented required structure and common patterns only — the schema file (or live call) is the source of truth for the complete, current set of available settings. Do not proceed to write settings JSON until you've actually opened one of these two sources this session.
 
 ---
 

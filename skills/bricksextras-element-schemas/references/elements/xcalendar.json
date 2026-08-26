@@ -1,7 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "bricksextras://elements/xcalendar",
-    "schemaVersion": "1.7.3",
     "type": "object",
     "title": "Calendar",
     "description": "Schema for BricksExtras Calendar element",
@@ -1316,6 +1315,125 @@
             },
             "controlType": "checkbox"
         },
+        "filterAutoJump": {
+            "label": "Jump to next event after filtering",
+            "description": "If Bricks filters leaves the current view empty, jump forward to the nearest matching event.",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "initialDateMode": {
+            "label": "Start date on load",
+            "description": "Choose which date the calendar opens on. \"Next event\" opens on the nearest upcoming event instead of today.",
+            "placeholder": "Today",
+            "options": {
+                "today": "Today",
+                "nextEvent": "Next event"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "today",
+                    "nextEvent"
+                ]
+            },
+            "controlType": "select"
+        },
+        "validRangeSep": {
+            "label": "Navigation limits",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "separator"
+        },
+        "validRangeMode": {
+            "label": "Limit navigation",
+            "description": "Prevent users from navigating (via toolbar buttons, controls, or scripted date jumps) beyond a given date range.",
+            "placeholder": "None (unlimited)",
+            "options": {
+                "fixed": "Fixed dates",
+                "relative": "Relative to today"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "fixed",
+                    "relative"
+                ]
+            },
+            "controlType": "select"
+        },
+        "validRangeStart": {
+            "label": "Earliest date",
+            "description": "Leave empty for no lower bound",
+            "required": [
+                "validRangeMode",
+                "=",
+                "fixed"
+            ],
+            "placeholder": "YYYY-MM-DD",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "validRangeEnd": {
+            "label": "Latest date",
+            "description": "Leave empty for no upper bound",
+            "required": [
+                "validRangeMode",
+                "=",
+                "fixed"
+            ],
+            "placeholder": "YYYY-MM-DD",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "validRangeDaysBack": {
+            "label": "Days in the past",
+            "description": "Leave empty for no lower bound",
+            "required": [
+                "validRangeMode",
+                "=",
+                "relative"
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
+        "validRangeDaysForward": {
+            "label": "Days in the future",
+            "description": "Leave empty for no upper bound",
+            "required": [
+                "validRangeMode",
+                "=",
+                "relative"
+            ],
+            "valueSchema": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
+            },
+            "controlType": "number"
+        },
         "manualLocale": {
             "label": "Locale",
             "description": "Translate month names, day names, and date formatting.",
@@ -1406,6 +1524,15 @@
         "labelNoEvents": {
             "label": "No Events Text",
             "placeholder": "No events to display",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "moreLinkText": {
+            "label": "More events text",
+            "description": "%s for count",
+            "placeholder": "+%s more",
             "valueSchema": {
                 "type": "string"
             },
@@ -3179,6 +3306,10 @@
         },
         "popup": {
             "title": "Actions",
+            "tab": "content"
+        },
+        "behaviour": {
+            "title": "Behaviour",
             "tab": "content"
         },
         "labels": {
