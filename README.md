@@ -61,6 +61,17 @@ If a target symlink already exists, leave it alone and report it as skipped rath
 
 List the skill folder names that were linked (not copied), and tell the user whether their client needs a restart or a new chat/session before the skills become available — most clients load the skills list once at session start.
 
+## Updating
+
+Check whether an update is needed first — ask "check for bricksextras skills updates" to run the `bricksextras-skills-update` skill, which compares this pack's `verifiedUpTo` version against the BricksExtras plugin running on the site you're working on.
+
+To actually update, re-run **Step 1** above against your existing checkout:
+
+- On `main` (or any normal branch): `git -C ~/.bricksextras/skills/bricksextras-skills pull`
+- Checked out at a release tag (detached HEAD): re-run the "Preferred: latest tagged release" `curl`/`checkout` snippet from Step 1 — `git pull` will not move a detached HEAD forward.
+
+Since Step 2 symlinks the skill folders rather than copying them, nothing else needs to be re-run — the update is picked up automatically. **Start a new chat/session afterward**: most clients load the skills list once at session start, so a mid-session pull won't be picked up until the next one.
+
 ## What to load
 
 `bricksextras-start-here` isn't optional — it's the one skill every session should load regardless of what you're building. Add the element-specific ones on top, as needed.
@@ -85,6 +96,7 @@ List the skill folder names that were linked (not copied), and tell the user whe
 | **bricksextras-xbreadcrumbs** | Breadcrumb trail, with pass-through support for Rank Math, Yoast, and other SEO plugins. |
 | **bricksextras-xburgertrigger** | The hamburger/menu-toggle trigger button. |
 | **bricksextras-xcalendar** | FullCalendar-backed event calendar — recurrence, exclusion dates, popups. |
+| **bricksextras-xcalendarcontrol** | External Today/Prev/Next/view-switcher/event-skip buttons and a live view-title heading for the Calendar element. |
 | **bricksextras-xcolorschemetoggle** | Light/dark/system theme switch. |
 | **bricksextras-xcontentswitcher** | Content panel switching, driven externally by a toggle switch element. |
 | **bricksextras-xcontenttimeline** | Vertical or horizontal timeline, query-loop capable. |
