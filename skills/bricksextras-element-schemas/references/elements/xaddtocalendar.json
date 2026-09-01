@@ -368,6 +368,50 @@
                         ]
                     },
                     "controlType": "color"
+                },
+                "outlookHost": {
+                    "label": "Outlook host",
+                    "default": "personal",
+                    "inline": true,
+                    "required": [
+                        "service",
+                        "=",
+                        "outlook"
+                    ],
+                    "options": {
+                        "personal": "outlook.live.com (Personal)",
+                        "work": "outlook.office.com (Office)"
+                    },
+                    "valueSchema": {
+                        "type": "string",
+                        "enum": [
+                            "personal",
+                            "work"
+                        ]
+                    },
+                    "controlType": "select"
+                },
+                "outlookLinkType": {
+                    "label": "Link type",
+                    "default": "deeplink",
+                    "inline": true,
+                    "required": [
+                        "service",
+                        "=",
+                        "outlook"
+                    ],
+                    "options": {
+                        "deeplink": "Deeplink",
+                        "action": "Action"
+                    },
+                    "valueSchema": {
+                        "type": "string",
+                        "enum": [
+                            "deeplink",
+                            "action"
+                        ]
+                    },
+                    "controlType": "select"
                 }
             }
         },
