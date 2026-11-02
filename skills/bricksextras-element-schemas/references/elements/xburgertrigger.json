@@ -293,7 +293,7 @@
             "css": [
                 {
                     "property": "background-color",
-                    "selector": ""
+                    "selector": "&[aria-expanded=\"true\"]"
                 }
             ],
             "valueSchema": {

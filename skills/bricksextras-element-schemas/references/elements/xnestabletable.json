@@ -829,7 +829,6 @@
             "placeholder": "None",
             "options": {
                 "1279": "Desktop (<= 1279px )",
-                "1200": "upper (<= 1200px )",
                 "991": "Tablet portrait (<= 991px )",
                 "767": "Mobile landscape (<= 767px )",
                 "478": "Mobile portrait (<= 478px )",
@@ -839,7 +838,6 @@
                 "type": "string",
                 "enum": [
                     1279,
-                    1200,
                     991,
                     767,
                     478,

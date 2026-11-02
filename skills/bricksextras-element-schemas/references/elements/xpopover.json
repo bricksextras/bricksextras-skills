@@ -1402,7 +1402,7 @@
             "controlType": "checkbox"
         },
         "advancedSep": {
-            "description": "Popover can be used to add tooltips to any elements. The tooltip content will either be the content you nest inside this popover, or you can add text directly to the elements in style &gt; tooltip settings",
+            "description": "Popover can be used to add tooltips to any elements. The tooltip content will either be the content you nest inside this popover, or you can add text directly to the elements in style > tooltip settings",
             "valueSchema": {
                 "type": "string"
             },

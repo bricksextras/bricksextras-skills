@@ -191,3 +191,5 @@ Notes on this structure:
 ## If needed: custom behavior via the live instance
 
 For anything beyond this element's own controls, get the real GLightbox instance from `window.xDynamicLightbox.Instances[dataXId]` (keyed by the `data-x-id` on the `.brxe-xdynamiclightbox` root) in a Bricks Code element with `executeCode: true` set (otherwise the JS renders as inert text), and drive it directly via GLightbox's own API (`lightbox.open()`, `lightbox.setElements()`, etc.). It's registered ~300ms after init, so wait past that before reading it.
+
+To run code once a slide is actually visible, use `lightbox.on('slide_changed', …)`. It fires at full opacity, including on first open, whereas `open` fires before the slide exists and `slide_after_load` while it's still transparent. `data.current.slideIndex` is correct there, but `data.current.slideNode` is the **previous** slide (`null` on first open), so get the visible one with `document.querySelector('.gslide.current')`.

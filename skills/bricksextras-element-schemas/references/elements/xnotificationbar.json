@@ -286,6 +286,19 @@
             },
             "controlType": "number"
         },
+        "slideEasing": {
+            "label": "Easing",
+            "css": [
+                {
+                    "property": "--x-slide-easing"
+                }
+            ],
+            "placeholder": "linear",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
         "builderHidden_sep": {
             "valueSchema": {
                 "type": "string"
@@ -333,7 +346,7 @@
                 "dismiss": "Show again until user clicks dismiss",
                 "never": "Never show again",
                 "after": "Only allow to show again after:",
-                "evergreen": "Only show if evergreen countdown hasn&#039;t ended",
+                "evergreen": "Only show if evergreen countdown hasn't ended",
                 "manual": "Manual (if using with code)"
             },
             "valueSchema": {

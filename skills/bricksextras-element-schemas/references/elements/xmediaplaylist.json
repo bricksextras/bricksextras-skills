@@ -1812,8 +1812,7 @@
             "controlType": "checkbox"
         },
         "securitySep": {
-            "label": "Bunny Stream Authentication",
-            "description": "Create expiring video URLs",
+            "label": "Bunny Stream",
             "required": [
                 [
                     "provider",
@@ -1825,6 +1824,20 @@
                 "type": "string"
             },
             "controlType": "separator"
+        },
+        "skipBunnyCaptions": {
+            "label": "Don't fetch Bunny Stream captions",
+            "required": [
+                [
+                    "provider",
+                    "!=",
+                    "audio"
+                ]
+            ],
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
         },
         "enableSecurity": {
             "label": "Generate Authentication Tokens",

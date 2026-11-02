@@ -657,7 +657,7 @@
             "controlType": "text"
         },
         "captionsOffHint": {
-            "label": "Captions &quot;Off&quot; Option",
+            "label": "Captions \"Off\" Option",
             "required": [
                 "controlType",
                 "=",

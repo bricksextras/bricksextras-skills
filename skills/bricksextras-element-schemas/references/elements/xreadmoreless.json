@@ -24,8 +24,7 @@
                 {
                     "selector": ".x-read-more_content",
                     "property": "max-height"
-                },
-                ""
+                }
             ],
             "placeholder": "200px",
             "valueSchema": {

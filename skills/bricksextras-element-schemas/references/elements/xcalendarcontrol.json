@@ -3,7 +3,7 @@
     "$id": "bricksextras://elements/xcalendarcontrol",
     "type": "object",
     "title": "Calendar Control",
-    "description": "Schema for BricksExtras Calendar Control element",
+    "description": "Schema for BricksExtras Calendar Control element. A nestable element",
     "metadata": {
         "name": "xcalendarcontrol",
         "category": "extras",
@@ -276,7 +276,8 @@
                     "buttonContent",
                     "=",
                     [
-                        "icon"
+                        "icon",
+                        ""
                     ]
                 ]
             ],
@@ -322,7 +323,8 @@
                     "buttonContent",
                     "=",
                     [
-                        "icon"
+                        "icon",
+                        ""
                     ]
                 ]
             ],
@@ -368,10 +370,7 @@
                 [
                     "buttonContent",
                     "=",
-                    [
-                        "icon",
-                        ""
-                    ]
+                    "icon"
                 ]
             ],
             "placeholder": "Today",
@@ -416,7 +415,8 @@
                     "buttonContent",
                     "=",
                     [
-                        "icon"
+                        "icon",
+                        ""
                     ]
                 ]
             ],
@@ -462,7 +462,8 @@
                     "buttonContent",
                     "=",
                     [
-                        "icon"
+                        "icon",
+                        ""
                     ]
                 ]
             ],
@@ -508,10 +509,7 @@
                 [
                     "buttonContent",
                     "=",
-                    [
-                        "icon",
-                        ""
-                    ]
+                    "icon"
                 ]
             ],
             "placeholder": "Skip to Previous Events",
@@ -556,10 +554,7 @@
                 [
                     "buttonContent",
                     "=",
-                    [
-                        "icon",
-                        ""
-                    ]
+                    "icon"
                 ]
             ],
             "placeholder": "Skip to Next Events",
@@ -582,9 +577,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "dayGridYear"
-                    ]
+                    "dayGridYear"
                 ]
             ],
             "placeholder": "Year",
@@ -607,9 +600,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "dayGridYear"
-                    ]
+                    "dayGridYear"
                 ]
             ],
             "placeholder": "Year view",
@@ -684,9 +675,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "dayGridWeek"
-                    ]
+                    "dayGridWeek"
                 ]
             ],
             "placeholder": "Week",
@@ -709,9 +698,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "dayGridWeek"
-                    ]
+                    "dayGridWeek"
                 ]
             ],
             "placeholder": "Week view",
@@ -734,9 +721,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "dayGridDay"
-                    ]
+                    "dayGridDay"
                 ]
             ],
             "placeholder": "Day",
@@ -759,9 +744,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "dayGridDay"
-                    ]
+                    "dayGridDay"
                 ]
             ],
             "placeholder": "Day view",
@@ -784,9 +767,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "timeGridWeek"
-                    ]
+                    "timeGridWeek"
                 ]
             ],
             "placeholder": "Week",
@@ -809,9 +790,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "timeGridWeek"
-                    ]
+                    "timeGridWeek"
                 ]
             ],
             "placeholder": "Week view",
@@ -834,9 +813,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "timeGridDay"
-                    ]
+                    "timeGridDay"
                 ]
             ],
             "placeholder": "Day",
@@ -859,9 +836,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "timeGridDay"
-                    ]
+                    "timeGridDay"
                 ]
             ],
             "placeholder": "Day view",
@@ -884,9 +859,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "listDay"
-                    ]
+                    "listDay"
                 ]
             ],
             "placeholder": "List",
@@ -909,9 +882,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "listDay"
-                    ]
+                    "listDay"
                 ]
             ],
             "placeholder": "List view",
@@ -934,9 +905,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "listWeek"
-                    ]
+                    "listWeek"
                 ]
             ],
             "placeholder": "List",
@@ -959,9 +928,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "listWeek"
-                    ]
+                    "listWeek"
                 ]
             ],
             "placeholder": "List view",
@@ -984,9 +951,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "listMonth"
-                    ]
+                    "listMonth"
                 ]
             ],
             "placeholder": "List",
@@ -1009,9 +974,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "listMonth"
-                    ]
+                    "listMonth"
                 ]
             ],
             "placeholder": "List view",
@@ -1034,9 +997,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "listYear"
-                    ]
+                    "listYear"
                 ]
             ],
             "placeholder": "List",
@@ -1059,9 +1020,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "listYear"
-                    ]
+                    "listYear"
                 ]
             ],
             "placeholder": "List view",
@@ -1084,9 +1043,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "multiMonthYear"
-                    ]
+                    "multiMonthYear"
                 ]
             ],
             "placeholder": "Multi-Month",
@@ -1109,9 +1066,7 @@
                 [
                     "targetView",
                     "=",
-                    [
-                        "multiMonthYear"
-                    ]
+                    "multiMonthYear"
                 ]
             ],
             "placeholder": "Multi-Month view",
@@ -1127,6 +1082,11 @@
                 "!=",
                 "title"
             ],
+            "css": [
+                {
+                    "property": "background"
+                }
+            ],
             "valueSchema": {
                 "type": "object",
                 "description": "Background settings"
@@ -1139,6 +1099,11 @@
                 "controlType",
                 "!=",
                 "title"
+            ],
+            "css": [
+                {
+                    "property": "border"
+                }
             ],
             "valueSchema": {
                 "type": "object",
@@ -1268,6 +1233,11 @@
                 "!=",
                 "title"
             ],
+            "css": [
+                {
+                    "property": "font"
+                }
+            ],
             "valueSchema": {
                 "type": "object",
                 "description": "Typography settings",
@@ -1383,6 +1353,11 @@
                 "!=",
                 "title"
             ],
+            "css": [
+                {
+                    "property": "box-shadow"
+                }
+            ],
             "valueSchema": {
                 "type": "object",
                 "description": "Box shadow settings",
@@ -1487,8 +1462,6 @@
                 }
             ],
             "placeholder": "0.6",
-            "min": 0,
-            "max": 1,
             "valueSchema": {
                 "oneOf": [
                     {
@@ -1911,18 +1884,26 @@
     },
     "rendering": {
         "description": "HTML structure and CSS classes used by this element",
-        "rootElement": "div"
+        "rootElement": "div",
+        "nestable": true,
+        "childrenContainer": "Renders child elements within the structure"
     },
     "documentation": {
         "description": "* Calendar Control element class.",
         "keywords": [
             "calendar",
             "control",
-            "navigation"
+            "toolbar",
+            "prev",
+            "next",
+            "view"
         ],
         "usage": {
             "category": "extras",
             "nestable": true
-        }
+        },
+        "bestPractices": [
+            "This is a nestable element - add child elements to build your content structure"
+        ]
     }
 }

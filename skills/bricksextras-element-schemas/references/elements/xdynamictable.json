@@ -16,7 +16,7 @@
             "placeholder": "Dynamic Data (Populate rows with a query loop)",
             "options": {
                 "dynamic": "Dynamic Data (Populate rows with a query loop)",
-                "static": "Static (Add rows &amp; cells manually)"
+                "static": "Static (Add rows & cells manually)"
             },
             "valueSchema": {
                 "type": "string",
@@ -551,11 +551,9 @@
         "sort_locale": {
             "label": "Sort language",
             "required": [
-                [
-                    "maybe_sortable",
-                    "=",
-                    "true"
-                ]
+                "maybe_sortable",
+                "=",
+                "true"
             ],
             "placeholder": "Auto",
             "valueSchema": {
@@ -3622,7 +3620,6 @@
             "placeholder": "None",
             "options": {
                 "1279": "Desktop (<= 1279px )",
-                "1200": "upper (<= 1200px )",
                 "991": "Tablet portrait (<= 991px )",
                 "767": "Mobile landscape (<= 767px )",
                 "478": "Mobile portrait (<= 478px )",
@@ -3632,7 +3629,6 @@
                 "type": "string",
                 "enum": [
                     1279,
-                    1200,
                     991,
                     767,
                     478,

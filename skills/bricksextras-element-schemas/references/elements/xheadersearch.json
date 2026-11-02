@@ -746,7 +746,7 @@
                 "!=",
                 true
             ],
-            "placeholder": "https://be.local/",
+            "placeholder": "/",
             "valueSchema": {
                 "type": "string"
             },
@@ -1131,6 +1131,10 @@
                 },
                 {
                     "property": "font",
+                    "selector": ".x-search-form .ssp-search input:not([type=submit])"
+                },
+                {
+                    "property": "font",
                     "selector": ".x-search-form .brxe-filter-search"
                 },
                 {
@@ -1256,6 +1260,14 @@
                 {
                     "property": "font",
                     "selector": ".x-search-form input[type=search]::-webkit-placeholder"
+                },
+                {
+                    "property": "font",
+                    "selector": ".x-search-form .ssp-search input:not([type=submit])::placeholder"
+                },
+                {
+                    "property": "font",
+                    "selector": ".x-search-form .ssp-search input:not([type=submit])::-webkit-placeholder"
                 }
             ],
             "valueSchema": {
@@ -1372,6 +1384,10 @@
                 {
                     "property": "background-color",
                     "selector": ".x-search-form input[type=search]"
+                },
+                {
+                    "property": "background-color",
+                    "selector": ".x-search-form .ssp-search input:not([type=submit])"
                 }
             ],
             "valueSchema": {
@@ -1498,6 +1514,10 @@
                 {
                     "property": "border",
                     "selector": ".x-search-form input[type=search]"
+                },
+                {
+                    "property": "border",
+                    "selector": ".x-search-form .ssp-search input:not([type=submit])"
                 }
             ],
             "valueSchema": {
@@ -1627,6 +1647,10 @@
                 {
                     "property": "box-shadow",
                     "selector": ".x-search-form input[type=search]"
+                },
+                {
+                    "property": "box-shadow",
+                    "selector": ".x-search-form .ssp-search input:not([type=submit])"
                 }
             ],
             "valueSchema": {
@@ -1719,6 +1743,10 @@
                 {
                     "property": "padding",
                     "selector": ".x-search-form input[type=search]"
+                },
+                {
+                    "property": "padding",
+                    "selector": ".x-search-form .ssp-search input:not([type=submit])"
                 }
             ],
             "placeholder": {
@@ -3013,6 +3041,7 @@
             "x-header-search_toggle-close",
             "x-header-search_toggle-text",
             "x-header-search_toggle-open-text",
+            "x-header-search_form",
             "x-search-form_container"
         ],
         "rootElement": "div",

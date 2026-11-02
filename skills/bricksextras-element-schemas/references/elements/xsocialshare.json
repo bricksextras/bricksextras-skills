@@ -186,7 +186,6 @@
                             "mistral"
                         ]
                     ],
-                    "hasDynamicData": true,
                     "placeholder": "Summarize the content of this URL:",
                     "valueSchema": {
                         "type": "string"

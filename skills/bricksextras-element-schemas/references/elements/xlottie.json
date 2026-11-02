@@ -289,7 +289,7 @@
         },
         "lottieVersion": {
             "label": "Lottie version",
-            "description": "Lottie light is ~39% lighter version of Lottie that doesn&#039;t support expressions or effects. Use light unless your chosen animation needs those supported",
+            "description": "Lottie light is ~39% lighter version of Lottie that doesn't support expressions or effects. Use light unless your chosen animation needs those supported",
             "default": "light",
             "placeholder": "Light",
             "options": {

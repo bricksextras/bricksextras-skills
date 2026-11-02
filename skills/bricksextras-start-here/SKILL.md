@@ -168,6 +168,21 @@ A few elements (Pro Slider Control's `slider: "component"` option is the concret
 
 ---
 
+## Static mode (1.7.7+)
+
+A site-wide BricksExtras setting (option `bricksextras_static_mode` = `"1"`) for sites that will be exported to static HTML. It stays on while building, so check it before building on a site you don't know. When it's on, these are disabled, so don't build with them:
+
+- Favorites (element, query loops and tags)
+- WP Grid Builder Facets
+- Header Search live search
+- Toasts shown from PHP
+- Conditions that depend on the visitor or today's date
+- `{x_url_parameter}` and `{x_est_year_current_year}`
+
+Bricks popups can't use `popupAjax` on an exported site. For `xcalendar` popups, use the `{x_popup_event:…}` tags (see `bricksextras-xcalendar`).
+
+---
+
 ## Never do
 
 - Do not assume where `hasLoop`/`query` belongs from one element to the next — placement varies (looping child, the element itself, or a wrapping `block`, depending on the element's own architecture). Check that specific element's skill or schema rather than applying a general rule.

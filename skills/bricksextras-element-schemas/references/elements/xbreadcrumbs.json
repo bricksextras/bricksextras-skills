@@ -1388,7 +1388,6 @@
                 "!=",
                 "enable"
             ],
-            "placeholder": "100",
             "valueSchema": {
                 "oneOf": [
                     {
@@ -1781,7 +1780,7 @@
         },
         "slimsearchLabel": {
             "label": "Search",
-            "placeholder": "Results for &#8220;%s&#8221;",
+            "placeholder": "Results for %s",
             "valueSchema": {
                 "type": "string"
             },
@@ -1821,7 +1820,7 @@
         },
         "slimseparator": {
             "label": "Separator",
-            "placeholder": "\u00bb",
+            "placeholder": "»",
             "valueSchema": {
                 "type": "string"
             },
@@ -1859,7 +1858,7 @@
                     "value": "\"%s\""
                 }
             ],
-            "default": "\u00bb",
+            "default": "»",
             "valueSchema": {
                 "type": "string"
             },

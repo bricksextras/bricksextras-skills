@@ -1283,6 +1283,57 @@
             },
             "controlType": "select"
         },
+        "popupFields": {
+            "label": "Popup fields",
+            "description": "Shown in the popup with {x_popup_event:name}.",
+            "required": [
+                "eventClickAction",
+                "=",
+                "popup"
+            ],
+            "placeholder": "Field",
+            "valueSchema": {
+                "type": "array",
+                "description": "Repeater items",
+                "items": {
+                    "type": "object"
+                }
+            },
+            "controlType": "repeater",
+            "fields": {
+                "fieldName": {
+                    "label": "Name",
+                    "description": "Use it in the popup with {x_popup_event:name}",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                },
+                "fieldType": {
+                    "label": "Type",
+                    "placeholder": "Text",
+                    "options": {
+                        "text": "Text",
+                        "url": "URL"
+                    },
+                    "valueSchema": {
+                        "type": "string",
+                        "enum": [
+                            "text",
+                            "url"
+                        ]
+                    },
+                    "controlType": "select"
+                },
+                "fieldValue": {
+                    "label": "Value",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
+                }
+            }
+        },
         "eventUrlField": {
             "label": "URL",
             "required": [
@@ -1366,7 +1417,6 @@
         },
         "validRangeStart": {
             "label": "Earliest date",
-            "description": "Leave empty for no lower bound",
             "required": [
                 "validRangeMode",
                 "=",
@@ -1380,7 +1430,6 @@
         },
         "validRangeEnd": {
             "label": "Latest date",
-            "description": "Leave empty for no upper bound",
             "required": [
                 "validRangeMode",
                 "=",
@@ -1394,7 +1443,6 @@
         },
         "validRangeDaysBack": {
             "label": "Days in the past",
-            "description": "Leave empty for no lower bound",
             "required": [
                 "validRangeMode",
                 "=",
@@ -1415,7 +1463,6 @@
         },
         "validRangeDaysForward": {
             "label": "Days in the future",
-            "description": "Leave empty for no upper bound",
             "required": [
                 "validRangeMode",
                 "=",
@@ -1437,7 +1484,7 @@
         "manualLocale": {
             "label": "Locale",
             "description": "Translate month names, day names, and date formatting.",
-            "placeholder": "e.g., en, de, fr, es",
+            "placeholder": "en, de, fr, es..",
             "valueSchema": {
                 "type": "string"
             },
@@ -1531,7 +1578,6 @@
         },
         "moreLinkText": {
             "label": "More events text",
-            "description": "%s for count",
             "placeholder": "+%s more",
             "valueSchema": {
                 "type": "string"
@@ -3317,7 +3363,7 @@
             "tab": "content"
         },
         "formats": {
-            "title": "Date &amp; Time Formats",
+            "title": "Date & Time Formats",
             "tab": "content"
         }
     },

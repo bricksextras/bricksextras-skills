@@ -371,13 +371,12 @@
                 },
                 "outlookHost": {
                     "label": "Outlook host",
-                    "default": "personal",
-                    "inline": true,
                     "required": [
                         "service",
                         "=",
                         "outlook"
                     ],
+                    "default": "personal",
                     "options": {
                         "personal": "outlook.live.com (Personal)",
                         "work": "outlook.office.com (Office)"
@@ -393,13 +392,12 @@
                 },
                 "outlookLinkType": {
                     "label": "Link type",
-                    "default": "deeplink",
-                    "inline": true,
                     "required": [
                         "service",
                         "=",
                         "outlook"
                     ],
+                    "default": "deeplink",
                     "options": {
                         "deeplink": "Deeplink",
                         "action": "Action"

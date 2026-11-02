@@ -70,7 +70,7 @@ Renders one row per query result, correctly evaluating each column's `data` tag 
 | `title` | Column heading | |
 | `data` | Cell value (dynamic tag) | **Dynamic mode only** — absent from `content_items_static` |
 | `width` | Min. column width (px) | |
-| `attributes` | Repeater of `name`/`value` — custom HTML attributes on the cell | Nested repeater, not a simple field |
+| `attributes` | Repeater of `name`/`value` — custom HTML attributes on the cell | Nested repeater, not a simple field. Only attributes WordPress allows on `td` in post content are output (e.g. `title`, your own `data-*`). URL attributes and `data-x-*`/`data-wp-*`/`data-brx-*`/`data-interaction*` are skipped with no error |
 | `data_type` | Sort this column as numbers | Mutually exclusive with `data_type_date` via matching `required` conditions on each — don't set both |
 | `data_type_date` | Sort this column as dates | See above |
 | `date_format` | Date field order for sorting: `auto` (default), `dmy`, `mdy`, `ymd` | Only shown when `data_type_date: true`. `auto` renders no attribute; any explicit value is written to the header cell as `data-x-date-format="{value}"` and read by the JS sort comparator to correctly parse ambiguous numeric dates (e.g. `03/04/2025`) instead of guessing |

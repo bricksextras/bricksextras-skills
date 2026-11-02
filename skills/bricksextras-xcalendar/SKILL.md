@@ -47,6 +47,8 @@ This element only displays data; it has no opinion on where that data lives. Bef
 
 Same `post_type`/`posts_per_page` snake_case requirement as every other BricksExtras query loop — see `bricksextras-start-here`. Use `posts_per_page: -1` (unlimited) — FullCalendar needs every event that could possibly appear across whatever date range a visitor navigates to, not just the current month, so capping the query hides events once a visitor pages far enough forward or back.
 
+**Query Filters:** save a real `query` with `post_type` on the calendar. With `hasLoop` on and no saved `query`, a filter placed **before** the calendar shows `(0)` on every option and disables them all, with no error. A filter placed after it counts correctly, but setting the post type is the fix.
+
 ---
 
 ## Field mapping — exact value format per field
@@ -156,14 +158,25 @@ One dynamic tag, comma- or newline-separated lines, each line: `DATE START_TIME 
 - `"url"` uses `eventUrlField` (defaults to `{post_url}` if the field itself is left set to that).
 - `"popup"` uses `eventPopup`, whose value is a **Bricks popup template's post ID as a string** (e.g. `"31277"`) — not a name or slug. Get real IDs via whatever template-listing ability the current MCP connection exposes, filtered to popup templates (e.g. `bricks/list-templates` with `type: "popup"` on the native Bricks MCP). This restriction is only about the `eventPopup` field itself — it must be a literal template ID, not a dynamic tag. It does **not** mean the popup template's own *content* can't use dynamic tags — the popup template still resolves dynamic data normally against whichever event was clicked, same as any other popup.
 
-### Two settings the popup template itself needs, beyond just wiring `eventPopup`
+### The popup template needs a condition, beyond just wiring `eventPopup`
 
-Setting `eventClickAction: "popup"` + `eventPopup: "<id>"` on the calendar is necessary but not sufficient — the popup template itself needs two things configured, or it either doesn't open at all or opens with the wrong (static) content:
+Setting `eventClickAction: "popup"` + `eventPopup: "<id>"` on the calendar is necessary but not sufficient — the popup template also needs **a template condition covering the page/post the calendar is actually viewed on.** Bricks popups need a condition to know where they're allowed to render, set via whatever template-condition ability the current MCP connection exposes (e.g. `bricks/set-template-conditions` on the native Bricks MCP). Without this, the popup template has empty `conditions`/`openers` — it's never registered as openable anywhere, and the JS call that's supposed to trigger it (`bricksOpenPopup`) silently does nothing. This is easy to miss because the popup is being triggered programmatically by the calendar's own JS, not through a normal Bricks opener element — so there's no builder-UI opener to remind you a condition is still needed.
 
-1. **A template condition covering the page/post the calendar is actually viewed on.** Bricks popups need a condition to know where they're allowed to render, set via whatever template-condition ability the current MCP connection exposes (e.g. `bricks/set-template-conditions` on the native Bricks MCP). Without this, the popup template has empty `conditions`/`openers` — it's never registered as openable anywhere, and the JS call that's supposed to trigger it (`bricksOpenPopup`) silently does nothing. This is easy to miss because the popup is being triggered programmatically by the calendar's own JS, not through a normal Bricks opener element — so there's no builder-UI opener to remind you a condition is still needed.
-2. **`popupAjax: true` on the popup template's settings**, set via whatever popup-settings ability the current MCP connection exposes (e.g. `bricks/update-popup-settings` on the native Bricks MCP). Without this, the popup renders once, statically, against whatever context it happened to first render in — not per-click against the specific event that was actually clicked. Symptom: the popup opens correctly, but shows the same (wrong, or blank) event content no matter which calendar event triggered it.
+### Showing the clicked event's details: two ways
 
-Both are required together — condition alone gets you a popup that opens but shows static/wrong content; AJAX alone (without a condition) gets you a popup that never opens at all.
+The calendar holds its own data for each event: the values from its field settings, plus any `popupFields` rows. `{x_popup_event:…}` reads that data in the browser, while `popupAjax` has WordPress render the popup for the event's post.
+
+A custom field can go either way. To show it with `{x_popup_event:…}`, add it as a `popupFields` row. Those values are plain text or a URL, because HTML is stripped from them. For anything richer, like formatted content or nested elements that loop over the post's data, use `popupAjax`. On a static export, only `{x_popup_event:…}` works.
+
+**`{x_popup_event:key}` tags (1.7.7+), for data from the event.** Reads what the calendar holds for the clicked event, with no AJAX needed. `key` is `title`, `start`, `end`, `location`, `description`, or the `fieldName` of a row in the calendar's `popupFields` repeater (`fieldName`, `fieldType` `text`/`url`, `fieldValue`), which is how custom fields are added to the event's data. `fieldValue` is resolved per event and takes dynamic data. Field names are lowercase letters, numbers and underscores.
+
+- In text, the tag prints `<span data-x-event="key">`, filled in the browser on click.
+- Dates take a format, with an optional second one after `|` for all-day events: `{x_popup_event:start:l j F, g:ia|l j F}`.
+- In link and image settings, the tag is only filled from a popup field with `fieldType: "url"` (`http`/`https`/`mailto`/`tel` for links, `http`/`https` for images). Any other value leaves the link at `#` and the image without a source.
+
+**`popupAjax: true` on the popup template's settings, for data from the post or its custom fields**, set via whatever popup-settings ability the current MCP connection exposes (e.g. `bricks/update-popup-settings` on the native Bricks MCP). WordPress renders the popup per click, so ordinary tags like `{post_title}` give the clicked event's post values. It can't be used on a static export, where there's no WordPress to fetch from, so add those values through `popupFields` instead.
+
+Without `popupAjax`, ordinary tags like `{post_title}` show the **page's** value rather than the event's — the symptom is a popup showing the same content whichever event was clicked. The two approaches can be combined in one popup.
 
 ---
 

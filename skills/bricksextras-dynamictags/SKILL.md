@@ -28,6 +28,7 @@ description: "Use when building or debugging any BricksExtras custom dynamic-dat
 - **`{x_est_year_current_year}`** — no arg → current year alone (confirmed live → `"2026"`, matching server date). With an arg (a literal year, e.g. `{x_est_year_current_year:2020}`) → `"{arg} - {current year}"` unless they're equal, in which case just the year (confirmed live → `"2020 - 2026"`). The arg is a **literal year string**, not a dynamic tag or date field — pass the actual founding/established year directly.
 - **`{x_loop_index}`** — optional numeric-offset arg, added to the current query loop's 0-indexed position. **Requires an active Bricks query loop context to resolve at all** — confirmed live outside any loop: renders as empty string (`isEmpty: true`), not the raw tag, and not an error. Only meaningful inside a query-loop element's own children.
 - **`{x_parent_loop_index}`** — optional arg is an ancestor level (default `1` = immediate parent loop). For when this tag is used inside a loop that's itself nested inside another loop, and you want the *outer* loop's index rather than the current one's `{x_loop_index}`/`{query_loop_index}`.
+- **`{x_popup_event:key}`** (1.7.7+) — only for a popup opened from `xcalendar`, filled in the browser with the clicked event's value. `key` is `title`, `start`, `end`, `location`, `description` or a `popupFields` name. Format, link and image rules are in `bricksextras-xcalendar`.
 
 ## Menu item tags — all five require an active `wpmenu`-type query loop specifically
 

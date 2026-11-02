@@ -387,9 +387,26 @@
         },
         "aspectRatio": {
             "label": "Aspect ratio",
-            "placeholder": "",
+            "css": [
+                {
+                    "property": "aspect-ratio",
+                    "selector": ".x-slider_slide-image"
+                },
+                {
+                    "property": "aspect-ratio",
+                    "selector": "img"
+                }
+            ],
             "valueSchema": {
-                "type": "string"
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "description": "Value with unit (e.g., \"10px\", \"50%\")"
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
             },
             "controlType": "number"
         },

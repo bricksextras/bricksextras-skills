@@ -98,6 +98,15 @@
                         "type": "string"
                     },
                     "controlType": "text"
+                },
+                "urlValues": {
+                    "label": "URL values",
+                    "description": "Comma separated. Used when \"Set state from URL\" is enabled.",
+                    "placeholder": "software, apps",
+                    "valueSchema": {
+                        "type": "string"
+                    },
+                    "controlType": "text"
                 }
             }
         },
@@ -115,11 +124,32 @@
                     true
                 ]
             ],
-            "default": [
-                {
-                    "title": "Label"
-                }
+            "default": "Label",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "labelsQueryUrlValues": {
+            "label": "URL values",
+            "required": [
+                [
+                    "urlSync",
+                    "!=",
+                    ""
+                ],
+                [
+                    "type",
+                    "=",
+                    "multiple"
+                ],
+                [
+                    "hasLoop",
+                    "=",
+                    true
+                ]
             ],
+            "placeholder": "{post_name}",
             "valueSchema": {
                 "type": "string"
             },
@@ -273,6 +303,77 @@
                 ]
             },
             "controlType": "select"
+        },
+        "urlSync": {
+            "label": "Set state from URL",
+            "valueSchema": {
+                "type": "boolean"
+            },
+            "controlType": "checkbox"
+        },
+        "urlParam": {
+            "label": "Parameter name",
+            "required": [
+                "urlSync",
+                "!=",
+                ""
+            ],
+            "placeholder": "view",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "urlValuesInfo": {
+            "required": [
+                "urlSync",
+                "!=",
+                ""
+            ],
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "info"
+        },
+        "leftUrlValues": {
+            "label": "Left label URL values",
+            "required": [
+                [
+                    "urlSync",
+                    "!=",
+                    ""
+                ],
+                [
+                    "type",
+                    "!=",
+                    "multiple"
+                ]
+            ],
+            "placeholder": "documents, docs",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
+        "rightUrlValues": {
+            "label": "Right label URL values",
+            "required": [
+                [
+                    "urlSync",
+                    "!=",
+                    ""
+                ],
+                [
+                    "type",
+                    "!=",
+                    "multiple"
+                ]
+            ],
+            "placeholder": "software, apps",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
         },
         "labelsSep": {
             "label": "Labels",

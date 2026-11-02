@@ -49,7 +49,7 @@ This attribute only ever carries `isLooping` (set when the element is inside a r
 
 - **`brandColors`** — a `select` control with string options `"true"`/`"false"`, not a checkbox; sending the boolean `true` is silently ignored (no class added, no error) — confirmed live. Send the string `"true"` to get the `x-social-share_brand-colors` class added to every link, alongside each item's own service class (`.facebook`, `.twitter`, etc.), for brand-color CSS to hook into.
 - **`shareURL: "current"`** (default) resolves via `get_the_permalink()` normally, but on an archive page outside any query loop it's built manually from the request URL instead (since a permalink function doesn't apply there).
-- **Per-item `customAttributes`** — arbitrary extra HTML attributes on that item's link/button, with dynamic-data support on the value.
+- **Per-item `customAttributes`** — extra HTML attributes on that item's link/button, with dynamic-data support on the value. Only attributes WordPress allows on that tag in post content are output (e.g. `title`, `rel`, your own `data-*`). URL attributes like `href`, and `data-x-*`/`data-wp-*`/`data-brx-*`/`data-interaction*`, are skipped with no error, as are the `data-*` attributes the element uses itself.
 - Extensive typography/color/border/spacing controls for the link, label, and icon — direct CSS mappings, no hidden behavior.
 
 ## Rendered DOM (for custom CSS/targeting)

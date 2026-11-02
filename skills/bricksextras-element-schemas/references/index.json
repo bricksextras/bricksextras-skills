@@ -1,8 +1,8 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "BricksExtras Elements",
-    "version": "0.2.1",
-    "verifiedUpTo": "1.7.5",
+    "version": "0.2.2",
+    "verifiedUpTo": "1.7.7",
     "description": "Auto-generated schema index for all BricksExtras custom elements",
     "elements": [
         {
@@ -31,14 +31,14 @@
             "schemaPath": "./elements/xburgertrigger.json"
         },
         {
-            "name": "xcalendar",
-            "label": "Calendar",
-            "schemaPath": "./elements/xcalendar.json"
-        },
-        {
             "name": "xcalendarcontrol",
             "label": "Calendar Control",
             "schemaPath": "./elements/xcalendarcontrol.json"
+        },
+        {
+            "name": "xcalendar",
+            "label": "Calendar",
+            "schemaPath": "./elements/xcalendar.json"
         },
         {
             "name": "xcolorschemetoggle",

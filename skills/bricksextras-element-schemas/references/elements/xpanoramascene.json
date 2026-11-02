@@ -80,7 +80,7 @@
             "fields": {
                 "pitch": {
                     "label": "Pitch",
-                    "description": "Position (\u00b0) (Vertical)",
+                    "description": "Position (°) (Vertical)",
                     "valueSchema": {
                         "oneOf": [
                             {
@@ -96,7 +96,7 @@
                 },
                 "yaw": {
                     "label": "Yaw",
-                    "description": "Position (\u00b0) (Horizontal)",
+                    "description": "Position (°) (Horizontal)",
                     "valueSchema": {
                         "oneOf": [
                             {
@@ -250,7 +250,7 @@
         },
         "hotspotPitch": {
             "label": "Pitch",
-            "description": "Position (\u00b0) (Vertical)",
+            "description": "Position (°) (Vertical)",
             "required": [
                 "hasLoop",
                 "!=",
@@ -263,7 +263,7 @@
         },
         "hotspotYaw": {
             "label": "Yaw",
-            "description": "Position (\u00b0) (Horizontal)",
+            "description": "Position (°) (Horizontal)",
             "required": [
                 "hasLoop",
                 "!=",
@@ -336,7 +336,7 @@
             "controlType": "text"
         },
         "hotspotLink": {
-            "label": "Link URL  (used when type is &quot;link&quot;)",
+            "label": "Link URL  (used when type is \"link\")",
             "required": [
                 "hasLoop",
                 "!=",
@@ -394,7 +394,7 @@
         },
         "pitch": {
             "label": "Pitch (Initial)",
-            "description": "Vertical (\u00b0)",
+            "description": "Vertical (°)",
             "valueSchema": {
                 "type": "string"
             },
@@ -402,7 +402,7 @@
         },
         "yaw": {
             "label": "Yaw (Initial)",
-            "description": "Horizontal (\u00b0)",
+            "description": "Horizontal (°)",
             "valueSchema": {
                 "type": "string"
             },

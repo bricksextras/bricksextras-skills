@@ -80,7 +80,7 @@
         },
         "pitch": {
             "label": "Pitch (Initial)",
-            "description": "Vertical (\u00b0)",
+            "description": "Vertical (°)",
             "valueSchema": {
                 "oneOf": [
                     {
@@ -96,7 +96,7 @@
         },
         "yaw": {
             "label": "Yaw (Initial)",
-            "description": "Horizontal (\u00b0)",
+            "description": "Horizontal (°)",
             "valueSchema": {
                 "oneOf": [
                     {

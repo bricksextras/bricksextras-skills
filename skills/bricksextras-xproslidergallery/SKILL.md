@@ -37,14 +37,14 @@ Enable `galleryMode: true` on the parent `xproslider`'s own settings, then nest 
         "items": { 
           "images": [
             {
-              "id": 34717,
-              "full": "https://be.local/wp-content/uploads/2026/07/image-scaled.png",
-              "url": "https://be.local/wp-content/uploads/2026/07/image-1024x568.png"
+              "id": 101,
+              "full": "<full-size URL of attachment 101>",
+              "url": "<URL of attachment 101 at the chosen size>"
             },
             {
-              "id": 30164,
-              "full": "https://be.local/wp-content/uploads/2026/02/image2-scaled.jpg",
-              "url": "https://be.local/wp-content/uploads/2026/02/image2-1024x683.jpg"
+              "id": 102,
+              "full": "<full-size URL of attachment 102>",
+              "url": "<URL of attachment 102 at the chosen size>"
             }
           ], 
           "size": "large" 
@@ -54,6 +54,8 @@ Enable `galleryMode: true` on the parent `xproslider`'s own settings, then nest 
   ]
 }
 ```
+
+The IDs and URLs are placeholders: use images from the current site's media library.
 
 Do not mix manual `block` slides and a Gallery child in the same slider — pick one population method per slider instance.
 

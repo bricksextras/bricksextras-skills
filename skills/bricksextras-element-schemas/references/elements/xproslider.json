@@ -125,13 +125,11 @@
         "padding": {
             "label": "Edge padding",
             "required": [
-                [
-                    "type",
-                    "!=",
-                    "fade"
-                ]
+                "type",
+                "!=",
+                "fade"
             ],
-            "placeholder": "",
+            "placeholder": "0px",
             "valueSchema": {
                 "oneOf": [
                     {
@@ -2960,6 +2958,7 @@
         },
         "syncSelector": {
             "label": "Selector of the slider to control",
+            "description": "If inside a query loop, use the default ID of the other slider (custom IDs not supported)",
             "required": [
                 "isNavigation",
                 "=",
@@ -3163,11 +3162,6 @@
         },
         "innerAnimations": {
             "label": "Enable",
-            "required": [
-                "optionsType",
-                "!=",
-                "custom"
-            ],
             "valueSchema": {
                 "type": "boolean"
             },
@@ -3221,9 +3215,16 @@
         "animationDelayFirst": {
             "label": "Start delay in ms",
             "required": [
-                "innerAnimations",
-                "=",
-                true
+                [
+                    "innerAnimations",
+                    "=",
+                    true
+                ],
+                [
+                    "animationStagger",
+                    "=",
+                    true
+                ]
             ],
             "valueSchema": {
                 "oneOf": [
@@ -3241,9 +3242,16 @@
         "animationDelay": {
             "label": "Interval in ms",
             "required": [
-                "innerAnimations",
-                "=",
-                true
+                [
+                    "innerAnimations",
+                    "=",
+                    true
+                ],
+                [
+                    "animationStagger",
+                    "=",
+                    true
+                ]
             ],
             "valueSchema": {
                 "oneOf": [

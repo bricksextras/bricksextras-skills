@@ -1238,6 +1238,14 @@
                 },
                 {
                     "property": "background-color",
+                    "selector": ".wsf-form input[type=radio].wsf-field"
+                },
+                {
+                    "property": "background-color",
+                    "selector": ".wsf-form input[type=checkbox].wsf-field"
+                },
+                {
+                    "property": "background-color",
                     "selector": "input[type=\"date\"].wsf-field"
                 },
                 {
@@ -2089,6 +2097,14 @@
                 {
                     "property": "background-color",
                     "selector": "progress.wsf-progress[value]::-ms-fill"
+                },
+                {
+                    "property": "background-color",
+                    "selector": "input[type=checkbox].wsf-field:checked"
+                },
+                {
+                    "property": "background-color",
+                    "selector": "input[type=radio].wsf-field:checked"
                 }
             ],
             "valueSchema": {
@@ -10997,35 +11013,35 @@
             "css": [
                 {
                     "property": "width",
-                    "selector": ".wsf-form input[type=checkbox].wsf-field + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=checkbox].wsf-field"
                 },
                 {
                     "property": "width",
-                    "selector": ".wsf-form input[type=radio].wsf-field + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=radio].wsf-field"
                 },
                 {
                     "property": "width",
-                    "selector": ".wsf-form input[type=checkbox].wsf-field + label.wsf-label:after"
+                    "selector": ".wsf-form input[type=checkbox].wsf-field"
                 },
                 {
                     "property": "width",
-                    "selector": ".wsf-form input[type=radio].wsf-field + label.wsf-label:after"
+                    "selector": ".wsf-form input[type=radio].wsf-field"
                 },
                 {
                     "property": "height",
-                    "selector": ".wsf-form input[type=checkbox].wsf-field + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=checkbox].wsf-field"
                 },
                 {
                     "property": "height",
-                    "selector": ".wsf-form input[type=radio].wsf-field + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=radio].wsf-field"
                 },
                 {
                     "property": "height",
-                    "selector": ".wsf-form input[type=checkbox].wsf-field + label.wsf-label:after"
+                    "selector": ".wsf-form input[type=checkbox].wsf-field"
                 },
                 {
                     "property": "height",
-                    "selector": ".wsf-form input[type=radio].wsf-field + label.wsf-label:after"
+                    "selector": ".wsf-form input[type=radio].wsf-field"
                 },
                 {
                     "property": "--xwsf-checkbox-size",
@@ -11057,20 +11073,12 @@
             "label": "Spacing (Vertical)",
             "css": [
                 {
-                    "property": "-webkit-margin-end",
-                    "selector": ".wsf-form .wsf-inline"
+                    "property": "--wsf-field-checkbox-gap-vertical",
+                    "selector": ".wsf-form"
                 },
                 {
-                    "property": "margin-end",
-                    "selector": ".wsf-form .wsf-inline"
-                },
-                {
-                    "property": "margin-bottom",
-                    "selector": ".wsf-form input[type=checkbox].wsf-field + label.wsf-label"
-                },
-                {
-                    "property": "margin-bottom",
-                    "selector": ".wsf-form input[type=radio].wsf-field + label.wsf-label"
+                    "property": "--wsf-field-radio-gap-vertical",
+                    "selector": ".wsf-form"
                 }
             ],
             "valueSchema": {
@@ -11112,11 +11120,11 @@
             "css": [
                 {
                     "property": "background",
-                    "selector": ".wsf-form input[type=checkbox].wsf-field + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=checkbox].wsf-field"
                 },
                 {
                     "property": "background",
-                    "selector": ".wsf-form input[type=radio].wsf-field + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=radio].wsf-field"
                 }
             ],
             "valueSchema": {
@@ -11278,19 +11286,19 @@
             "css": [
                 {
                     "property": "background-color",
-                    "selector": ".wsf-form input[type=checkbox].wsf-field:checked + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=checkbox].wsf-field:checked"
                 },
                 {
                     "property": "background-color",
-                    "selector": ".wsf-form input[type=radio].wsf-field:checked + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=radio].wsf-field:checked"
                 },
                 {
                     "property": "border-color",
-                    "selector": ".wsf-form input[type=checkbox].wsf-field:checked + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=checkbox].wsf-field:checked"
                 },
                 {
                     "property": "border-color",
-                    "selector": ".wsf-form input[type=radio].wsf-field:checked + label.wsf-label:before"
+                    "selector": ".wsf-form input[type=radio].wsf-field:checked"
                 }
             ],
             "valueSchema": {

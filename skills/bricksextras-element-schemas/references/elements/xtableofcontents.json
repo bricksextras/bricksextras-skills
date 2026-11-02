@@ -1892,6 +1892,24 @@
             },
             "controlType": "number"
         },
+        "slideEasing": {
+            "label": "Easing",
+            "required": [
+                "maybe_remove_header",
+                "!=",
+                true
+            ],
+            "css": [
+                {
+                    "property": "--x-slide-easing"
+                }
+            ],
+            "placeholder": "linear",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
+        },
         "headerBackground": {
             "label": "Background",
             "required": [

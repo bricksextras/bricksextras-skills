@@ -479,6 +479,28 @@
             },
             "controlType": "select"
         },
+        "preloadSlides": {
+            "label": "Preload adjacent slides",
+            "description": "Disable if slides contain autoplaying video or audio.",
+            "required": [
+                "maybeGrouping",
+                "=",
+                true
+            ],
+            "placeholder": "Enable",
+            "options": {
+                "true": "Enable",
+                "false": "Disable"
+            },
+            "valueSchema": {
+                "type": "string",
+                "enum": [
+                    "true",
+                    "false"
+                ]
+            },
+            "controlType": "select"
+        },
         "groupingScope": {
             "label": "Grouping Scope",
             "required": [
@@ -486,7 +508,6 @@
                 "=",
                 true
             ],
-            "default": "queryloop",
             "placeholder": "Default",
             "options": {
                 "global": "Default",
@@ -567,22 +588,6 @@
             },
             "controlType": "select"
         },
-        "allowID": {
-            "label": "Allow ID styling to be added",
-            "placeholder": "Enable",
-            "options": {
-                "true": "Enable",
-                "false": "Disable"
-            },
-            "valueSchema": {
-                "type": "string",
-                "enum": [
-                    "true",
-                    "false"
-                ]
-            },
-            "controlType": "select"
-        },
         "closeButton": {
             "label": "Close button",
             "placeholder": "Enable",
@@ -623,7 +628,7 @@
             "controlType": "select"
         },
         "configSep": {
-            "description": "To add a custom close button inside the lightbox content, add the attribute name &quot;data-x-lightbox-close&quot; to your chosen element.",
+            "description": "To add a custom close button inside the lightbox content, add the attribute name \"data-x-lightbox-close\" to your chosen element.",
             "valueSchema": {
                 "type": "string"
             },
@@ -2463,7 +2468,7 @@
             "controlType": "number"
         },
         "reduce_motion": {
-            "label": "If &#039;Reduce motion&#039; enabled",
+            "label": "If 'Reduce motion' enabled",
             "placeholder": "Animation",
             "options": {
                 "fade": "Fade",

@@ -567,7 +567,7 @@
             "controlType": "select"
         },
         "reduce_motion": {
-            "label": "If &#039;Reduce motion&#039; enabled",
+            "label": "If 'Reduce motion' enabled",
             "placeholder": "Slide",
             "options": {
                 "fade": "Fade",

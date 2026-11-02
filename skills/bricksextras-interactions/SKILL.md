@@ -62,7 +62,7 @@ Every method takes `brxParam` as its first argument (pass `%brx%` for this one) 
 |---|---|---|
 | `bricksextras.toast` | `show(brxParam, message, announce, duration, contextIcon, dismissible, closeButton)`, `showByNotificationId(notificationId, args)` | Extra params after `brxParam` are all optional overrides of the notification's own configured settings. |
 | `bricksextras.alert` | `show`, `hide`, `toggle` | `xproalert` only. |
-| `bricksextras.modal` | `open`, `close` | `xpromodalnestable`. |
+| `bricksextras.modal` | `open`, `close`, `closeAll` | `xpromodalnestable`. `closeAll` closes every open modal and doesn't use the target. |
 | `bricksextras.offcanvas` | `open`, `close`, `toggle` | `xoffcanvasnestable`. |
 | `bricksextras.slidemenu` | `expand`, `collapse`, `toggle` | |
 | `bricksextras.popover` | `open`, `close` | `xpopover`. |

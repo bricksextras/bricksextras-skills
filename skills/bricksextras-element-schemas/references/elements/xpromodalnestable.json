@@ -335,7 +335,7 @@
                 "page_load": "Show again on next visit",
                 "never": "Never show again",
                 "after": "Only allow to show after:",
-                "evergreen": "Only show if evergreen countdown hasn&#039;t ended"
+                "evergreen": "Only show if evergreen countdown hasn't ended"
             },
             "valueSchema": {
                 "type": "string",
@@ -1481,7 +1481,7 @@
             "controlType": "number"
         },
         "reduce_motion": {
-            "label": "If &#039;Reduce motion&#039; enabled",
+            "label": "If 'Reduce motion' enabled",
             "placeholder": "Animation",
             "options": {
                 "fade": "Fade",

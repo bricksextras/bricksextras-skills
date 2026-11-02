@@ -117,8 +117,7 @@
                     "valueSchema": {
                         "type": "string"
                     },
-                    "controlType": "text",
-                    "info": "Also accepts x,y (from a field mapping plugin)."
+                    "controlType": "text"
                 },
                 "position_y": {
                     "label": "Position (Y)",

@@ -41,7 +41,7 @@
         },
         "menu": {
             "label": "Menu",
-            "description": "<a href=\"https://be.local/wp-admin/nav-menus.php\" target=\"_blank\">Manage my menus in WordPress.</a>",
+            "description": "<a href=\"/wp-admin/nav-menus.php\" target=\"_blank\">Manage my menus in WordPress.</a>",
             "required": [
                 "menuSource",
                 "!=",
@@ -90,6 +90,19 @@
                 ]
             },
             "controlType": "number"
+        },
+        "slideEasing": {
+            "label": "Easing",
+            "css": [
+                {
+                    "property": "--x-slide-easing"
+                }
+            ],
+            "placeholder": "linear",
+            "valueSchema": {
+                "type": "string"
+            },
+            "controlType": "text"
         },
         "maybeNestable": {
             "label": "Add elements (Nestable)",

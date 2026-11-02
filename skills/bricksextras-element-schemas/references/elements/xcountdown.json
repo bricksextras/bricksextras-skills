@@ -28,13 +28,13 @@
             "controlType": "select"
         },
         "date": {
-            "label": "Date &amp; time (End)",
+            "label": "Date & time (End)",
             "required": [
                 "mode",
                 "=",
                 "fixed"
             ],
-            "default": "2026-08-06 14:07:50",
+            "default": "2026-11-02 22:08:59",
             "valueSchema": {
                 "type": "string"
             },
@@ -2045,6 +2045,7 @@
     "rendering": {
         "description": "HTML structure and CSS classes used by this element",
         "cssClasses": [
+            "x-countdown_number",
             "_countdown_redirect_temp"
         ],
         "rootElement": "div"

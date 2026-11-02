@@ -3486,7 +3486,7 @@
             "controlType": "box-shadow"
         },
         "buttonClearedSep": {
-            "label": "Button &#039;cleared&#039; state",
+            "label": "Button 'cleared' state",
             "required": [
                 "buttonType",
                 "=",
