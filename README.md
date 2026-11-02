@@ -1,4 +1,4 @@
-# BricksExtras Skills (beta)
+# BricksExtras Skills
 
 ## Requirements
 Bricks 2.4+, BricksExtras 1.7.3+ and an MCP-compatible client that supports skills.
